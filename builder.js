@@ -125,7 +125,7 @@ const run = async () => {
         if (coin) {
             await download(coin.image.fullsize.link)
         } else {
-            console.error(`${argv[1]} not found in coin database`)
+            console.error(`${args[1]} not found in coin database`)
         }
     }
 
@@ -133,9 +133,6 @@ const run = async () => {
         console.info("downloading all fullsize images (could take some time)")
         await downloadAllFullsize(coins)
     }
-
-    const volumes = coins.map(c => c.volume)
-    console.log(volumes.filter(a => a < 400000).length)
 }
 
 run()
