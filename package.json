@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "author": "Flibustier",
   "description": "Manage your euro collection",
+  "license": "MIT",
   "private": false,
   "scripts": {
-    "build-database": "node builder.js",
+    "extract": "node builder.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -26,6 +27,7 @@
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.0.0",
     "flag-icon-css": "^3.4.5",
+    "lodash": "^4.17.15",
     "vue-template-compiler": "2.6.10"
   },
   "eslintConfig": {

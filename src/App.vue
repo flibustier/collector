@@ -48,7 +48,7 @@ export default {
 
   computed: {
     coins() {
-      return database.map(coin => ({
+      return database.coins.map(coin => ({
         ...coin,
         date: new Date(coin.date),
         year: new Date(coin.date).getFullYear()

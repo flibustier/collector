@@ -1,18 +1,14 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
+const _ = require('lodash');
 const { basename } = require('path');
 
-const { WIKIPEDIA_URL, NAME_SELECTOR, DATE_SELECTOR, VOLUME_SELECTOR, IMAGE_SELECTOR, IMAGE_DIRECTORY, DATABASE_PATH, ISO_3166_1_ALPHA_2 } = require('./builder.constants.js');
+const { WIKIPEDIA_URL, NAME_SELECTOR, DATE_SELECTOR, COUNTRY_SELECTOR, VOLUME_SELECTOR, IMAGE_SELECTOR, IMAGE_DIRECTORY, DATABASE_PATH, DATABASE_VERSION, POSSIBLE_ARGS, ISO_3166_1_ALPHA_2 } = require('./builder.constants.js');
+
+const args = process.argv.slice(2);
 
 const getImageFileName = imagePath => decodeURI(basename(imagePath))
-
-const download = async imagePath => axios({ method: 'GET', url: `http:${imagePath}`, responseType: 'stream' })
-    .then(response => response.data.pipe(fs.createWriteStream(`${IMAGE_DIRECTORY}/${getImageFileName(imagePath)}`)));
-
-const downloadAllFullsize = array => {
-    return Promise.all(array.filter(coin => coin.imageFullsize).map(coin => download(coin.imageFullsize)))
-}
 
 const translateMonth = str => {
     const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
@@ -61,15 +57,6 @@ const volumeConverter = volume => {
     return parseInt(extract.replace(/\s/g, ''))
 }
 
-const sameCountryAndYear = (a, b) => a.country === b.country && a.date.getFullYear() === b.date.getFullYear()
-
-const createID = (registrated, coin) => {
-    return [...registrated, {
-        id: `${coin.country}-${coin.date.getFullYear()}-${('0' + (registrated.filter(p => sameCountryAndYear(p, coin)).length + 1)).slice(-2)}`,
-        ...coin
-    }]
-}
-
 const parseCountryDateAndVolume = coin => ({
     ...coin,
     country: ISO_3166_1_ALPHA_2[coin.fr.country],
@@ -77,19 +64,62 @@ const parseCountryDateAndVolume = coin => ({
     volume: volumeConverter(coin.fr.volume)
 })
 
+const coinsWithSameCountryAndYear = (coins, country, year) => coins.filter(coin => coin.country === country && coin.date.getFullYear() === year)
+
+const formatID = (country, year, order) => `${country}-${year}-${order}`
+
+const regenerateID = (registrated, coin) => {
+    const { country } = coin;
+    const year = coin.date.getFullYear();
+
+    const id = formatID(country, year, ('0' + (coinsWithSameCountryAndYear(registrated, country, year).length + 1)).slice(-2));
+
+    if (coin.id && coin.id !== id) {
+        console.warn(`[WARNING] Caution! ${coin.id} has been changed to ${id}`)
+    }
+
+    return [...registrated, {
+        ...coin,
+        id
+    }]
+}
+
+const isVolume = str => str.includes("pièces")
+
+const fixDateAndVolumeInversionIfOptionActivated = () => {
+    // fix-date is activated with a date
+    if (args.includes(POSSIBLE_ARGS.FIX_DATE)) {
+        const suggestedDate = args[args.indexOf(POSSIBLE_ARGS.FIX_DATE) + 1];
+        if (suggestedDate) {
+            // if we have a suggested date, we return a function which will fix the date
+            return coin => isVolume(coin.fr.date) && !coin.fr.volume ? {
+                ...coin,
+                fr: {
+                    ...coin.fr,
+                    date: suggestedDate,
+                    volume: coin.fr.date,
+                }
+            } : coin;
+        }
+        console.error(`${POSSIBLE_ARGS.FIX_DATE} activated without giving a suggested date`)
+    }
+    // else we return an meaningless function
+    return coin => coin;
+}
+
 const getFullSizeImageLink = el => (el.find(IMAGE_SELECTOR).attr('src') || '').split('/150px')[0].replace('/thumb', '')
 
-const run = async () => {
+const parseRemoteCoins = async () => {
     const { data } = await axios.get(WIKIPEDIA_URL)
 
     const $ = cheerio.load(data);
 
     const tables = $('table.wikitable')
 
-    const coins = tables.map((_, el) => ({
+    return tables.map((_, el) => ({
         fr: {
             title: $(el).find(NAME_SELECTOR).text().split('[')[0],
-            country: $(el).find('b span > a').text(),
+            country: $(el).find(COUNTRY_SELECTOR).text(),
             date: $(el).find(DATE_SELECTOR).text(),
             volume: $(el).find(VOLUME_SELECTOR).text().split('[')[0],
         },
@@ -102,22 +132,55 @@ const run = async () => {
         }
     }))
         .get()
+        .map(fixDateAndVolumeInversionIfOptionActivated())
         .filter(coin => !!coin.fr.volume && !!coin.fr.date)
         .map(parseCountryDateAndVolume)
-        .sort((a, b) => a.date < b.date ? -1 : 1)
-        .reduce(createID, [])
+}
 
-    console.info(`${coins.length} coins extracted!`);
-
-    fs.writeFile(DATABASE_PATH, JSON.stringify(coins, null, 2), function (err) {
+const readLocalCoins = () => new Promise((resolve) => {
+    fs.readFile(DATABASE_PATH, 'utf8', function (err, data) {
         if (err) {
-            console.error(err);
-        } else {
-            console.debug(`database written in ${DATABASE_PATH}`);
+            console.warn(`[WARNING] no database found in ${DATABASE_PATH}, ignore if you’re creating a new database`)
+            
+            resolve([]);
         }
-    });
+        const database = JSON.parse(data);
+        console.debug(`[DEBUG] database ${database.version} found with ${database.coins.length} entries!`)
 
-    const args = process.argv.slice(2);
+        resolve(database.coins.map(coin => ({
+            ...coin, 
+            date: new Date(coin.date)
+        })))
+    });
+})
+
+const download = async imagePath => axios({ method: 'GET', url: `http:${imagePath}`, responseType: 'stream' })
+    .then(response => response.data.pipe(fs.createWriteStream(`${IMAGE_DIRECTORY}/${getImageFileName(imagePath)}`)));
+
+const downloadAllFullsize = array => {
+    return Promise.all(array.filter(coin => coin.image.fullsize.link).map(coin => download(coin.image.fullsize.link)))
+}
+
+const mergeCoins = (existing, newbies) =>  {
+    const merged = _.unionWith(existing, newbies, (a, b) => _.isEqual(a.fr, b.fr));
+    if (merged.length - existing.length > 0) console.info(`[INFO] ${merged.length - existing.length} new entries will be added!`)
+    return merged;
+}
+
+const orderByDateAndTitle = (a, b) => a.date - b.date !== 0 ? a.date - b.date : a.fr.title.localeCompare(b.fr.title);
+
+const run = async () => {
+    const localCoins = await readLocalCoins();
+
+    const parsedRemoteCoins = await parseRemoteCoins();
+
+    console.info(`[INFO] ${parsedRemoteCoins.length} remote coins extracted!`);
+
+    const coins = mergeCoins(localCoins, parsedRemoteCoins)
+        .sort(orderByDateAndTitle)
+        .reduce(regenerateID, [])
+
+    console.info(`[INFO] ${coins.length} total coins`)
 
     if (args[0] === "--download" && args[1].match(/\w{2}-\d{4}-\d{2}/)) {
         console.info(`downloading ${args[1]}`)
@@ -129,9 +192,19 @@ const run = async () => {
         }
     }
 
-    if (args[0] === "--download-all") {
-        console.info("downloading all fullsize images (could take some time)")
-        await downloadAllFullsize(coins)
+    if (args.includes("--download-all")) {
+        console.info("[INFO] Downloading all fullsize images (could take some time)")
+        await downloadAllFullsize(parsedRemoteCoins)
+    }
+
+    if (args.includes("--write-database")) {
+        fs.writeFile(DATABASE_PATH, JSON.stringify({
+            version: DATABASE_VERSION,
+            coins
+        }, null, 2), function (err) {
+            if (err) console.error(err);
+            else console.debug(`database written in ${DATABASE_PATH}`);
+        });
     }
 }
 
