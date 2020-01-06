@@ -11,17 +11,21 @@ exports.WIKIPEDIA_URLS = {
         },
         {
             url: "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_50e_anniversaire_du_Trait%C3%A9_de_Rome",
-            fixDate: "25 mars 2007"
+            fixDate: "25 mars 2007",
+            collection: "Treaty of Rome"
         },
         {
             url: "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_10e_anniversaire_de_l%27Union_%C3%A9conomique_et_mon%C3%A9taire",
-            fixDate: "1 janvier 2009"
+            fixDate: "1 janvier 2009",
+            collection: "Economic and Monetary Union"
         },
         {
-            url: "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_10e_anniversaire_de_l%27introduction_des_billets_et_des_pi%C3%A8ces_en_euro"
+            url: "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_10e_anniversaire_de_l%27introduction_des_billets_et_des_pi%C3%A8ces_en_euro",
+            collection: "Euro coins and banknotes"
         },
         {
-            url: "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_30e_anniversaire_du_drapeau_europ%C3%A9en"
+            url: "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_30e_anniversaire_du_drapeau_europ%C3%A9en",
+            collection: "Flag of Europe"
         }
     ]
 };

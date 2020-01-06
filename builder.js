@@ -4,11 +4,11 @@ const fs = require('fs');
 const _ = require('lodash');
 const { basename } = require('path');
 
-const { WIKIPEDIA_URL, NAME_SELECTOR, DATE_SELECTOR, COUNTRY_SELECTOR, VOLUME_SELECTOR, IMAGE_SELECTOR, IMAGE_DIRECTORY, DATABASE_PATH, DATABASE_VERSION, POSSIBLE_ARGS, ISO_3166_1_ALPHA_2 } = require('./builder.constants.js');
+const { WIKIPEDIA_URLS, NAME_SELECTOR, DATE_SELECTOR, COUNTRY_SELECTOR, VOLUME_SELECTOR, IMAGE_SELECTOR, IMAGE_DIRECTORY, DATABASE_PATH, DATABASE_VERSION, POSSIBLE_ARGS, ISO_3166_1_ALPHA_2 } = require('./builder.constants.js');
 
 const args = process.argv.slice(2);
 
-const getImageFileName = imagePath => decodeURI(basename(imagePath))
+const getFileName = url => decodeURI(basename(url))
 
 const translateMonth = str => {
     const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
@@ -86,10 +86,10 @@ const regenerateID = (registrated, coin) => {
 
 const isVolume = str => str.includes("pièces")
 
-const fixDateAndVolumeInversionIfOptionActivated = () => {
+const fixDateAndVolumeInversionIfOptionActivated = (fixedDate) => {
     // fix-date is activated with a date
-    if (args.includes(POSSIBLE_ARGS.FIX_DATE)) {
-        const suggestedDate = args[args.indexOf(POSSIBLE_ARGS.FIX_DATE) + 1];
+    if (fixedDate || args.includes(POSSIBLE_ARGS.FIX_DATE)) {
+        const suggestedDate = fixedDate || args[args.indexOf(POSSIBLE_ARGS.FIX_DATE) + 1];
         if (suggestedDate) {
             // if we have a suggested date, we return a function which will fix the date
             return coin => isVolume(coin.fr.date) && !coin.fr.volume ? {
@@ -109,8 +109,8 @@ const fixDateAndVolumeInversionIfOptionActivated = () => {
 
 const getFullSizeImageLink = el => (el.find(IMAGE_SELECTOR).attr('src') || '').split('/150px')[0].replace('/thumb', '')
 
-const parseRemoteCoins = async () => {
-    const { data } = await axios.get(WIKIPEDIA_URL)
+const parseRemoteCoins = async (sourceURL, fixedDate, collection) => {
+    const { data } = await axios.get(sourceURL)
 
     const $ = cheerio.load(data);
 
@@ -127,12 +127,13 @@ const parseRemoteCoins = async () => {
             thumb: $(el).find(IMAGE_SELECTOR).attr('src'),
             fullsize: {
                 link: getFullSizeImageLink($(el)),
-                file: getImageFileName(getFullSizeImageLink($(el))),
+                file: getFileName(getFullSizeImageLink($(el))),
             }
-        }
+        },
+        ...collection ? { collection } : {}
     }))
         .get()
-        .map(fixDateAndVolumeInversionIfOptionActivated())
+        .map(fixDateAndVolumeInversionIfOptionActivated(fixedDate))
         .filter(coin => !!coin.fr.volume && !!coin.fr.date)
         .map(parseCountryDateAndVolume)
 }
@@ -141,27 +142,29 @@ const readLocalCoins = () => new Promise((resolve) => {
     fs.readFile(DATABASE_PATH, 'utf8', function (err, data) {
         if (err) {
             console.warn(`[WARNING] no database found in ${DATABASE_PATH}, ignore if you’re creating a new database`)
-            
+
             resolve([]);
         }
         const database = JSON.parse(data);
         console.debug(`[DEBUG] database ${database.version} found with ${database.coins.length} entries!`)
 
         resolve(database.coins.map(coin => ({
-            ...coin, 
+            ...coin,
             date: new Date(coin.date)
         })))
     });
 })
 
+const localImageFilePath = imageFileName => `${IMAGE_DIRECTORY}/${imageFileName}`
+
 const download = async imagePath => axios({ method: 'GET', url: `http:${imagePath}`, responseType: 'stream' })
-    .then(response => response.data.pipe(fs.createWriteStream(`${IMAGE_DIRECTORY}/${getImageFileName(imagePath)}`)));
+    .then(response => response.data.pipe(fs.createWriteStream(localImageFilePath(getFileName(imagePath)))));
 
-const downloadAllFullsize = array => {
-    return Promise.all(array.filter(coin => coin.image.fullsize.link).map(coin => download(coin.image.fullsize.link)))
-}
+const isImageMissing = ({ image: { fullsize: { file } } }) => file && !fs.existsSync(localImageFilePath(file))
 
-const mergeCoins = (existing, newbies) =>  {
+const downloadAllFullsize = coins => Promise.all(coins.filter(isImageMissing).map(coin => download(coin.image.fullsize.link)))
+
+const mergeCoins = (existing, newbies) => {
     const merged = _.unionWith(existing, newbies, (a, b) => _.isEqual(a.fr, b.fr));
     if (merged.length - existing.length > 0) console.info(`[INFO] ${merged.length - existing.length} new entries will be added!`)
     return merged;
@@ -172,7 +175,13 @@ const orderByDateAndTitle = (a, b) => a.date - b.date !== 0 ? a.date - b.date : 
 const run = async () => {
     const localCoins = await readLocalCoins();
 
-    const parsedRemoteCoins = await parseRemoteCoins();
+    const remoteCoins = await Promise.all(
+        WIKIPEDIA_URLS.fr.map(({ url, fixDate, collection }) => {
+            console.debug(`[DEBUG] Fetching ${getFileName(url)}`)
+            return parseRemoteCoins(url, fixDate, collection)
+        }))
+
+    const parsedRemoteCoins = _.flatten(remoteCoins)
 
     console.info(`[INFO] ${parsedRemoteCoins.length} remote coins extracted!`);
 
@@ -193,8 +202,8 @@ const run = async () => {
     }
 
     if (args.includes("--download-all")) {
-        console.info("[INFO] Downloading all fullsize images (could take some time)")
-        await downloadAllFullsize(parsedRemoteCoins)
+        console.info("[INFO] Downloading all missings fullsize images (could take some time)")
+        await downloadAllFullsize(coins)
     }
 
     if (args.includes("--write-database")) {
