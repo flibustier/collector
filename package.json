@@ -1,23 +1,25 @@
 {
   "name": "collector",
   "version": "0.1.0",
-  "author": "Flibustier",
-  "description": "Manage your euro collection",
-  "license": "MIT",
   "private": false,
+  "description": "Manage your euro collection",
+  "author": "Flibustier",
   "scripts": {
-    "extract": "node builder.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "extract": "node builder.js",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
     "buefy": "0.8.9",
     "core-js": "3.4.4",
-    "vue": "2.6.10"
+    "vue": "2.6.10",
+    "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^5.12.0",
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "@vue/cli-plugin-babel": "4.1.0",
     "@vue/cli-plugin-eslint": "4.1.0",
     "@vue/cli-service": "4.1.0",
@@ -28,6 +30,7 @@
     "eslint-plugin-vue": "5.0.0",
     "flag-icon-css": "^3.4.5",
     "lodash": "^4.17.15",
+    "vue-cli-plugin-i18n": "^0.6.0",
     "vue-template-compiler": "2.6.10"
   },
   "eslintConfig": {
@@ -49,5 +52,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "license": "MIT"
 }

@@ -84,7 +84,7 @@ export default {
     },
 
     maxVolume() {
-      return Math.max(...this.coins.map(coin => coin.volume))
+      return Math.max(...this.coins.map(coin => coin.volume));
     },
 
     countryList() {
@@ -92,19 +92,12 @@ export default {
         .reduce(function(countryList, coin) {
           if (
             countryList.filter(
-              country => country.value === coin.country.toLowerCase()
+              country => country === coin.country
             ).length === 0
           )
-            return [
-              ...countryList,
-              {
-                name: coin.fr.country,
-                value: coin.country.toLowerCase()
-              }
-            ];
+            return [...countryList, coin.country];
           else return countryList;
         }, [])
-        .sort((a, b) => a.name > b.name);
     }
   }
 };

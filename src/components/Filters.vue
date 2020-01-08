@@ -1,7 +1,7 @@
 <template>
   <aside>
     <div class="header">
-      <p class="subtitle is-6">Coins displayed: {{ coinsNumber }}</p>
+      <p class="subtitle is-6">{{ $t('displayed') }}: {{ coinsNumber }}</p>
 
       <b-button
         type="is-info"
@@ -11,10 +11,10 @@
         icon-left="undo"
         outlined
         rounded
-      >Reset</b-button>
+      >{{ $t('reset') }}</b-button>
     </div>
 
-    <b-field label="Countries">
+    <b-field :label="$t('countries')">
       <b-select
         multiple
         native-size="12"
@@ -22,14 +22,14 @@
         @input="countries => $emit('update:countries', countries)"
         expanded
       >
-        <option v-for="{ name, value } in countryList" :key="value" :value="value">
-          <span :class="`flag-icon flag-icon-${value}`"></span>
-          {{ name }}
+        <option v-for="country in countryList" :key="country" :value="country">
+          <span :class="`flag-icon flag-icon-${country.toLowerCase()}`"></span>
+          {{ $t(`countries.${country}`) }}
         </option>
       </b-select>
     </b-field>
 
-    <b-field label="Years Range">
+    <b-field :label="$t('years')">
       <b-slider
         :value="years"
         :min="minYear"
@@ -42,14 +42,18 @@
       ></b-slider>
     </b-field>
 
-    <b-field label="Volume" style="margin-left: 0.7rem; margin-right: 0.7rem;">
-      <b-slider v-model="rarity" :min="0" :max="4" :tooltip="false" rounded>
+    <b-field :label="$t('rarity')">
+      <b-slider class="rarity" v-model="rarity" :min="0" :max="4" :tooltip="false" rounded>
         <b-slider-tick :value="0">Common</b-slider-tick>
         <b-slider-tick :value="1">Uncommon</b-slider-tick>
         <b-slider-tick :value="2">Rare</b-slider-tick>
         <b-slider-tick :value="3">Epic</b-slider-tick>
         <b-slider-tick :value="4">Legendary</b-slider-tick>
       </b-slider>
+    </b-field>
+
+    <b-field label="Collections">
+      <b-switch size="is-small">Show </b-switch>
     </b-field>
   </aside>
 </template>
@@ -73,6 +77,10 @@ export default {
     return {
       rarity: []
     };
+  },
+
+  mounted() {
+    console.log(JSON.stringify(this.countryList))
   },
 
   watch: {
@@ -133,4 +141,28 @@ aside {
   display: flex;
   justify-content: space-between;
 }
+
+.rarity {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 </style>
+
+<i18n>
+{
+  "en": {
+    "displayed": "Coins displayed",
+    "reset": "Reset",
+    "countries": "Countries",
+    "years": "Years",
+    "rarity": "Rarity"
+  },
+  "fr": {
+    "displayed": "Nombre de pièces affichées",
+    "reset": "Réinitialiser",
+    "countries": "Pays",
+    "years": "Années",
+    "rarity": "Rareté"
+  }
+}
+</i18n>

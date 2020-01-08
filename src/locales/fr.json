@@ -1,0 +1,27 @@
+{
+  "countries": {
+    "AD": "Andorre",
+    "AT": "Autriche",
+    "BE": "Belgique",
+    "CY": "Chypre",
+    "DE": "Allemagne",
+    "EE": "Estonie",
+    "ES": "Espagne",
+    "FI": "Finlande",
+    "FR": "France",
+    "GR": "Grèce",
+    "IE": "Irlande",
+    "IT": "Italie",
+    "LT": "Lituanie",
+    "LU": "Luxembourg",
+    "LV": "Lettonie",
+    "MC": "Monaco",
+    "MT": "Malte",
+    "NL": "Pays-Bas",
+    "PT": "Portugal",
+    "SI": "Slovénie",
+    "SK": "Slovaquie",
+    "SM": "Saint-Marin",
+    "VA": "Vatican"
+  }
+}
