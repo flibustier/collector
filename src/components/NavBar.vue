@@ -1,10 +1,16 @@
 <template>
   <b-navbar>
+    <template slot="brand">
+      <b-navbar-item>
+        <p>Toss a Coin</p>
+      </b-navbar-item>
+    </template>
+
     <template slot="end">
       <b-navbar-item>
         <b-field>
           <b-input
-            placeholder="Search..."
+            :placeholder="$t('search')"
             type="search"
             icon="search"
             @input="input => $emit('update:searchInput', input)"
@@ -14,13 +20,14 @@
       </b-navbar-item>
 
       <b-navbar-dropdown>
-        <b-navbar-item href="#">
-          <span class="flag-icon flag-icon-fr"></span>Français
+        <b-navbar-item @click="$root.$i18n.locale = lang" v-for="lang in languages" :key="lang">
+          <span :class="getFlagClass(lang)"></span>
+          {{ lang === 'fr' ? 'Français' : 'English' }}
         </b-navbar-item>
-        <b-navbar-item href="#">
-          <span class="flag-icon flag-icon-gb"></span>English
-        </b-navbar-item>
-        <span slot="label" class="flag-icon flag-icon-fr"></span>
+        <div slot="label">
+          <span :class="getFlagClass($i18n.locale)"></span>
+          <b-icon icon="language" />
+        </div>
       </b-navbar-dropdown>
 
       <b-navbar-item tag="div">
@@ -31,14 +38,9 @@
             icon-left="file-export"
             outlined
             rounded
-          >Export Collection</b-button>
+          >{{ $t('export') }}</b-button>
 
-          <b-button
-            size="is-small"
-            icon-left="file-import"
-            outlined
-            rounded
-          >Import Collection</b-button>
+          <b-button size="is-small" icon-left="file-import" outlined rounded>{{ $t('import' )}}</b-button>
         </div>
       </b-navbar-item>
     </template>
@@ -46,9 +48,23 @@
 </template>
 
 <script>
+import { SUPPORTED_LANGUAGES } from "@/constants.js";
+
 export default {
   props: {
     searchInput: String
+  },
+
+  computed: {
+    languages() {
+      return SUPPORTED_LANGUAGES;
+    }
+  },
+
+  methods: {
+    getFlagClass(locale) {
+      return `flag-icon flag-icon-${locale === 'en' ? 'gb' : locale}`
+    }
   }
 };
 </script>
@@ -57,4 +73,23 @@ export default {
 .flag-icon {
   margin-right: 1rem;
 }
+
+.icon {
+  vertical-align: middle;
+}
 </style>
+
+<i18n>
+{
+  "en": {
+    "export": "Export Collection",
+    "import": "Import Collection",
+    "search": "Search..."
+  },
+  "fr": {
+    "export": "Sauvegarder la collection",
+    "import": "Récupérer la collection",
+    "search": "Rechercher..."
+  }
+}
+</i18n>

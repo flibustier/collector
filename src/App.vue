@@ -59,7 +59,7 @@ export default {
       return this.coins.filter(
         coin =>
           (this.selectedCountries.length === 0 ||
-            this.selectedCountries.includes(coin.country.toLowerCase())) &&
+            this.selectedCountries.includes(coin.country)) &&
           coin.year >= this.selectedYears[0] &&
           coin.year <= this.selectedYears[1] &&
           coin.volume >= this.selectedVolumes[0] &&

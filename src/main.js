@@ -4,7 +4,7 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import 'flag-icon-css/css/flag-icon.min.css'
 import "@fortawesome/fontawesome-pro/css/all.css";
-import i18n from './i18n'
+import i18n from './plugins/i18n'
 
 Vue.use(Buefy, {
   defaultIconPack: "fal",
