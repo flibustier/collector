@@ -1,10 +1,12 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-const fs = require('fs');
-const _ = require('lodash');
-const { basename } = require('path');
+import axios from 'axios';
+import cheerio from 'cheerio';
+import fs from 'fs';
+import _ from 'lodash';
+import { basename } from 'path';
 
-const { WIKIPEDIA_URLS, NAME_SELECTOR, DATE_SELECTOR, COUNTRY_SELECTOR, VOLUME_SELECTOR, IMAGE_SELECTOR, IMAGE_DIRECTORY, DATABASE_PATH, DATABASE_VERSION, POSSIBLE_ARGS, ISO_3166_1_ALPHA_2 } = require('./builder.constants.js');
+import './parser.mjs';
+
+import { WIKIPEDIA_URLS, NAME_SELECTOR, DATE_SELECTOR, COUNTRY_SELECTOR, VOLUME_SELECTOR, IMAGE_SELECTOR, IMAGE_DIRECTORY, DATABASE_PATH, DATABASE_VERSION, POSSIBLE_ARGS, ISO_3166_1_ALPHA_2 } from './constants.mjs';
 
 const args = process.argv.slice(2);
 

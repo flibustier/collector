@@ -1,10 +1,10 @@
-exports.IMAGE_DIRECTORY = "public/images/fullsize";
-exports.DATABASE_PATH = "src/assets/database.json";
-exports.DATABASE_VERSION = "2020-01-05";
+export const IMAGE_DIRECTORY = "public/images/fullsize";
+export const DATABASE_PATH = "src/assets/database.json";
+export const DATABASE_VERSION = "2020-01-05";
 
 //const WIKIPEDIA_URL = "http://localhost:8080/Pie%CC%80ce%20comme%CC%81morative%20de%202%20euros%20%E2%80%94%20Wikipe%CC%81dia.html"
-exports.WIKIPEDIA_URL = "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_50e_anniversaire_du_Trait%C3%A9_de_Rome"
-exports.WIKIPEDIA_URLS = {
+export const WIKIPEDIA_URL = "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_50e_anniversaire_du_Trait%C3%A9_de_Rome"
+export const WIKIPEDIA_URLS = {
     fr: [
         {
             url: "https://fr.wikipedia.org/wiki/Pi%C3%A8ce_comm%C3%A9morative_de_2_euros"
@@ -30,17 +30,17 @@ exports.WIKIPEDIA_URLS = {
     ]
 };
 
-exports.NAME_SELECTOR = 'tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > center:nth-child(1) > b:nth-child(1)'
-exports.COUNTRY_SELECTOR = 'b span > a'
-exports.DATE_SELECTOR = "tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > div:nth-child(1) > center:nth-child(1) > div:nth-child(4)"
-exports.VOLUME_SELECTOR = "tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > div:nth-child(1) > center:nth-child(1) > div:nth-child(6)"
-exports.IMAGE_SELECTOR = "tbody tr td div.center div.floatnone a.image img"
+export const NAME_SELECTOR = 'tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > center:nth-child(1) > b:nth-child(1)'
+export const COUNTRY_SELECTOR = 'b span > a'
+export const DATE_SELECTOR = "tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > div:nth-child(1) > center:nth-child(1) > div:nth-child(4)"
+export const VOLUME_SELECTOR = "tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > div:nth-child(1) > center:nth-child(1) > div:nth-child(6)"
+export const IMAGE_SELECTOR = "tbody tr td div.center div.floatnone a.image img"
 
-exports.POSSIBLE_ARGS = {
+export const POSSIBLE_ARGS = {
     FIX_DATE: '--fix-date'
 }
 
-exports.ISO_3166_1_ALPHA_2 = {
+export const ISO_3166_1_ALPHA_2 = {
     'Allemagne': 'DE',
     'Andorre': 'AD',
     'Autriche': 'AT',
