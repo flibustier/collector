@@ -1,9 +1,5 @@
-export const IMAGE_DIRECTORY = "public/images/fullsize";
 export const DATABASE_PATH = "src/assets/database.json";
-export const DATABASE_VERSION = "2020-01-05";
 
-//const WIKIPEDIA_URL = "http://localhost:8080/Pie%CC%80ce%20comme%CC%81morative%20de%202%20euros%20%E2%80%94%20Wikipe%CC%81dia.html"
-export const WIKIPEDIA_URL = "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_50e_anniversaire_du_Trait%C3%A9_de_Rome"
 export const WIKIPEDIA_URLS = {
     fr: [
         {
@@ -30,38 +26,18 @@ export const WIKIPEDIA_URLS = {
     ]
 };
 
-export const NAME_SELECTOR = 'tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > center:nth-child(1) > b:nth-child(1)'
-export const COUNTRY_SELECTOR = 'b span > a'
-export const DATE_SELECTOR = "tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > div:nth-child(1) > center:nth-child(1) > div:nth-child(4)"
-export const VOLUME_SELECTOR = "tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > div:nth-child(1) > center:nth-child(1) > div:nth-child(6)"
-export const IMAGE_SELECTOR = "tbody tr td div.center div.floatnone a.image img"
-
 export const POSSIBLE_ARGS = {
-    FIX_DATE: '--fix-date'
+    WRITE_DB: "--write-database",
+    DOWNLOAD: "--download",
+    WITH_PANDA: "--tiny-png",
+    DOWNLOAD_ALL: "--download-all",
+    QUALITY: "--quality"
 }
 
-export const ISO_3166_1_ALPHA_2 = {
-    'Allemagne': 'DE',
-    'Andorre': 'AD',
-    'Autriche': 'AT',
-    'Belgique': 'BE',
-    'Chypre': 'CY',
-    'Espagne': 'ES',
-    'Estonie': 'EE',
-    'Finlande': 'FI',
-    'France': 'FR',
-    'Grèce': 'GR',
-    'Irlande': 'IE',
-    'Italie': 'IT',
-    'Lettonie': 'LV',
-    'Lituanie': 'LT',
-    'Luxembourg': 'LU',
-    'Malte': 'MT',
-    'Monaco': 'MC',
-    'Pays-Bas': 'NL',
-    'Portugal': 'PT',
-    'Saint-Marin': 'SM',
-    'Slovaquie': 'SK',
-    'Slovénie': 'SI',
-    'Vatican': 'VA',
+export const IMAGE_DIRECTORY = "public/images";
+export const IMAGE_ALL_QUALITY = "all"
+export const IMAGE_QUALITY = {
+    MAXIMAL:    "fullsize",
+    MEDIUM:     "medium",
+    LOW:        "low"
 }
