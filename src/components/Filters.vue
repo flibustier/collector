@@ -79,10 +79,6 @@ export default {
     };
   },
 
-  mounted() {
-    console.log(JSON.stringify(this.countryList))
-  },
-
   watch: {
     rarity() {
       this.$emit("update:volumes", [

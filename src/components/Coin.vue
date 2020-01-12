@@ -3,14 +3,14 @@
     <div class="card-content">
       <div class="header">
         <div>
-        <span :class="`flag-icon flag-icon-${coin.country.toLowerCase()}`"></span>
+        <span :class="`flag-icon ${coin.countryFlag}`"></span>
         <span class="subtitle is-6">{{ coin.country }}</span>
         </div>
         <p class="subtitle is-6">{{ coin.fr.date }}</p>
       </div>
 
-      <figure v-if="coin.imagePath('low')" class="image">
-        <img :src="coin.imagePath('low')" @click="showFullSizeImage" />
+      <figure v-if="imageForCurrentQuality" class="image">
+        <img :src="imageForCurrentQuality" @click="showFullSizeImage" />
       </figure>
 
       <div class="content">
@@ -25,9 +25,21 @@
 <script>
 import ImageModal from './ImageModal'
 
+import { mapState } from 'vuex'
+
 export default {
   props: {
     coin: Object
+  },
+
+  computed: {
+    imageForCurrentQuality() {
+      return this.coin.image(this.currentQuality)
+    },
+
+    ...mapState({
+      currentQuality: state => state.settings.quality
+    })
   },
 
   methods: {
@@ -36,7 +48,7 @@ export default {
         parent: this,
         component: ImageModal,
         props: {
-          imgSrc: this.coin.imagePath('low')
+          imgSrc: this.coin.image()
         }
       });
     }

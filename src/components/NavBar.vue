@@ -43,7 +43,7 @@
 
         <b-navbar-item @click="showSettingsModal">
           <b-icon icon="sliders-v" />
-          <span>{{ $t('setting') }}</span>
+          <span>{{ $t('settings') }}</span>
         </b-navbar-item>
 
         <b-icon slot="label" icon="ellipsis-h" />
@@ -106,7 +106,7 @@ export default {
     "export": "Sauvegarder la collection",
     "import": "Récupérer la collection",
     "search": "Rechercher...",
-    "setting": "Paramètres"
+    "settings": "Paramètres"
   }
 }
 </i18n>

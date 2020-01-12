@@ -7,7 +7,8 @@
       <b-field :label="$t('quality')" :message="$t('advice')">
         <b-field>
           <b-radio-button
-            v-model="radioButton"
+            :value="savedQuality"
+            @input="value => $store.commit('setQuality', value)"
             :native-value="quality"
             v-for="(quality, i) in qualityList"
             :key="quality"
@@ -24,17 +25,17 @@
 <script>
 import { IMAGE_QUALITY } from "../constants.mjs";
 
-export default {
-  data() {
-    return {
-      radioButton: ""
-    };
-  },
+import { mapState } from 'vuex';
 
+export default {
   computed: {
     qualityList() {
       return Object.values(IMAGE_QUALITY);
-    }
+    },
+
+    ...mapState({
+        savedQuality: state => state.settings.quality
+    })
   }
 };
 </script>
@@ -50,7 +51,7 @@ export default {
     "fullsize": "Highest"
   },
   "fr": {
-    "setting": "Paramétrages",
+    "settings": "Paramétrages",
     "quality": "Qualité des miniatures",
     "advice": "Une qualité plus élevée sera plus lente à charger",
     "low": "Basse",

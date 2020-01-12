@@ -30,11 +30,15 @@ export default class Coin {
         return this.id.slice(0, 2);
     }
 
+    get countryFlag() {
+        return `flag-icon-${this.country.toLowerCase()}`
+    }
+
     get year() {
         return this.date.getFullYear()
     }
 
-    image(quality = IMAGE_QUALITY.LOW.name) {
+    image(quality = IMAGE_QUALITY.MAXIMAL) {
         return `/images/${quality}/${imageNameForQuality(this.imageSource, quality)}`
     }
 }
