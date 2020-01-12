@@ -4,13 +4,13 @@
       <div class="header">
         <div>
         <span :class="`flag-icon flag-icon-${coin.country.toLowerCase()}`"></span>
-        <span class="subtitle is-6">{{ coin.fr.country }}</span>
+        <span class="subtitle is-6">{{ coin.country }}</span>
         </div>
         <p class="subtitle is-6">{{ coin.fr.date }}</p>
       </div>
 
-      <figure v-if="coin.image.fullsize.file" class="image">
-        <img :src="imgSrc" @click="showFullSizeImage" />
+      <figure v-if="coin.imagePath('low')" class="image">
+        <img :src="coin.imagePath('low')" @click="showFullSizeImage" />
       </figure>
 
       <div class="content">
@@ -30,19 +30,13 @@ export default {
     coin: Object
   },
 
-  computed: {
-    imgSrc() {
-      return `/images/fullsize/${this.coin.image.fullsize.file}`;
-    }
-  },
-
   methods: {
     showFullSizeImage() {
       this.$buefy.modal.open({
         parent: this,
         component: ImageModal,
         props: {
-          imgSrc: this.imgSrc
+          imgSrc: this.coin.imagePath('low')
         }
       });
     }

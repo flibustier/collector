@@ -2,11 +2,12 @@ import fs from 'fs';
 import _ from 'lodash';
 import { basename } from 'path';
 
-import { WIKIPEDIA_URLS, DATABASE_PATH, DATABASE_VERSION, POSSIBLE_ARGS, IMAGE_QUALITY, IMAGE_ALL_QUALITY } from './constants.mjs';
+import { WIKIPEDIA_URLS, DATABASE_PATH, POSSIBLE_ARGS, IMAGE_ALL_QUALITIES } from './constants.mjs';
 
 import { parseRemoteCoins } from './parser.mjs';
-import { download, downloadAllMissing } from './image.mjs'
-import { downloadAllQualities } from './image.mjs';
+import { download, downloadAllMissing, downloadAllQualities, getFileName } from './image.mjs'
+import { getImageURLForQuality } from './image.mjs';
+import { IMAGE_QUALITY } from '../constants.mjs';
 
 const args = process.argv.slice(2);
 
@@ -68,13 +69,31 @@ const getQualityFromArgs = args => {
         const qualityIndex = args.findIndex(str => str === POSSIBLE_ARGS.QUALITY)
         if (qualityIndex + 1 < args.length) {
             const quality = args[qualityIndex + 1]
-            if (Object.values(IMAGE_QUALITY).includes(quality) || quality === IMAGE_ALL_QUALITY) {
+            if (Object.values(IMAGE_QUALITY).includes(quality) || quality === IMAGE_ALL_QUALITIES) {
                 return quality;
             } 
         }
     }
     return undefined
 }
+
+const savedModel = ({
+    id,
+    date,
+    volume,
+    image,
+    fr
+}) => ({
+    id,
+    date,
+    volume,
+    image: image ? getFileName(getImageURLForQuality(image, IMAGE_QUALITY.MAXIMAL)) : '',
+    fr: {
+        title: fr.title,
+        date: fr.date,
+        volume: fr.volume
+    }
+})
 
 const isID = (str) => /\w{2}-\d{4}-\d{2}/.test(str)
 
@@ -95,8 +114,8 @@ const run = async () => {
 
     if (args.includes(POSSIBLE_ARGS.WRITE_DB)) {
         fs.writeFile(DATABASE_PATH, JSON.stringify({
-            version: new Date().toISOString(),
-            coins
+            version: new Date().toISOString().slice(0, 10),
+            coins: coins.map(savedModel)
         }, null, 2), function (err) {
             if (err) console.error(err);
             else console.debug(`database written in ${DATABASE_PATH}`);
@@ -115,7 +134,7 @@ const run = async () => {
         const quality = getQualityFromArgs(args);
         console.info(`downloading ${id} ${quality ? `in ${quality} quality` : ''} ${withPanda ? 'with tinypng' : ''}`)
 
-        if (quality === IMAGE_ALL_QUALITY) {
+        if (quality === IMAGE_ALL_QUALITIES) {
             await downloadAllQualities(coin, withPanda)
         } else {
             await download(coin, quality, withPanda)

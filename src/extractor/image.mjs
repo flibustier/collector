@@ -2,7 +2,8 @@ import axios from 'axios'
 import fs from 'fs'
 import { basename } from 'path';
 
-import { IMAGE_DIRECTORY, IMAGE_QUALITY } from './constants.mjs';
+import { IMAGE_DIRECTORY } from './constants.mjs';
+import { IMAGE_QUALITY, IMAGE_QUALITY_WIDTH } from '../constants.mjs'
 
 const PANDA_API_KEY = "YXBpOjRTajRrdDFWVDlGWTRMUjlYRGhEUGpaNlhOYnc5NGpr"
 const PANDA_API_HEADERS = {
@@ -12,22 +13,22 @@ const PANDA_API_HEADERS = {
 }
 const PANDA_API_SHRINK = "https://api.tinify.com/shrink"
 
+export const getFileName = URL => decodeURI(basename(URL))
 
-const getImageURL = (image, quality) => {
+export const getImageURLForQuality = (imageSourceURL, quality) => {
     const protocol = 'http:'
     switch (quality) {
         case IMAGE_QUALITY.LOW:
-            return protocol + image.replace('/150px', '/200px')
+            return protocol + imageSourceURL.replace('150px', IMAGE_QUALITY_WIDTH.LOW)
         case IMAGE_QUALITY.MEDIUM:
-            return protocol + image.replace('/150px', '/300px')
+            return protocol + imageSourceURL.replace('150px', IMAGE_QUALITY_WIDTH.MEDIUM)
         case IMAGE_QUALITY.MAXIMAL:
-            return protocol + image.split('/150px')[0].replace('/thumb', '')
-
+            return protocol + imageSourceURL.split('/150px')[0].replace('/thumb', '')
     }
 }
 
+const getLocalImageFilePath = (imageURL, quality) => `${IMAGE_DIRECTORY}/${quality}/${getFileName(imageURL)}`
 
-const getLocalImageFilePath = (imageURL, quality) => `${IMAGE_DIRECTORY}/${quality}/${decodeURI(basename(imageURL))}`
 
 const isImageMissing = quality => ({ image }) => image && !fs.existsSync(getLocalImageFilePath(image, quality))
 
@@ -56,7 +57,7 @@ const sendToPanda = async (sourceURL) => {
 export const downloadAllQualities = async (coin, withPanda) => Promise.all(Object.values(IMAGE_QUALITY).map(quality => download(coin, quality, withPanda)))
 
 export const download = async ({ image }, quality = IMAGE_QUALITY.MAXIMAL, withPanda = false) => {
-    const sourceURL = getImageURL(image, quality);
+    const sourceURL = getImageURLForQuality(image, quality);
     const imageLocation = withPanda ? await sendToPanda(sourceURL) : sourceURL;
     const imageDestination = getLocalImageFilePath(sourceURL, quality)
 

@@ -35,9 +35,4 @@ export const POSSIBLE_ARGS = {
 }
 
 export const IMAGE_DIRECTORY = "public/images";
-export const IMAGE_ALL_QUALITY = "all"
-export const IMAGE_QUALITY = {
-    MAXIMAL:    "fullsize",
-    MEDIUM:     "medium",
-    LOW:        "low"
-}
+export const IMAGE_ALL_QUALITIES = "all"

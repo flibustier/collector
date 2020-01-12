@@ -24,6 +24,8 @@
 <script>
 import database from "./assets/database.json";
 
+import Coin from './Coin'
+
 import CoinList from "./components/CoinList.vue";
 import Filters from "./components/Filters.vue";
 import NavBar from "./components/NavBar";
@@ -48,11 +50,7 @@ export default {
 
   computed: {
     coins() {
-      return database.coins.map(coin => ({
-        ...coin,
-        date: new Date(coin.date),
-        year: new Date(coin.date).getFullYear()
-      }));
+      return database.coins.map(coin => new Coin(coin));
     },
 
     filteredCoins() {
