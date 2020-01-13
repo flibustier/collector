@@ -71,7 +71,7 @@ const getQualityFromArgs = args => {
             const quality = args[qualityIndex + 1]
             if (Object.values(IMAGE_QUALITY).includes(quality) || quality === IMAGE_ALL_QUALITIES) {
                 return quality;
-            } 
+            }
         }
     }
     return undefined
@@ -98,17 +98,19 @@ const savedModel = ({
 const isID = (str) => /\w{2}-\d{4}-\d{2}/.test(str)
 
 const run = async () => {
-    const localCoins = await readLocalCoins();
+    let coins = await readLocalCoins();
 
-    const remoteCoins = await Promise.all(getPromisesFromURLS());
+    if (!args.includes(POSSIBLE_ARGS.OFFLINE)) {
+        const remoteCoins = await Promise.all(getPromisesFromURLS());
 
-    const parsedRemoteCoins = _.flatten(remoteCoins)
+        const parsedRemoteCoins = _.flatten(remoteCoins)
 
-    console.info(`[INFO] ${parsedRemoteCoins.length} remote coins extracted!`);
+        console.info(`[INFO] ${parsedRemoteCoins.length} remote coins extracted!`);
 
-    const coins = parsedRemoteCoins//mergeCoins(localCoins, parsedRemoteCoins)
-        .sort(orderByDateAndTitle)
-        .reduce(regenerateIDs, [])
+        coins = parsedRemoteCoins//mergeCoins(coins, parsedRemoteCoins)
+            .sort(orderByDateAndTitle)
+            .reduce(regenerateIDs, [])
+    }
 
     console.info(`[INFO] ${coins.length} total coins`)
 
@@ -130,7 +132,7 @@ const run = async () => {
         if (!coin) {
             return console.error(`${id} not found in coin database`)
         }
-        
+
         const quality = getQualityFromArgs(args);
         console.info(`downloading ${id} ${quality ? `in ${quality} quality` : ''} ${withPanda ? 'with tinypng' : ''}`)
 
@@ -142,11 +144,13 @@ const run = async () => {
     }
 
     if (args.includes(POSSIBLE_ARGS.DOWNLOAD_ALL)) {
-        console.info("[INFO] Downloading all missings images (could take some time)")
-        await downloadAllMissing(coins)
+        const withPanda = args.includes(POSSIBLE_ARGS.WITH_PANDA)
+        const overwrite = args.includes(POSSIBLE_ARGS.OVERWRITE)
+
+        console.info('[INFO] Downloading all missings images (could take some time)')
+        
+        await downloadAllMissing(coins, getQualityFromArgs(args), withPanda, overwrite)
     }
-
-
 }
 
 run()

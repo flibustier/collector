@@ -1,5 +1,5 @@
 {
-  "version": "2020-01-12",
+  "version": "2020-01-13",
   "coins": [
     {
       "id": "IT-2004-01",
@@ -1017,7 +1017,7 @@
       "id": "LU-2011-01",
       "date": "2011-02-02T00:00:00.000Z",
       "volume": 1400000,
-      "image": "LU_2€_2011_Charlotte_%26_Jean.png",
+      "image": "LU_2€_2011_Charlotte_&_Jean.png",
       "fr": {
         "title": "50e anniversaire de la désignation de Jean comme Lieutenant-Représentant par sa mère, la Grande-Duchesse Charlotte",
         "date": "2 février 2011",
@@ -1479,7 +1479,7 @@
       "id": "SK-2013-01",
       "date": "2013-01-01T00:00:00.000Z",
       "volume": 1000000,
-      "image": "SK_2€_2013_Cyrille%26Methode.png",
+      "image": "SK_2€_2013_Cyrille&Methode.png",
       "fr": {
         "title": "1150e anniversaire de la mission des apôtres Cyrille et Méthode en Grande-Moravie",
         "date": "Mai 2013",
@@ -1545,7 +1545,7 @@
       "id": "NL-2013-01",
       "date": "2013-01-01T00:00:00.000Z",
       "volume": 20000000,
-      "image": "NL_2€_2013_Willem-Alexander%26Beatrix.png",
+      "image": "NL_2€_2013_Willem-Alexander&Beatrix.png",
       "fr": {
         "title": "Abdication de la Reine Beatrix et l'accession au trône de son fils, Willem-Alexander",
         "date": "Février 2013",
@@ -1556,7 +1556,7 @@
       "id": "LU-2013-01",
       "date": "2013-01-01T00:00:00.000Z",
       "volume": 500000,
-      "image": "LU_2€_2012_Guillaume%26Stephanie.png",
+      "image": "LU_2€_2012_Guillaume&Stephanie.png",
       "fr": {
         "title": "Mariage du Grand-Duc Héritier Guillaume et de la comtesse belge Stéphanie de Lannoy",
         "date": "Janvier 2013",
@@ -1820,7 +1820,7 @@
       "id": "NL-2014-01",
       "date": "2014-04-29T00:00:00.000Z",
       "volume": 5291000,
-      "image": "NL_2€_2014_Willem-Alexander_%26_Beatrix.png",
+      "image": "NL_2€_2014_Willem-Alexander_&_Beatrix.png",
       "fr": {
         "title": "Accession au trône du Roi Willem-Alexander",
         "date": "29 avril 2014",
@@ -1974,7 +1974,7 @@
       "id": "ES-2014-02",
       "date": "2014-11-01T00:00:00.000Z",
       "volume": 12000000,
-      "image": "ES_2€_2014_Juan_Carlos_%26_Felipe_VI.png",
+      "image": "ES_2€_2014_Juan_Carlos_&_Felipe_VI.png",
       "fr": {
         "title": "Abdication du Roi Juan Carlos Ier et accession au trône du roi Felipe VI",
         "date": "Octobre / novembre 2014",

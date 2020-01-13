@@ -4,7 +4,7 @@
       <div class="header">
         <div>
         <span :class="`flag-icon ${coin.countryFlag}`"></span>
-        <span class="subtitle is-6">{{ coin.country }}</span>
+        <span class="subtitle is-6">{{ $t(`countries.${coin.country}`) }}</span>
         </div>
         <p class="subtitle is-6">{{ coin.fr.date }}</p>
       </div>

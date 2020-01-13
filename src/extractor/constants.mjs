@@ -28,10 +28,12 @@ export const WIKIPEDIA_URLS = {
 
 export const POSSIBLE_ARGS = {
     WRITE_DB: "--write-database",
+    OFFLINE: "--offline",
     DOWNLOAD: "--download",
     WITH_PANDA: "--tiny-png",
     DOWNLOAD_ALL: "--download-all",
-    QUALITY: "--quality"
+    QUALITY: "--quality",
+    OVERWRITE: "--overwrite"
 }
 
 export const IMAGE_DIRECTORY = "public/images";
