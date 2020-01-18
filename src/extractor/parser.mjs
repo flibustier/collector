@@ -67,16 +67,19 @@ export const parseMonth = dateString => {
   return 0;
 };
 
-const parseFrenchDate = (dateString) => {
+const parseFrenchDate = dateString => {
   const [year] = dateString.match(/(20[\d]{2})/) || [];
   const month = parseMonth(dateString);
   const [day] = dateString.match(/^(\d+)\s/) || [1];
 
   return new Date(year, month, day, 12, 0, 0, 0);
-}
+};
 
 export const parseDate = (dateString, lang) => {
-  const date = (lang === 'fr' ? parseFrenchDate(dateString) : new Date(dateString + " 12:00"));
+  const date =
+    lang === "fr"
+      ? parseFrenchDate(dateString)
+      : new Date(dateString + " 12:00");
   date.setUTCHours(0, 0, 0, 0);
 
   return date;
@@ -91,23 +94,19 @@ const parseCountryDateAndVolume = lang => coin => ({
 
 const isVolume = str => str.includes("pièces") || str.includes("coins");
 
-const fixDateAndVolumeInversion = fixedDate => {
-  if (fixedDate) {
-    // if we have a suggested date, we return a function which will fix the date
-    return coin =>
-      isVolume(coin.fr.date) && !coin.fr.volume
-        ? {
-          ...coin,
-          fr: {
-            ...coin.fr,
-            date: fixedDate,
-            volume: coin.fr.date
-          }
-        }
-        : coin;
+const fixDateAndVolumeInversion = fixedDate => coin => {
+  if (isVolume(coin.fr.date) && !coin.fr.volume) {
+    return {
+      ...coin,
+      fr: {
+        ...coin.fr,
+        date: fixedDate,
+        volume: coin.fr.date
+      }
+    };
   }
-  // else we return an meaningless function
-  return coin => coin;
+
+  return coin;
 };
 
 export const parseRemoteCoins = async (
@@ -146,7 +145,7 @@ export const parseRemoteCoins = async (
       ...(collection ? { collection } : {})
     }))
     .get()
-    .map(fixDateAndVolumeInversion(fixedDate))
+    .map(fixedDate ? fixDateAndVolumeInversion(fixedDate) : coin => coin)
     .filter(coin => !!coin[lang].volume && !!coin[lang].date)
     .map(parseCountryDateAndVolume(lang));
 };
