@@ -8,6 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "test": "jest",
     "extract": "node --experimental-modules src/extractor/index.mjs",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
@@ -30,29 +31,43 @@
     "axios": "0.19.0",
     "babel-eslint": "10.0.3",
     "cheerio": "1.0.0-rc.3",
+    "dotenv": "^8.2.0",
     "eslint": "5.16.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-vue": "5.0.0",
     "flag-icon-css": "^3.4.5",
+    "jest": "^24.9.0",
     "lodash": "^4.17.15",
+    "prettier": "1.19.1",
     "progress": "^2.0.3",
     "vue-cli-plugin-i18n": "^0.6.0",
     "vue-cli-plugin-store": "^0.0.7",
-    "vue-template-compiler": "2.6.10"
+    "vue-template-compiler": "2.6.10",
+    "yargs": "^15.1.0"
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jest": true
     },
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended"
     ],
+    "plugins": ["jest"],
     "rules": {
       "no-console": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"
+    }
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.m?js$": "babel-jest"
     }
   },
   "browserslist": [
