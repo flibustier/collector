@@ -1,127 +1,156 @@
 <template>
   <aside>
     <div class="header">
-      <p class="subtitle is-6">{{ $t('displayed') }}: {{ coinsNumber }}</p>
+      <p class="subtitle is-6">{{ $t("displayed") }}: {{ numberOfCoinsDisplayed }}</p>
 
       <b-button
         type="is-info"
         size="is-small"
-        :disabled="!isFiltered"
+        :disabled="isNotFiltered"
         @click="reset"
         icon-left="undo"
         outlined
         rounded
-      >{{ $t('reset') }}</b-button>
+      >{{ $t("reset") }}</b-button>
     </div>
 
-    <b-field :label="$t('countries')">
-      <b-select
-        multiple
-        native-size="12"
-        :value="countries"
-        @input="countries => $emit('update:countries', countries)"
-        expanded
+    <section class="field">
+      <b-field :label="$t('years')">
+        <b-slider
+          :value="selectedYears"
+          :min="minYear"
+          :max="maxYear"
+          :step="1"
+          size="is-small"
+          @input="years => $store.commit('setYearsRange', years)"
+          ticks
+          rounded
+        ></b-slider>
+      </b-field>
+    </section>
+
+    <section class="field">
+      <b-field :label="$t('countries')">
+        <b-select
+          multiple
+          native-size="8"
+          :value="selectedCountries"
+          @input="countries => $store.commit('setCountryList', countries)"
+          expanded
+        >
+          <option v-for="{ code, translated } in allPossibleCountries" :key="code" :value="code">
+            <span :class="`flag-icon flag-icon-${code.toLowerCase()}`"></span>
+            {{ translated }}
+          </option>
+        </b-select>
+      </b-field>
+    </section>
+
+    <section class="field">
+      <b-field :label="$t('rarity')"></b-field>
+
+      <div
+        class="field"
+        v-for="(color, index) in [
+          'is-dark',
+          'is-dark',
+          'is-success',
+          'is-info',
+          'is-primary',
+          'is-warning'
+        ]"
+        :key="index"
       >
-        <option v-for="country in countryList" :key="country" :value="country">
-          <span :class="`flag-icon flag-icon-${country.toLowerCase()}`"></span>
-          {{ $t(`countries.${country}`) }}
-        </option>
-      </b-select>
-    </b-field>
+        <b-radio
+          v-model="rarity"
+          size="is-small"
+          :type="color"
+          :native-value="index"
+        >{{ $t(`rarityLevels[${index}]`) }}</b-radio>
+      </div>
+    </section>
 
-    <b-field :label="$t('years')">
-      <b-slider
-        :value="years"
-        :min="minYear"
-        :max="maxYear"
-        :step="1"
-        size="is-small"
-        @input="years => $emit('update:years', years)"
-        ticks
-        rounded
-      ></b-slider>
-    </b-field>
+    <section class="field">
+      <b-field label="Séries"></b-field>
 
-    <b-field :label="$t('rarity')">
-      <b-slider class="rarity" v-model="rarity" :min="0" :max="4" :tooltip="false" rounded>
-        <b-slider-tick :value="0">Common</b-slider-tick>
-        <b-slider-tick :value="1">Uncommon</b-slider-tick>
-        <b-slider-tick :value="2">Rare</b-slider-tick>
-        <b-slider-tick :value="3">Epic</b-slider-tick>
-        <b-slider-tick :value="4">Legendary</b-slider-tick>
-      </b-slider>
-    </b-field>
-
-    <b-field label="Collections">
-      <b-switch size="is-small">Show </b-switch>
-    </b-field>
+      <b-field v-for="index in [0, 1, 2, 3]" :key="index">
+        <b-switch
+          size="is-small"
+          :value="$store.state.coins.filters.collections[index]"
+          @input="value => $store.commit('switchCollection', { index, value })"
+        >
+          {{
+          $t(`collections[${index}]`)
+          }}
+        </b-switch>
+      </b-field>
+    </section>
   </aside>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+
 export default {
-  props: {
-    coinsNumber: Number,
-    minYear: Number,
-    maxYear: Number,
-    years: Array,
-
-    countryList: Array,
-    countries: Array,
-
-    volumes: Array,
-    maxVolume: Number
-  },
-
   data() {
     return {
-      rarity: []
+      rarity: 0
     };
   },
 
   watch: {
-    rarity() {
-      this.$emit("update:volumes", [
-        this.rarityToVolume(this.rarity[1] + 1),
-        this.rarityToVolume(this.rarity[0])
-      ]);
+    rarity: {
+      handler() {
+        this.$store.commit("setVolumesRange", this.rarityToVolumeRange);
+      },
+      immediate: true,
     }
   },
 
   computed: {
-    isFiltered() {
-      return (
-        this.countries.length ||
-        this.years[0] !== this.minYear ||
-        this.years[1] !== this.maxYear ||
-        this.rarity[1] < 4 ||
-        this.rarity[0] > 0
-      );
+    ...mapGetters([
+      "isNotFiltered",
+      "maxVolume",
+      "minYear",
+      "maxYear",
+      "numberOfCoinsDisplayed",
+      "allPossibleCountries"
+    ]),
+
+    ...mapState({
+      'selectedCountries': state => state.coins.filters.list.countries,
+      'selectedYears': state => state.coins.filters.range.years
+    }),
+
+    rarityToVolumeRange() {
+      const [UNCOMMON_CAP, RARE_CAP, EPIC_CAP, LEGENDARY_CAP] = [
+        10000000,
+        2000000,
+        1000000,
+        200000
+      ];
+
+      switch (this.rarity) {
+        case 1:
+          return [UNCOMMON_CAP, this.maxVolume];
+        case 2:
+          return [RARE_CAP, UNCOMMON_CAP];
+        case 3:
+          return [EPIC_CAP, RARE_CAP];
+        case 4:
+          return [LEGENDARY_CAP, EPIC_CAP];
+        case 5:
+          return [0, LEGENDARY_CAP];
+        default:
+          return [0, this.maxVolume];
+      }
     }
   },
 
   methods: {
     reset() {
-      this.$emit("update:years", [this.minYear, this.maxYear]);
-      this.$emit("update:countries", []);
-      this.rarity = [0, 4];
-    },
-
-    rarityToVolume(rarity) {
-      switch (rarity) {
-        case 0:
-          return this.maxVolume;
-        case 1:
-          return 10000000;
-        case 2:
-          return 2000000;
-        case 3:
-          return 1000000;
-        case 4:
-          return 200000;
-        default:
-          return 0;
-      }
+      this.$store.commit("reset");
+      this.rarity = 0;
     }
   }
 };
@@ -129,18 +158,13 @@ export default {
 
 <style scoped>
 aside {
-  margin-top: 40px;
-  padding-left: 1rem;
+  margin-top: 15px;
+  margin-left: 1rem;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-}
-
-.rarity {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 </style>
 
@@ -151,14 +175,20 @@ aside {
     "reset": "Reset",
     "countries": "Countries",
     "years": "Years",
-    "rarity": "Rarity"
+    "rarity": "Rarity",
+    "rarityLevels": [
+      "All", "Common", "Uncommon", "Rare", "Epic", "Legendary"
+    ]
   },
   "fr": {
     "displayed": "Nombre de pièces affichées",
     "reset": "Réinitialiser",
     "countries": "Pays",
     "years": "Années",
-    "rarity": "Rareté"
+    "rarity": "Rareté",
+    "rarityLevels": [
+      "Toutes", "Comune", "Inhabituelle", "Rare", "Épique", "Légendaire"
+    ]
   }
 }
 </i18n>

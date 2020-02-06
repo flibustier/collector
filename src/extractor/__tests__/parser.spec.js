@@ -2,7 +2,9 @@ import {
   parseMonth,
   parseVolume,
   parseCountryToISO,
-  parseDate
+  parseDate,
+  cleanStr,
+  cleanDate,
 } from "../parser.mjs";
 
 describe("in parser", () => {
@@ -35,6 +37,10 @@ describe("in parser", () => {
     ${"1,04 million de pièces"}    | ${1040000}
     ${"123 456 789 pièces"}        | ${123456789}
     ${"83,056 millions de pièces"} | ${83056000}
+    ${"1.5 million coins"}         | ${1500000}
+    ${"90,146,867 coins"}          | ${90146867}
+    ${"500,000 coins"}             | ${500000}
+    ${"375.000 coins"}             | ${375000}
   `("parseVolume", ({ volumeString, parsedVolume }) => {
     it(`should return ${parsedVolume} from ${volumeString}`, () => {
       expect(parseVolume(volumeString)).toEqual(parsedVolume);
@@ -89,4 +95,23 @@ describe("in parser", () => {
       expect(parseDate(dateString, "en")).toEqual(new Date(parsedDate));
     });
   });
+
+  it('should clean string', () => {
+    expect(cleanStr('2 February 2007[55]\n')).toEqual('2 February 2007')
+  })
+
+  describe('cleanStr', () => {
+    it('should clean regular date with external reference', () => {
+      expect(cleanDate('1 October 2007[59]\n')).toEqual('1 October 2007')
+    })
+
+    it('should clean date string with FDI and FDC', () => {
+      expect(cleanDate('FDI:[13] 16 April 2007FDC:[14] 1 October 2007[59]\n')).toEqual('16 April 2007')
+    })
+
+    it('should clean date string with FDI and FDC', () => {
+      expect(cleanDate('23 June 2015 (sets)3 October 2015 (rolls)\n')).toEqual('23 June 2015')
+      expect(cleanDate('29 April 2015 (proof)22 July 2015 (rolls)\n')).toEqual('29 April 2015')
+    })
+  })
 });

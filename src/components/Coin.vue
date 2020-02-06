@@ -3,10 +3,14 @@
     <div class="card-content">
       <div class="header">
         <div>
-        <span :class="`flag-icon ${coin.countryFlag}`"></span>
-        <span class="subtitle is-6">{{ $t(`countries.${coin.country}`) }}</span>
+          <span :class="`flag-icon ${coin.countryFlag}`"></span>
+          <span class="subtitle is-6">
+            {{
+            $t(`countries.${coin.country}`)
+            }}
+          </span>
         </div>
-        <p class="subtitle is-6">{{ coin.fr.date }}</p>
+        <p class="subtitle is-6">{{ coinInLocale.date }}</p>
       </div>
 
       <figure v-if="imageForCurrentQuality" class="image">
@@ -14,18 +18,20 @@
       </figure>
 
       <div class="content">
-        <p class="title is-6">{{ coin.fr.title }}</p>
+        <p class="title is-6">{{ coinInLocale.title }}</p>
         <br />
-        <p class="subtitle is-6">{{ coin.fr.volume }} - {{ coin.id }}</p>
+        <p class="subtitle is-6">{{ coinInLocale.volume }} - {{ coin.id }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ImageModal from './ImageModal'
+import { mapState } from "vuex";
 
-import { mapState } from 'vuex'
+import ImageModal from "./ImageModal";
+
+import { ROOT_LANGUAGE } from "../constants.mjs";
 
 export default {
   props: {
@@ -34,7 +40,11 @@ export default {
 
   computed: {
     imageForCurrentQuality() {
-      return this.coin.image(this.currentQuality)
+      return this.coin.image(this.currentQuality);
+    },
+
+    coinInLocale() {
+      return this.coin[this.$i18n.locale] || this.coin[ROOT_LANGUAGE];
     },
 
     ...mapState({

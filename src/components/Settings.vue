@@ -1,7 +1,7 @@
 <template>
   <div class="card" style="width: auto">
     <header class="modal-card-head">
-      <p class="title is-6">{{ $t('settings') }}</p>
+      <p class="title is-6">{{ $t("settings") }}</p>
     </header>
     <section class="card-content">
       <b-field :label="$t('quality')" :message="$t('advice')">
@@ -13,7 +13,7 @@
             v-for="(quality, i) in qualityList"
             :key="quality"
           >
-            <b-icon :icon="`signal-${i+2}`"></b-icon>
+            <b-icon :icon="`signal-${i + 2}`"></b-icon>
             <span>{{ $t(quality) }}</span>
           </b-radio-button>
         </b-field>
@@ -25,7 +25,7 @@
 <script>
 import { IMAGE_QUALITY } from "../constants.mjs";
 
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   computed: {
@@ -34,7 +34,7 @@ export default {
     },
 
     ...mapState({
-        savedQuality: state => state.settings.quality
+      savedQuality: state => state.settings.quality
     })
   }
 };

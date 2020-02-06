@@ -23,7 +23,9 @@ export const parseVolume = volume => {
       parseFloat(millionDetected[1].replace(",", ".")) * 1000000
     );
 
-  const [extractedNumber] = volume.replace(",", "").match(/[\d\s]+/) || ["0"];
+  const [extractedNumber] = volume.replace(/,|\./g, "").match(/[\d\s]+/) || [
+    "0"
+  ];
 
   return parseInt(extractedNumber.replace(/\s/g, ""));
 };
@@ -82,6 +84,10 @@ export const parseDate = (dateString, lang) => {
       : new Date(dateString + " 12:00");
   date.setUTCHours(0, 0, 0, 0);
 
+  if (isNaN(date.getTime())) {
+    console.warn(`[ERROR] Invalid Date for ${dateString}`);
+  }
+
   return date;
 };
 
@@ -109,6 +115,18 @@ const fixDateAndVolumeInversion = fixedDate => coin => {
   return coin;
 };
 
+export const cleanStr = str => str.trim().split("[")[0];
+
+export const cleanDate = dateString => {
+  if (dateString.includes("FDI")) {
+    return dateString.split("FDC")[0].slice("FDI:[13] ".length);
+  }
+  if (dateString.includes("rolls")) {
+    return dateString.split("(")[0].trim();
+  }
+  return cleanStr(dateString);
+};
+
 export const parseRemoteCoins = async (
   lang,
   sourceURL,
@@ -119,33 +137,45 @@ export const parseRemoteCoins = async (
 
   const $ = cheerio.load(data);
 
-  const tables = $("table.wikitable");
+  const tables = $(SELECTORS[lang].MAIN_SELECTOR);
 
   return tables
     .map((_, el) => ({
       [lang]: {
-        title: $(el)
-          .find(SELECTORS[lang].NAME_SELECTOR)
-          .text()
-          .split("[")[0],
+        title: cleanStr(
+          $(el)
+            .find(SELECTORS[lang].TITLE_SELECTOR)
+            .text()
+        ),
         country: $(el)
           .find(SELECTORS[lang].COUNTRY_SELECTOR)
           .text(),
-        date: $(el)
-          .find(SELECTORS[lang].DATE_SELECTOR)
-          .text(),
-        volume: $(el)
-          .find(SELECTORS[lang].VOLUME_SELECTOR)
-          .text()
-          .split("[")[0]
+        date: cleanDate(
+          $(el)
+            .find(SELECTORS[lang].DATE_SELECTOR)
+            .text()
+        ),
+        volume: cleanStr(
+          $(el)
+            .find(SELECTORS[lang].VOLUME_SELECTOR)
+            .text()
+        )
       },
-      image: $(el)
-        .find(SELECTORS[lang].IMAGE_SELECTOR)
-        .attr("src"),
+      ...(SELECTORS[lang].IMAGE_SELECTOR
+        ? {
+            image: $(el)
+              .find(SELECTORS[lang].IMAGE_SELECTOR)
+              .attr("src")
+          }
+        : {}),
       ...(collection ? { collection } : {})
     }))
     .get()
     .map(fixedDate ? fixDateAndVolumeInversion(fixedDate) : coin => coin)
-    .filter(coin => !!coin[lang].volume && !!coin[lang].date)
-    .map(parseCountryDateAndVolume(lang));
+    .filter(
+      ({ [lang]: { country, date, volume } }) =>
+        country && volume && date && date !== "TBA"
+    )
+    .map(parseCountryDateAndVolume(lang))
+    .filter(({ country, date, volume }) => country && !isNaN(date) && volume);
 };

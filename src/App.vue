@@ -1,31 +1,18 @@
 <template>
   <div id="app">
-    <nav-bar :searchInput.sync="searchInput" />
+    <nav-bar />
     <div class="columns">
       <div class="column is-one-fifth">
-        <filters
-          :coinsNumber="filteredCoins.length"
-          :minYear="minYear"
-          :maxYear="maxYear"
-          :countryList="countryList"
-          :years.sync="selectedYears"
-          :countries.sync="selectedCountries"
-          :volumes.sync="selectedVolumes"
-          :maxVolume="maxVolume"
-        />
+        <filters />
       </div>
       <div class="column">
-        <coin-list :coins="filteredCoins" />
+        <coin-list />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import database from "./assets/database.json";
-
-import Coin from './Coin'
-
 import CoinList from "./components/CoinList.vue";
 import Filters from "./components/Filters.vue";
 import NavBar from "./components/NavBar";
@@ -37,66 +24,6 @@ export default {
     CoinList,
     Filters,
     NavBar
-  },
-
-  data() {
-    return {
-      selectedYears: [],
-      selectedCountries: [],
-      selectedVolumes: [],
-      searchInput: ""
-    };
-  },
-
-  computed: {
-    coins() {
-      return database.coins.map(coin => new Coin(coin));
-    },
-
-    filteredCoins() {
-      return this.coins.filter(
-        coin =>
-          (this.selectedCountries.length === 0 ||
-            this.selectedCountries.includes(coin.country)) &&
-          coin.year >= this.selectedYears[0] &&
-          coin.year <= this.selectedYears[1] &&
-          coin.volume >= this.selectedVolumes[0] &&
-          coin.volume <= this.selectedVolumes[1] &&
-          (coin.fr.title
-            .toLowerCase()
-            .includes(this.searchInput.toLowerCase()) ||
-            coin.id.toLowerCase().includes(this.searchInput.toLowerCase()))
-      );
-    },
-
-    coinYears() {
-      return this.coins.map(coin => coin.year);
-    },
-
-    minYear() {
-      return Math.min(...this.coinYears);
-    },
-
-    maxYear() {
-      return Math.max(...this.coinYears);
-    },
-
-    maxVolume() {
-      return Math.max(...this.coins.map(coin => coin.volume));
-    },
-
-    countryList() {
-      return this.coins
-        .reduce(function(countryList, coin) {
-          if (
-            countryList.filter(
-              country => country === coin.country
-            ).length === 0
-          )
-            return [...countryList, coin.country];
-          else return countryList;
-        }, [])
-    }
   }
 };
 </script>

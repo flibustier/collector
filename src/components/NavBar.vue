@@ -13,7 +13,7 @@
             :placeholder="$t('search')"
             type="search"
             icon="search"
-            @input="input => $emit('update:searchInput', input)"
+            @input="input => $store.commit('setSearchInput', input)"
             rounded
           ></b-input>
         </b-field>
@@ -27,7 +27,7 @@
           :active="lang === $i18n.locale"
         >
           <span :class="getFlagClass(lang)"></span>
-          {{ lang === 'fr' ? 'Français' : 'English' }}
+          {{ lang === "fr" ? "Français" : "English" }}
         </b-navbar-item>
         <div slot="label">
           <span :class="getFlagClass($i18n.locale)"></span>
@@ -43,7 +43,7 @@
 
         <b-navbar-item @click="showSettingsModal">
           <b-icon icon="sliders-v" />
-          <span>{{ $t('settings') }}</span>
+          <span>{{ $t("settings") }}</span>
         </b-navbar-item>
 
         <b-icon slot="label" icon="ellipsis-h" />
@@ -57,10 +57,6 @@ import { SUPPORTED_LANGUAGES } from "../constants.mjs";
 import Settings from "./Settings";
 
 export default {
-  props: {
-    searchInput: String
-  },
-
   computed: {
     languages() {
       return SUPPORTED_LANGUAGES;
