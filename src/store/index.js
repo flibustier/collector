@@ -11,7 +11,7 @@ const store = new Vuex.Store({
   plugins: [createPersistedState()],
   modules: {
     coins: coinsModule,
-    settings: settingsModule,
+    settings: settingsModule
   }
 });
 

@@ -5,9 +5,7 @@
         <div>
           <span :class="`flag-icon ${coin.countryFlag}`"></span>
           <span class="subtitle is-6">
-            {{
-            $t(`countries.${coin.country}`)
-            }}
+            {{ $t(`countries.${coin.country}`) }}
           </span>
         </div>
         <p class="subtitle is-6">{{ coinInLocale.date }}</p>

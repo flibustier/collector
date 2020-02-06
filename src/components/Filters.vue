@@ -1,7 +1,9 @@
 <template>
   <aside>
     <div class="header">
-      <p class="subtitle is-6">{{ $t("displayed") }}: {{ numberOfCoinsDisplayed }}</p>
+      <p class="subtitle is-6">
+        {{ $t("displayed") }}: {{ numberOfCoinsDisplayed }}
+      </p>
 
       <b-button
         type="is-info"
@@ -11,7 +13,8 @@
         icon-left="undo"
         outlined
         rounded
-      >{{ $t("reset") }}</b-button>
+        >{{ $t("reset") }}</b-button
+      >
     </div>
 
     <section class="field">
@@ -38,7 +41,11 @@
           @input="countries => $store.commit('setCountryList', countries)"
           expanded
         >
-          <option v-for="{ code, translated } in allPossibleCountries" :key="code" :value="code">
+          <option
+            v-for="{ code, translated } in allPossibleCountries"
+            :key="code"
+            :value="code"
+          >
             <span :class="`flag-icon flag-icon-${code.toLowerCase()}`"></span>
             {{ translated }}
           </option>
@@ -66,7 +73,8 @@
           size="is-small"
           :type="color"
           :native-value="index"
-        >{{ $t(`rarityLevels[${index}]`) }}</b-radio>
+          >{{ $t(`rarityLevels[${index}]`) }}</b-radio
+        >
       </div>
     </section>
 
@@ -79,9 +87,7 @@
           :value="$store.state.coins.filters.collections[index]"
           @input="value => $store.commit('switchCollection', { index, value })"
         >
-          {{
-          $t(`collections[${index}]`)
-          }}
+          {{ $t(`collections[${index}]`) }}
         </b-switch>
       </b-field>
     </section>
@@ -103,7 +109,7 @@ export default {
       handler() {
         this.$store.commit("setVolumesRange", this.rarityToVolumeRange);
       },
-      immediate: true,
+      immediate: true
     }
   },
 
@@ -118,8 +124,8 @@ export default {
     ]),
 
     ...mapState({
-      'selectedCountries': state => state.coins.filters.list.countries,
-      'selectedYears': state => state.coins.filters.range.years
+      selectedCountries: state => state.coins.filters.list.countries,
+      selectedYears: state => state.coins.filters.range.years
     }),
 
     rarityToVolumeRange() {
