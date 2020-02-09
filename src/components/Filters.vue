@@ -1,8 +1,8 @@
 <template>
   <aside>
     <div class="header">
-      <p class="subtitle is-6">
-        {{ $t("displayed") }}: {{ numberOfCoinsDisplayed }}
+      <p class="subtitle is-6 is-hidden-tablet-only">
+        {{ numberOfCoinsDisplayed }} {{ $t("displayed") }}
       </p>
 
       <b-button
@@ -28,6 +28,7 @@
           @input="years => $store.commit('setYearsRange', years)"
           ticks
           rounded
+          class="years-slider"
         ></b-slider>
       </b-field>
     </section>
@@ -164,20 +165,25 @@ export default {
 
 <style scoped>
 aside {
-  margin-top: 15px;
-  margin-left: 1rem;
+  margin: 15px 1rem 1.5rem 10px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.years-slider {
+  padding-right: 10px;
+  padding-left: 10px;
 }
 </style>
 
 <i18n>
 {
   "en": {
-    "displayed": "Coins displayed",
+    "displayed": "coins displayed",
     "reset": "Reset",
     "countries": "Countries",
     "years": "Years",
@@ -187,7 +193,7 @@ aside {
     ]
   },
   "fr": {
-    "displayed": "Nombre de pièces affichées",
+    "displayed": "pièces affichées",
     "reset": "Réinitialiser",
     "countries": "Pays",
     "years": "Années",

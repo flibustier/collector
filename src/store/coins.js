@@ -26,7 +26,8 @@ const filters = () => ({
 
 export default {
   state: {
-    filters: filters()
+    filters: filters(),
+    owned: []
   },
 
   mutations: {
@@ -34,16 +35,16 @@ export default {
       state.filters = filters();
     },
 
-    setYearsRange(state, newRange) {
-      state.filters.range.years = newRange;
+    setYearsRange({ filters }, newRange) {
+      filters.range.years = newRange;
     },
 
-    setVolumesRange(state, newRange) {
-      state.filters.range.volumes = newRange;
+    setVolumesRange({ filters }, newRange) {
+      filters.range.volumes = newRange;
     },
 
-    setCountryList(state, newList) {
-      state.filters.list.countries = newList;
+    setCountryList({ filters }, newList) {
+      filters.list.countries = newList;
     },
 
     setSearchInput({ filters }, input) {
@@ -52,15 +53,23 @@ export default {
 
     switchCollection({ filters }, { index, value }) {
       filters.collections[index] = value;
+    },
+
+    setAmount({ owned }, { id, amount }) {
+      const existing = owned.find(coin => coin.id === id);
+      if (existing) existing.amount = amount;
+      else owned.push({ id, amount });
     }
   },
 
   getters: {
     isNotFiltered: state => isEqual(state.filters, filters()),
 
-    filteredCoins: ({ filters }) =>
+    filteredCoins: ({ filters }, getters, rootState) =>
       coins.filter(
         coin =>
+          (!rootState.settings.showOnlyOwned ||
+            getters.amountOwned(coin.id) > 0) &&
           (filters.list.countries.length === 0 ||
             filters.list.countries.includes(coin.country)) &&
           coin.isInYearRange(...(filters.range.years || [])) &&
@@ -70,6 +79,9 @@ export default {
       ),
 
     numberOfCoinsDisplayed: (state, getters) => getters.filteredCoins.length,
+
+    amountOwned: ({ owned }) => id =>
+      owned.find(coin => coin.id === id)?.amount || 0,
 
     minYear: () => Math.min(...coinYears),
 

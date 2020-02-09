@@ -142,7 +142,7 @@ const run = async () => {
       JSON.stringify(
         {
           version: new Date().toISOString().slice(0, 10),
-          coins: coins.map(Coin)
+          coins: coins.map(coin => new Coin(coin))
         },
         null,
         2

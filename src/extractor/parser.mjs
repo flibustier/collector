@@ -62,6 +62,7 @@ export const parseMonth = dateString => {
   }
 
   if (dateString.includes("Automne")) return 9;
+  if (dateString.includes("Printemps")) return 3;
   if (dateString.includes("Mi-")) return 6;
 
   console.warn(`[WARNING] Could not found a month for ${dateString}`);
@@ -168,7 +169,7 @@ export const parseRemoteCoins = async (
               .attr("src")
           }
         : {}),
-      ...(collection ? { collection } : {})
+      collection
     }))
     .get()
     .map(fixedDate ? fixDateAndVolumeInversion(fixedDate) : coin => coin)

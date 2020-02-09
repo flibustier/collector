@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="notification columns is-multiline" v-if="filteredCoins.length">
+    <div class="columns is-multiline" v-if="filteredCoins.length">
       <div
         v-for="coin in filteredCoins"
         :key="coin.id"
@@ -16,7 +16,7 @@
           <h1 class="title">
             <b-icon icon="frown-open" />
           </h1>
-          <h2 class="subtitle">{{ $t('empty') }}</h2>
+          <h2 class="subtitle">{{ $t("empty") }}</h2>
         </div>
       </div>
     </section>
@@ -40,6 +40,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+}
+
 .hero {
   margin-top: 25vh;
 }

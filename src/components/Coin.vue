@@ -1,24 +1,46 @@
 <template>
-  <div class="card">
+  <div :class="`card ${cardClass}`">
     <div class="card-content">
       <div class="header">
-        <div>
+        <div class="is-flex">
           <span :class="`flag-icon ${coin.countryFlag}`"></span>
-          <span class="subtitle is-6">
-            {{ $t(`countries.${coin.country}`) }}
-          </span>
+          <span class="subtitle is-6 country">{{
+            $t(`countries.${coin.country}`)
+          }}</span>
         </div>
         <p class="subtitle is-6">{{ coinInLocale.date }}</p>
       </div>
 
-      <figure v-if="imageForCurrentQuality" class="image">
-        <img :src="imageForCurrentQuality" @click="showFullSizeImage" />
+      <figure class="image">
+        <img
+          v-if="imageForCurrentQuality"
+          :src="imageForCurrentQuality"
+          @click="showFullSizeImage"
+        />
+        <div class="image-placeholder" v-else />
       </figure>
 
-      <div class="content">
+      <div class="content has-text-centered">
         <p class="title is-6">{{ coinInLocale.title }}</p>
-        <br />
+      </div>
+
+      <div class="has-text-centered">
         <p class="subtitle is-6">{{ coinInLocale.volume }} - {{ coin.id }}</p>
+      </div>
+    </div>
+    <div class="card-footer" v-if="!dontShowFooter">
+      <div class="card-footer-item">
+        <b-numberinput
+          size="is-small"
+          min="0"
+          controls-position="compact"
+          controls-rounded
+          :value="amountOwned"
+          @input="amount => $store.commit('setAmount', { id: coin.id, amount })"
+        ></b-numberinput>
+      </div>
+      <div class="card-footer-item">
+        <b-icon icon="chart-bar" />
       </div>
     </div>
   </div>
@@ -45,8 +67,17 @@ export default {
       return this.coin[this.$i18n.locale] || this.coin[ROOT_LANGUAGE];
     },
 
+    cardClass() {
+      return this.amountOwned > 0 ? "is-owned" : "is-not-owned";
+    },
+
+    amountOwned() {
+      return this.$store.getters.amountOwned(this.coin.id);
+    },
+
     ...mapState({
-      currentQuality: state => state.settings.quality
+      currentQuality: state => state.settings.quality,
+      dontShowFooter: state => state.settings.displayOnly
     })
   },
 
@@ -70,20 +101,45 @@ export default {
   justify-content: space-between;
 }
 
-.flag-icon {
-  align-self: flex-start;
+.country {
+  margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
 .image {
   margin: auto;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   height: 200px;
   width: 200px;
 }
 
-.content {
-  margin-top: 1.5rem;
+.image-placeholder {
+  border: 3px dotted;
+  height: 100%;
+  border-radius: 200px;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.is-not-owned:hover {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.is-owned {
+  box-shadow: inset 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
 .is-rare:hover {

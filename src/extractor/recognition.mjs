@@ -68,10 +68,16 @@ export const sortAndGenerateIDs = (parsedCoins, lang) =>
     .sort(orderByDateAndTitle(lang))
     .reduce(regenerateIDs, []);
 
+const simplify = str =>
+  str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
 export const numberOfCommonWords = (firstString, secondString) => {
   const commonWords = _.intersectionWith(
-    firstString.split(/\s/),
-    secondString.split(/\s/),
+    simplify(firstString).split(/\s|-|\(|\)/),
+    simplify(secondString).split(/\s|-|\(|\)/),
     (wordA, wordB) => wordA.includes(wordB) || wordB.includes(wordA)
   );
 
