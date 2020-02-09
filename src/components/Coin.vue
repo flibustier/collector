@@ -4,9 +4,9 @@
       <div class="header">
         <div class="is-flex">
           <span :class="`flag-icon ${coin.countryFlag}`"></span>
-          <span class="subtitle is-6 country">{{
-            $t(`countries.${coin.country}`)
-          }}</span>
+          <span class="subtitle is-6 country">
+            {{ $t(`countries.${coin.country}`) }}
+          </span>
         </div>
         <p class="subtitle is-6">{{ coinInLocale.date }}</p>
       </div>
@@ -68,7 +68,10 @@ export default {
     },
 
     cardClass() {
-      return this.amountOwned > 0 ? "is-owned" : "is-not-owned";
+      if (this.amountOwned > 0) return "is-owned";
+      if (this.displayRarity) return `is-not-owned-${this.coin.rarity}`;
+
+      return "is-not-owned-common";
     },
 
     amountOwned() {
@@ -77,7 +80,8 @@ export default {
 
     ...mapState({
       currentQuality: state => state.settings.quality,
-      dontShowFooter: state => state.settings.displayOnly
+      dontShowFooter: state => state.settings.displayOnly,
+      displayRarity: state => state.settings.displayRarity
     })
   },
 
@@ -95,7 +99,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header {
   display: flex;
   justify-content: space-between;
@@ -134,8 +138,20 @@ export default {
   justify-content: space-between;
 }
 
-.is-not-owned:hover {
+.is-not-owned-common:hover {
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+.is-not-owned-uncommon:hover {
+  box-shadow: 0 1px 6px 0 #21bf73;
+}
+.is-not-owned-rare:hover {
+  box-shadow: 0 1px 6px 0 #0070dd;
+}
+.is-not-owned-epic:hover {
+  box-shadow: 0 1px 6px 0 #a335ee;
+}
+.is-not-owned-legendary:hover {
+  box-shadow: 0 1px 6px 0 #ff8000;
 }
 
 .is-owned {

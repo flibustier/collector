@@ -75,7 +75,7 @@ export default {
 
     ...mapState({
       savedQuality: state => state.settings.quality,
-      displayRarity: state => state.settings.rarity,
+      displayRarity: state => state.settings.displayRarity,
       showOnlyOwned: state => state.settings.showOnlyOwned,
       displayOnly: state => state.settings.displayOnly
     })
@@ -99,7 +99,7 @@ export default {
     "medium": "Medium",
     "fullsize": "Highest",
     "rarity": "Show levels of rarity",
-    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1} Epic &lt; {2}, Legendary &lt; {3}",
+    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1}, Epic &lt; {2}, Legendary &lt; {3}",
     "showOnlyOwned": "Display only owned coins",
     "displayOnly": "Consulting mode only, don’t display inventory, just coins"
   },
@@ -111,7 +111,7 @@ export default {
     "medium": "Moyenne",
     "fullsize": "Maximale",
     "rarity": "Afficher les niveaux de rareté",
-    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1} Épique &lt; {2}, Légendaire &lt; {3}",
+    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1}, Épique &lt; {2}, Légendaire &lt; {3}",
     "showOnlyOwned": "Afficher uniquement les pièces possédées",
     "displayOnly": "Mode catalogue : Ne pas afficher l’inventaire des pièces possédées"
   }

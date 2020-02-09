@@ -1,4 +1,9 @@
-import { IMAGE_QUALITY, IMAGE_QUALITY_WIDTH } from "./constants.mjs";
+import {
+  IMAGE_QUALITY, IMAGE_QUALITY_WIDTH, UNCOMMON_CAP,
+  RARE_CAP,
+  EPIC_CAP,
+  LEGENDARY_CAP
+} from "./constants.mjs";
 
 const imageNameForQuality = (imageFileName, quality) => {
   switch (quality) {
@@ -34,6 +39,14 @@ export default class Coin {
     return this.date.getFullYear();
   }
 
+  get rarity() {
+    if (this.volume < LEGENDARY_CAP) return 'legendary';
+    if (this.volume < EPIC_CAP) return 'epic';
+    if (this.volume < RARE_CAP) return 'rare';
+    if (this.volume < UNCOMMON_CAP) return 'uncommon';
+    return 'common';
+  }
+
   title(lang) {
     return this[lang] ? this[lang].title : '';
   }
@@ -43,13 +56,13 @@ export default class Coin {
   }
 
   isInVolumeRange(minVolume, maxVolume) {
-    return (this.volume >= minVolume || !minVolume) && (this.volume <= maxVolume || !maxVolume);
+    return (this.volume >= minVolume || !minVolume) && (this.volume < maxVolume || !maxVolume);
   }
 
   isMatchingSearchString(searchString) {
-    return this.title('fr').toLowerCase().includes(searchString) || 
-    this.title('en').toLowerCase().includes(searchString) ||
-    this.id.toLowerCase().includes(searchString)
+    return this.title('fr').toLowerCase().includes(searchString) ||
+      this.title('en').toLowerCase().includes(searchString) ||
+      this.id.toLowerCase().includes(searchString)
   }
 
   image(quality = IMAGE_QUALITY.MAXIMAL) {

@@ -1,11 +1,14 @@
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
-$epic: ($primary, $primary-invert);
-
 // Set your colors
 $primary: #ccb147;
-$primary-invert: #f6f6f5; //findColorInvert($primary);
+$primary-invert: #f6f6f5;
+
+$uncommon: $success;
+$rare: #0070dd;
+$epic: #a335ee;
+$legendary: #ff8000;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -18,10 +21,10 @@ $colors: (
     "success": ($success, $success-invert),
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
-    "uncommon": ($success, $success-invert),
-    "rare": (#0070dd, $info-invert),
-    "epic": (#a335ee, $primary-invert),
-    "legendary": (#ff8000, $warning-invert)
+    "uncommon": ($uncommon, $success-invert),
+    "rare": ($rare, $info-invert),
+    "epic": ($epic, $primary-invert),
+    "legendary": ($legendary, $warning-invert)
 );
 
 // Links
