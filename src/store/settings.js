@@ -3,6 +3,7 @@ import { IMAGE_QUALITY } from "../constants.mjs";
 export default {
   state: {
     quality: IMAGE_QUALITY.LOW,
+    displayRarity: false,
     showOnlyOwned: false,
     displayOnly: false
   },

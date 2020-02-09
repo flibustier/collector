@@ -20,6 +20,18 @@
         </b-field>
       </b-field>
       <hr />
+      <b-field :message="$t('rarityLevels', rarityLevels)">
+        <b-switch
+          size="is-small"
+          :value="displayRarity"
+          @input="
+            value =>
+              $store.commit('setBoolean', { name: 'displayRarity', value })
+          "
+          >{{ $t("rarity") }}</b-switch
+        >
+      </b-field>
+      <hr />
       <b-field
         v-for="setting in ['showOnlyOwned', 'displayOnly']"
         :key="setting"
@@ -42,14 +54,28 @@ import { IMAGE_QUALITY } from "../constants.mjs";
 
 import { mapState } from "vuex";
 
+import {
+  UNCOMMON_CAP,
+  RARE_CAP,
+  EPIC_CAP,
+  LEGENDARY_CAP
+} from "../constants.mjs";
+
 export default {
   computed: {
     qualityList() {
       return Object.values(IMAGE_QUALITY);
     },
 
+    rarityLevels() {
+      return [UNCOMMON_CAP, RARE_CAP, EPIC_CAP, LEGENDARY_CAP].map(number =>
+        number.toLocaleString()
+      );
+    },
+
     ...mapState({
       savedQuality: state => state.settings.quality,
+      displayRarity: state => state.settings.rarity,
       showOnlyOwned: state => state.settings.showOnlyOwned,
       displayOnly: state => state.settings.displayOnly
     })
@@ -72,6 +98,8 @@ export default {
     "low": "Low",
     "medium": "Medium",
     "fullsize": "Highest",
+    "rarity": "Show levels of rarity",
+    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1} Epic &lt; {2}, Legendary &lt; {3}",
     "showOnlyOwned": "Display only owned coins",
     "displayOnly": "Consulting mode only, don’t display inventory, just coins"
   },
@@ -82,6 +110,8 @@ export default {
     "low": "Basse",
     "medium": "Moyenne",
     "fullsize": "Maximale",
+    "rarity": "Afficher les niveaux de rareté",
+    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1} Épique &lt; {2}, Légendaire &lt; {3}",
     "showOnlyOwned": "Afficher uniquement les pièces possédées",
     "displayOnly": "Mode catalogue : Ne pas afficher l’inventaire des pièces possédées"
   }

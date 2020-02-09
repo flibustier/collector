@@ -54,7 +54,7 @@
       </b-field>
     </section>
 
-    <section class="field">
+    <section class="field" v-if="displayRarity">
       <b-field :label="$t('rarity')"></b-field>
 
       <div
@@ -62,10 +62,10 @@
         v-for="(color, index) in [
           'is-dark',
           'is-dark',
-          'is-success',
-          'is-info',
-          'is-primary',
-          'is-warning'
+          'is-uncommon',
+          'is-rare',
+          'is-epic',
+          'is-legendary'
         ]"
         :key="index"
       >
@@ -87,9 +87,8 @@
           size="is-small"
           :value="$store.state.coins.filters.collections[index]"
           @input="value => $store.commit('switchCollection', { index, value })"
+          >{{ $t(`collections[${index}]`) }}</b-switch
         >
-          {{ $t(`collections[${index}]`) }}
-        </b-switch>
       </b-field>
     </section>
   </aside>
@@ -97,6 +96,13 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+
+import {
+  UNCOMMON_CAP,
+  RARE_CAP,
+  EPIC_CAP,
+  LEGENDARY_CAP
+} from "../constants.mjs";
 
 export default {
   data() {
@@ -126,17 +132,11 @@ export default {
 
     ...mapState({
       selectedCountries: state => state.coins.filters.list.countries,
-      selectedYears: state => state.coins.filters.range.years
+      selectedYears: state => state.coins.filters.range.years,
+      displayRarity: state => state.settings.displayRarity
     }),
 
     rarityToVolumeRange() {
-      const [UNCOMMON_CAP, RARE_CAP, EPIC_CAP, LEGENDARY_CAP] = [
-        10000000,
-        2000000,
-        1000000,
-        200000
-      ];
-
       switch (this.rarity) {
         case 1:
           return [UNCOMMON_CAP, this.maxVolume];

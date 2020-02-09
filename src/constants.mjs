@@ -12,3 +12,10 @@ export const IMAGE_QUALITY_WIDTH = {
   MEDIUM: "300px",
   LOW: "200px"
 };
+
+export const [UNCOMMON_CAP, RARE_CAP, EPIC_CAP, LEGENDARY_CAP] = [
+  10000000,
+  2000000,
+  1000000,
+  200000
+];

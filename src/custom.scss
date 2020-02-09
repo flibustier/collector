@@ -1,0 +1,37 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+$epic: ($primary, $primary-invert);
+
+// Set your colors
+$primary: #ccb147;
+$primary-invert: #f6f6f5; //findColorInvert($primary);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "uncommon": ($success, $success-invert),
+    "rare": (#0070dd, $info-invert),
+    "epic": (#a335ee, $primary-invert),
+    "legendary": (#ff8000, $warning-invert)
+);
+
+// Links
+$link: #846415;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+$slider-tick-background: #f6f6f5;
+$slider-tick-width: 2px;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
