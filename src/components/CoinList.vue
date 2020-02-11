@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns is-multiline" v-if="filteredCoins.length">
       <div
-        v-for="coin in filteredCoins"
+        v-for="coin in displayedCoins"
         :key="coin.id"
         class="column is-half is-one-third-desktop is-one-quarter-fullhd"
       >
@@ -26,15 +26,60 @@
 <script>
 import Coin from "./Coin";
 
+const NUMBER_OF_COINS_DISPLAY_AT_EACH_SCROLL = 12;
+
 export default {
   components: {
     Coin
+  },
+
+  data() {
+    return {
+      displayedCoins: []
+    };
+  },
+
+  watch: {
+    filteredCoins() {
+      this.displayedCoins = [];
+      this.loadCoinsToDisplay();
+    }
   },
 
   computed: {
     filteredCoins() {
       return this.$store.getters.filteredCoins;
     }
+  },
+
+  methods: {
+    loadCoinsToDisplay() {
+      const currentlyDisplayed = this.displayedCoins.length;
+      const maximumCoinsToDisplay = this.filteredCoins.length;
+
+      if (currentlyDisplayed < maximumCoinsToDisplay) {
+        const endIndex = Math.min(
+          currentlyDisplayed + NUMBER_OF_COINS_DISPLAY_AT_EACH_SCROLL,
+          maximumCoinsToDisplay
+        );
+
+        this.displayedCoins.push(
+          ...this.filteredCoins.slice(currentlyDisplayed, endIndex)
+        );
+      }
+    }
+  },
+
+  mounted() {
+    window.onscroll = () => {
+      let bottomOfWindow =
+        document.documentElement.scrollTop + window.innerHeight >=
+        document.documentElement.offsetHeight * 0.95;
+
+      if (bottomOfWindow) {
+        this.loadCoinsToDisplay();
+      }
+    };
   }
 };
 </script>
