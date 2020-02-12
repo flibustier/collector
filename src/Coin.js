@@ -67,7 +67,7 @@ export default class Coin {
 
   image(quality = IMAGE_QUALITY.MAXIMAL) {
     return this.imageSource
-      ? `/images/${quality}/${imageNameForQuality(this.imageSource, quality)}`
+      ? `${process.env.BASE_URL}images/${quality}/${imageNameForQuality(this.imageSource, quality)}`
       : "";
   }
 }
