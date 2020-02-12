@@ -11,6 +11,18 @@ const stats = {
   titleComparisonFailedThreshold: []
 };
 
+const customDictionary = {
+  aids: "sida",
+  bavaria: "baviere",
+  bundesrat: "bundeslander",
+  european: "europeenne",
+  farming: "agriculture",
+  presidency: "presidence",
+  solidarity: "solidarite"
+};
+
+const customTranslator = word => customDictionary[word] || word;
+
 export const formatID = (country, year, orderNumber) => {
   const twoDigitOrder = ("0" + orderNumber).slice(-2);
 
@@ -74,11 +86,19 @@ const simplify = str =>
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
+const compare = (wordA, wordB) =>
+  (wordA.length > 2 &&
+    wordB.length > 2 &&
+    (wordA.includes(wordB) || wordB.includes(wordA))) ||
+  parseInt(wordA) === parseInt(wordB);
 export const numberOfCommonWords = (firstString, secondString) => {
   const commonWords = _.intersectionWith(
     simplify(firstString).split(/\s|-|\(|\)/),
     simplify(secondString).split(/\s|-|\(|\)/),
-    (wordA, wordB) => wordA.includes(wordB) || wordB.includes(wordA)
+    (wordA, wordB) =>
+      compare(wordA, wordB) ||
+      compare(customTranslator(wordA), wordB) ||
+      compare(wordA, customTranslator(wordB))
   );
 
   return commonWords.length;
@@ -170,7 +190,10 @@ const findSameCoinInRootLanguage = (
     return bestCandidate;
   }
 
-  stats.titleComparisonFailedThreshold.push(coinInForeignLanguage);
+  stats.titleComparisonFailedThreshold.push({
+    ...coinInForeignLanguage,
+    title
+  });
 };
 
 export const mergeCoinsInForeignLanguage = (
@@ -199,17 +222,32 @@ export const mergeCoinsInForeignLanguage = (
     }
   });
 
-  console.info(`
-[INFO] === STATS ===\n
-${stats.perfectMatches} perfect matches\n
-${stats.noSameYearSameCountry.length} coins with no common country and year\n 
-${
-  stats.titleComparisonExceedThreshold.length
-} title comparison successful (max words in common was ${Math.max(
-    ...stats.titleComparisonExceedThreshold
-  )})\n
-${stats.titleComparisonFailedThreshold.length} title comparison failed\n
-${coinsToMerge.length} coins treated\n`);
+  console.info(`[INFO] === STATS ===\n`);
+
+  console.log("\x1b[32m%s\x1b[0m", `${stats.perfectMatches} perfect matches\n`);
+
+  console.log(
+    "\x1b[31m%s\x1b[0m",
+    `${stats.noSameYearSameCountry.length} coins with no common country and year\n`
+  );
+
+  console.log(
+    "\x1b[32m%s\x1b[0m",
+    `${
+      stats.titleComparisonExceedThreshold.length
+    } title comparison successful (max words in common was ${Math.max(
+      ...stats.titleComparisonExceedThreshold
+    )})\n`
+  );
+
+  console.log(
+    "\x1b[31m%s\x1b[0m",
+    `${stats.titleComparisonFailedThreshold.length} title comparison failed\n`
+  );
+
+  console.log("\x1b[36m%s\x1b[0m", `${coinsToMerge.length} coins treated\n`);
+
+  console.table(stats.titleComparisonFailedThreshold);
 
   return merged;
 };

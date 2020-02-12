@@ -1,5 +1,5 @@
 {
-  "version": "2020-01-23",
+  "version": "2020-02-12",
   "coins": [
     {
       "id": "GR-2004-01",
@@ -346,6 +346,11 @@
         "title": "Palais grand-ducal",
         "date": "Février 2007",
         "volume": "1,1 million de pièces"
+      },
+      "en": {
+        "title": "Grand Ducal Palace",
+        "date": "2 February 2007",
+        "volume": "1,031,000 coins"
       }
     },
     {
@@ -357,6 +362,11 @@
         "title": "Présidence du Mecklembourg-Poméranie-Occidentale au Bundesrat",
         "date": "Février 2007",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "Schwerin Castle (Mecklenburg-Vorpommern)Second of the Bundesländer series",
+        "date": "2 February 2007",
+        "volume": "30 million coins"
       }
     },
     {
@@ -368,7 +378,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce allemande",
         "date": "25 mars 2007",
         "volume": "30 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "AT-2007-01",
@@ -379,7 +390,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce autrichienne",
         "date": "25 mars 2007",
         "volume": "9 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "BE-2007-01",
@@ -390,7 +402,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce belge",
         "date": "25 mars 2007",
         "volume": "5 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "ES-2007-01",
@@ -401,7 +414,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce espagnole",
         "date": "25 mars 2007",
         "volume": "8 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "FI-2007-01",
@@ -412,7 +426,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce finlandaise",
         "date": "25 mars 2007",
         "volume": "1,4 million de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "FR-2007-01",
@@ -423,7 +438,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce française",
         "date": "25 mars 2007",
         "volume": "9,4 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "GR-2007-01",
@@ -434,7 +450,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce grecque",
         "date": "25 mars 2007",
         "volume": "4 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "IE-2007-01",
@@ -445,7 +462,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce irlandaise",
         "date": "25 mars 2007",
         "volume": "4,82 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "IT-2007-01",
@@ -456,7 +474,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce italienne",
         "date": "25 mars 2007",
         "volume": "5 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "LU-2007-02",
@@ -467,7 +486,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce luxembourgeoise",
         "date": "25 mars 2007",
         "volume": "2,1 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "NL-2007-01",
@@ -478,7 +498,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce néerlandaise",
         "date": "25 mars 2007",
         "volume": "6,333 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "PT-2007-01",
@@ -489,7 +510,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce portugaise",
         "date": "25 mars 2007",
         "volume": "2 millions de pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "SI-2007-01",
@@ -500,7 +522,8 @@
         "title": "50e anniversaire du Traité de Rome, pièce slovène",
         "date": "25 mars 2007",
         "volume": "400 000 pièces"
-      }
+      },
+      "collection": 0
     },
     {
       "id": "MC-2007-01",
@@ -527,6 +550,11 @@
         "title": "Présidence portugaise du Conseil de l'Union européenne",
         "date": "Juillet 2007",
         "volume": "2 millions de pièces"
+      },
+      "en": {
+        "title": "Portuguese Presidency of the Council of the European Union",
+        "date": "1 June 2007",
+        "volume": "2 million coins"
       }
     },
     {
@@ -586,6 +614,11 @@
         "title": "Château de Colmar-Berg",
         "date": "Février 2008",
         "volume": "1,3 million de pièces"
+      },
+      "en": {
+        "title": "Berg Castle",
+        "date": "2 February 2008",
+        "volume": "1,042,000 coins"
       }
     },
     {
@@ -693,6 +726,11 @@
         "title": "60e anniversaire de la Déclaration universelle des droits de l'homme",
         "date": "Septembre 2008",
         "volume": "1 035 000 pièces"
+      },
+      "en": {
+        "title": "60th anniversary of the Universal Declaration of Human Rights",
+        "date": "15 September 2008",
+        "volume": "1,025,000 coins"
       }
     },
     {
@@ -732,192 +770,192 @@
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 30000000,
       "image": "DE_2€_2009_10_ans_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce allemande",
         "date": "1 janvier 2009",
         "volume": "30 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "AT-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 5000000,
       "image": "AT_2€_2009_10-ans-UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce autrichienne",
         "date": "1 janvier 2009",
         "volume": "5 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "BE-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 5000000,
       "image": "BE_2€_2009_10_ans_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce belge",
         "date": "1 janvier 2009",
         "volume": "5 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "CY-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "CY_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce chypriote",
         "date": "1 janvier 2009",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "ES-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 8000000,
       "image": "ES_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce espagnole",
         "date": "1 janvier 2009",
         "volume": "8 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "FI-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 1400000,
       "image": "FI_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce finalandaise",
         "date": "1 janvier 2009",
         "volume": "1,4 million de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "FR-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 10000000,
       "image": "2_euros_UEM-France.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce française",
         "date": "1 janvier 2009",
         "volume": "10 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "GR-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 4000000,
       "image": "GR_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce grecque",
         "date": "1 janvier 2009",
         "volume": "4 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "IE-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 5000000,
       "image": "IE_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce irlandaise",
         "date": "1 janvier 2009",
         "volume": "5 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "IT-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 2500000,
       "image": "IT_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce italienne",
         "date": "1 janvier 2009",
         "volume": "2,5 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "LU-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 1400000,
       "image": "LU_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce luxembourgeoise",
         "date": "1 janvier 2009",
         "volume": "1,4 million de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "MT-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 700000,
       "image": "MT_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce maltaise",
         "date": "1 janvier 2009",
         "volume": "700 000 pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "NL-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 5300000,
       "image": "NL_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce néerlandaise",
         "date": "1 janvier 2009",
         "volume": "5,3 millions de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "PT-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 1285000,
       "image": "PT_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce portugaise",
         "date": "1 janvier 2009",
         "volume": "1,285 million de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "SK-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "SK_2€_2009_UEM.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce slovaque",
         "date": "1 janvier 2009",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "SI-2009-01",
       "date": "2009-01-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "SI_2€_2009_EMU.png",
-      "collection": 1,
       "fr": {
         "title": "10e anniversaire de l'Union économique et monétaire, pièce slovène",
         "date": "1 janvier 2009",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 1
     },
     {
       "id": "LU-2009-02",
@@ -928,6 +966,11 @@
         "title": "90e anniversaire de l'accession au trône de la Grande-Duchesse Charlotte",
         "date": "Janvier 2009",
         "volume": "1,4 million de pièces"
+      },
+      "en": {
+        "title": "90th anniversary of Grand Duchess Charlotte's Accession to the Throne",
+        "date": "1 January 2009",
+        "volume": "838,000 coins"
       }
     },
     {
@@ -939,6 +982,11 @@
         "title": "Présidence de la Sarre au Bundesrat",
         "date": "Février 2009",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "Ludwigskirche in Saarbrücken (Saarland)Fourth of the Bundesländer series",
+        "date": "2 February 2009",
+        "volume": "30 million coins"
       }
     },
     {
@@ -1046,6 +1094,11 @@
         "title": "20e anniversaire de la Révolution de velours",
         "date": "Novembre 2009",
         "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "20th anniversary of the Start of the Velvet Revolution",
+        "date": "November 2009",
+        "volume": "1 million coins"
       }
     },
     {
@@ -1057,6 +1110,11 @@
         "title": "Armoiries du Grand-Duc",
         "date": "14 janvier 2010",
         "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "Arms of the Grand Duke",
+        "date": "14 January 2010",
+        "volume": "529,500 coins"
       }
     },
     {
@@ -1088,7 +1146,7 @@
       "en": {
         "title": "Historic Centre of CórdobaFirst of the UNESCO World Heritage Sites series",
         "date": "February 2010",
-        "volume": "8 million coins"
+        "volume": "4 million coins"
       }
     },
     {
@@ -1292,6 +1350,11 @@
         "title": "50e anniversaire de la désignation de Jean comme Lieutenant-Représentant par sa mère, la Grande-Duchesse Charlotte",
         "date": "2 février 2011",
         "volume": "1.4 million de pièces"
+      },
+      "en": {
+        "title": "50th anniversary of the Appointment of Jean, Grand Duke of Luxembourg by his mother Charlotte, Grand Duchess of Luxembourg as lieutenant-représentant",
+        "date": "3 February 2011",
+        "volume": "729,500 coins"
       }
     },
     {
@@ -1497,9 +1560,9 @@
         "volume": "1,4 million de pièces"
       },
       "en": {
-        "title": "Royal Wedding of Guillaume, Hereditary Grand Duke of Luxembourg to Countess Stéphanie de Lannoy",
-        "date": "19 December 2012",
-        "volume": "512,000 coins"
+        "title": "100 years since the death of William IV, Grand Duke of Luxembourg",
+        "date": "9 February 2012",
+        "volume": "722,500 coins"
       }
     },
     {
@@ -1511,6 +1574,11 @@
         "title": "Présidence de la Bavière au Bundesrat",
         "date": "Janvier 2012",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "Neuschwanstein Castle near Füssen (Bavaria)Seventh of the Bundesländer series",
+        "date": "3 February 2012",
+        "volume": "30 million coins"
       }
     },
     {
@@ -1518,180 +1586,185 @@
       "date": "2012-01-02T00:00:00.000Z",
       "volume": 30000000,
       "image": "2_euros_10_ans_Allemagne_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce allemande",
         "date": "2 janvier 2012",
         "volume": "30 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "AT-2012-01",
       "date": "2012-01-02T00:00:00.000Z",
       "volume": 11300000,
       "image": "2_euros_10_ans_Autriche_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce autrichienne",
         "date": "2 janvier 2012",
         "volume": "11,3 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "ES-2012-01",
       "date": "2012-01-02T00:00:00.000Z",
       "volume": 8000000,
       "image": "2_euros_10_ans_Espagne_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce espagnole",
         "date": "2 janvier 2012",
         "volume": "8 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "EE-2012-01",
       "date": "2012-01-02T00:00:00.000Z",
       "volume": 2000000,
       "image": "2_euros_10_ans_Estonie_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce estonienne",
         "date": "2 janvier 2012",
         "volume": "2 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "GR-2012-01",
       "date": "2012-01-02T00:00:00.000Z",
       "volume": 1000000,
       "image": "2_euros_10_ans_Grèce_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce grecque",
         "date": "2 janvier 2012",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "SK-2012-01",
       "date": "2012-01-02T00:00:00.000Z",
       "volume": 1000000,
       "image": "2_euros_10_ans_Slovaquie_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce slovaque",
         "date": "2 janvier 2012",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "IE-2012-01",
       "date": "2012-01-03T00:00:00.000Z",
       "volume": 3000000,
       "image": "2_euros_10_ans_Irlande_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce irlandaise",
         "date": "3 janvier 2012",
         "volume": "3 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "SI-2012-01",
       "date": "2012-01-03T00:00:00.000Z",
       "volume": 1000000,
       "image": "2_euros_10_ans_Slovénie_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce slovène",
         "date": "3 janvier 2012",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "FR-2012-01",
       "date": "2012-01-05T00:00:00.000Z",
       "volume": 10000000,
       "image": "Piece-2-euros-commemorative-2012-france.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce française",
         "date": "5 janvier 2012",
         "volume": "10 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "FI-2012-01",
       "date": "2012-01-12T00:00:00.000Z",
       "volume": 1500000,
       "image": "2_euros_10_ans_Finlande_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce finlandaise",
         "date": "12 janvier 2012",
         "volume": "1,5 million de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "BE-2012-01",
       "date": "2012-01-30T00:00:00.000Z",
       "volume": 5000000,
       "image": "2_euros_10_ans_Belgique_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce belge",
         "date": "30 janvier 2012",
         "volume": "5 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "LU-2012-02",
       "date": "2012-01-31T00:00:00.000Z",
       "volume": 525000,
       "image": "2_euros_10_ans_Luxembourg_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce luxembourgeoise",
         "date": "31 janvier 2012",
         "volume": "525 000 pièces"
-      }
+      },
+      "en": {
+        "title": "Royal Wedding of Guillaume, Hereditary Grand Duke of Luxembourg to Countess Stéphanie de Lannoy",
+        "date": "19 December 2012",
+        "volume": "512,000 coins"
+      },
+      "collection": 2
     },
     {
       "id": "CY-2012-01",
       "date": "2012-02-13T00:00:00.000Z",
       "volume": 1000000,
       "image": "2_euros_10_ans_Chypre_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce chypriote",
         "date": "13 février 2012",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "NL-2012-01",
       "date": "2012-02-13T00:00:00.000Z",
       "volume": 3500000,
       "image": "2_euros_10_ans_Pays-Bas_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce néerlandaise",
         "date": "13 février 2012",
         "volume": "3,5 millions"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "PT-2012-01",
       "date": "2012-02-24T00:00:00.000Z",
       "volume": 520000,
       "image": "2_euros_10_ans_Portugal_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce portugaise",
         "date": "24 février 2012",
         "volume": "520 000 pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "ES-2012-02",
@@ -1702,6 +1775,11 @@
         "title": "Cathédrale Sainte-Marie de Burgos, inscrite au patrimoine mondial de l'UNESCO depuis 1984",
         "date": "Mars 2012",
         "volume": "8 millions de pièces"
+      },
+      "en": {
+        "title": "Burgos CathedralThird of the UNESCO World Heritage Sites series",
+        "date": "1 March 2012",
+        "volume": "8 million coins"
       }
     },
     {
@@ -1709,24 +1787,24 @@
       "date": "2012-03-20T00:00:00.000Z",
       "volume": 15000000,
       "image": "2_euros_10_ans_Italie_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce italienne",
         "date": "20 mars 2012",
         "volume": "15 millions de pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "MT-2012-01",
       "date": "2012-03-30T00:00:00.000Z",
       "volume": 700000,
       "image": "2_euros_10_ans_Malte_2012.png",
-      "collection": 2,
       "fr": {
         "title": "10e anniversaire de la mise en circulation des billets et des pièces en euro, pièce maltaise",
         "date": "30 mars 2012",
         "volume": "700 000 pièces"
-      }
+      },
+      "collection": 2
     },
     {
       "id": "SM-2012-01",
@@ -1753,6 +1831,11 @@
         "title": "75e anniversaire du Concours musical international Reine Élisabeth de Belgique",
         "date": "Juin 2012",
         "volume": "5 millions de pièces"
+      },
+      "en": {
+        "title": "75th anniversary of the Queen Elisabeth Music Competition",
+        "date": "6 June 2012",
+        "volume": "5 million coins"
       }
     },
     {
@@ -1812,6 +1895,11 @@
         "title": "500e anniversaire de la fondation de la souveraineté de Monaco, obtenue par Lucien Grimaldi",
         "date": "Juillet 2012",
         "volume": "100 000 pièces"
+      },
+      "en": {
+        "title": "500th anniversary of the foundation of Monaco's sovereignty",
+        "date": "1 July 2012",
+        "volume": "110,000 coins"
       }
     },
     {
@@ -1871,6 +1959,11 @@
         "title": "Mariage du Grand-Duc Héritier Guillaume et de la comtesse belge Stéphanie de Lannoy",
         "date": "Janvier 2013",
         "volume": "500 000 pièces"
+      },
+      "en": {
+        "title": "National Anthem of the Grand Duchy",
+        "date": "16 October 2013",
+        "volume": "522,000 coins"
       }
     },
     {
@@ -1898,6 +1991,11 @@
         "title": "50e anniversaire du Traité de l'Élysée",
         "date": "22 janvier 2013",
         "volume": "10 millions de pièces"
+      },
+      "en": {
+        "title": "50 years of Franco-German Friendship(Élysée Treaty)",
+        "date": "22 January 2013",
+        "volume": "10,017,789 coins"
       }
     },
     {
@@ -2021,6 +2119,11 @@
         "title": "2400e anniversaire de l'Académie de Platon",
         "date": "Juin 2013",
         "volume": "742 500 pièces"
+      },
+      "en": {
+        "title": "2400th anniversary of the Founding of the Platonic Academy",
+        "date": "1 October 2013",
+        "volume": "754,000 coins"
       }
     },
     {
@@ -2139,6 +2242,11 @@
         "title": "100e anniversaire du rattachement de la Crète à la Grèce",
         "date": "Automne 2013",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "100th anniversary of the Union of Crete with Greece",
+        "date": "1 October 2013",
+        "volume": "754,000 coins"
       }
     },
     {
@@ -2182,6 +2290,11 @@
         "title": "100e anniversaire de l'Institut royal météorologique de Belgique",
         "date": "Novembre 2013",
         "volume": "2 millions de pièces"
+      },
+      "en": {
+        "title": "100 years of Royal Meteorological Institute",
+        "date": "18 September 2013",
+        "volume": "2,010,000 coins"
       }
     },
     {
@@ -2209,6 +2322,11 @@
         "title": "200e anniversaire du Royaume des Pays-Bas",
         "date": "Novembre 2013",
         "volume": "3,538 millions de pièces"
+      },
+      "en": {
+        "title": "200th anniversary of the Kingdom of the Netherlands",
+        "date": "25 November 2013",
+        "volume": "3,500,000 coins"
       }
     },
     {
@@ -2220,6 +2338,11 @@
         "title": "Présidence de la Basse-Saxe au Bundesrat",
         "date": "2 février 2014",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "St. Michael's Church in Hildesheim, Lower Saxony.Ninth of the Bundesländer series",
+        "date": "7 February 2014",
+        "volume": "30,824,300 coins"
       }
     },
     {
@@ -2231,6 +2354,11 @@
         "title": "175e anniversaire d'indépendance",
         "date": "6 février 2014",
         "volume": "1,4 million de pièces"
+      },
+      "en": {
+        "title": "175th anniversary of the Foundation of Luxembourg's independence",
+        "date": "6 January 2014",
+        "volume": "519,500 coins"
       }
     },
     {
@@ -2242,6 +2370,11 @@
         "title": "Œuvre d'Antoni Gaudí, inscrite au patrimoine mondial de l'UNESCO depuis 1984",
         "date": "Mars 2014",
         "volume": "8 millions de pièces"
+      },
+      "en": {
+        "title": "Park Güell, Work of Antoni GaudíFifth of the UNESCO World Heritage Sites series",
+        "date": "7 February 2014",
+        "volume": "8,094,000 coins"
       }
     },
     {
@@ -2285,6 +2418,11 @@
         "title": "40e anniversaire de la Révolution des Œillets du 25 avril 1974",
         "date": "23 avril 2014",
         "volume": "500 000 pièces"
+      },
+      "en": {
+        "title": "40 years since the Carnation Revolution",
+        "date": "23 April 2014",
+        "volume": "520,000 coins"
       }
     },
     {
@@ -2328,6 +2466,11 @@
         "title": "70e anniversaire du Débarquement de Normandie",
         "date": "6 juin 2014",
         "volume": "3 millions de pièces"
+      },
+      "en": {
+        "title": "70 years since D-Day",
+        "date": "11 June 2014",
+        "volume": "3,019,675 coins"
       }
     },
     {
@@ -2387,6 +2530,11 @@
         "title": "150e anniversaire de la Croix-Rouge de Belgique",
         "date": "Septembre 2014",
         "volume": "265 000 pièces"
+      },
+      "en": {
+        "title": "150 years Belgium Red Cross",
+        "date": "18 September 2014",
+        "volume": "287,500 coins"
       }
     },
     {
@@ -2430,6 +2578,11 @@
         "title": "150e anniversaire de l'union des îles Ioniennes avec la Grèce",
         "date": "24 septembre 2014",
         "volume": "742 500 pièces"
+      },
+      "en": {
+        "title": "150th anniversary of the Union of the Ionian Islands with Greece",
+        "date": "24 September 2014",
+        "volume": "754,000 coins"
       }
     },
     {
@@ -2457,6 +2610,11 @@
         "title": "50e anniversaire de son indépendance",
         "date": "Octobre 2014",
         "volume": "400 000 pièces"
+      },
+      "en": {
+        "title": "Independence from Britain in 1964Fourth of the Constitutional History series",
+        "date": "3 June 2014",
+        "volume": "432,500 coins"
       }
     },
     {
@@ -2532,6 +2690,11 @@
         "title": "Année internationale de l'agriculture familiale",
         "date": "31 octobre 2014",
         "volume": "500 000 pièces"
+      },
+      "en": {
+        "title": "International Year of Family Farming",
+        "date": "31 October 2014",
+        "volume": "520,000 coins"
       }
     },
     {
@@ -2559,6 +2722,11 @@
         "title": "450e anniversaire de la naissance du savant italien Galilée, le 15 février 1564 à Pise",
         "date": "18 novembre 2014",
         "volume": "6,5 millions de pièces"
+      },
+      "en": {
+        "title": "450 years since the birth of Galileo Galilei",
+        "date": "17 June 2014",
+        "volume": "6,500,000 coins"
       }
     },
     {
@@ -2570,6 +2738,11 @@
         "title": "Journée mondiale contre le SIDA",
         "date": "24 novembre 2014",
         "volume": "3 millions de pièces"
+      },
+      "en": {
+        "title": "World AIDS Day",
+        "date": "24 November 2014",
+        "volume": "3 million coins"
       }
     },
     {
@@ -2592,6 +2765,11 @@
         "title": "25e anniversaire de la réunification allemande",
         "date": "30 janvier 2015",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "25 years of German Unity",
+        "date": "30 January 2015",
+        "volume": "30,500,000 coins"
       }
     },
     {
@@ -2603,6 +2781,11 @@
         "title": "Présidence de la Hesse au Bundesrat",
         "date": "30 janvier 2015",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "Paulskirche in Frankfurt am MainTenth of the Bundesländer series",
+        "date": "30 January 2015",
+        "volume": "30,765,000 coins"
       }
     },
     {
@@ -2614,6 +2797,11 @@
         "title": "70 ans de la fin de la Seconde Guerre mondiale",
         "date": "2 février 2015",
         "volume": "4 millions de pièces"
+      },
+      "en": {
+        "title": "70 years of peace in Europe",
+        "date": "30 January 2015",
+        "volume": "4,020,000 coins"
       }
     },
     {
@@ -2673,6 +2861,11 @@
         "title": "Exposition universelle de 2015 à Milan",
         "date": "Mars 2015",
         "volume": "3,5 millions de pièces"
+      },
+      "en": {
+        "title": "Universal Exposition Expo 2015 in Milan",
+        "date": "29 April 2015",
+        "volume": "3,525,000 coins"
       }
     },
     {
@@ -2700,6 +2893,11 @@
         "title": "150e anniversaire de la Croix-Rouge portugaise",
         "date": "Avril 2015",
         "volume": "520 000 pièces"
+      },
+      "en": {
+        "title": "150 years Portuguese Red Cross",
+        "date": "15 April 2015",
+        "volume": "520,000 coins"
       }
     },
     {
@@ -2723,24 +2921,24 @@
       "date": "2015-07-01T00:00:00.000Z",
       "volume": 4000000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce espagnole",
         "date": "3e trimestre 2015",
         "volume": "4 millions de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "GR-2015-01",
       "date": "2015-07-01T00:00:00.000Z",
       "volume": 750000,
       "image": "GR_2€_2015_drapeau_européen.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce grecque",
         "date": "3e trimestre 2015",
         "volume": "750 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "PT-2015-02",
@@ -2767,6 +2965,11 @@
         "title": "750e anniversaire de la naissance de l'écrivain florentin Dante Alighieri, en 1265 à Florence",
         "date": "Juillet 2015",
         "volume": "3,5 millions de pièces"
+      },
+      "en": {
+        "title": "750 years since the birth of Dante Alighieri",
+        "date": "26 June 2015",
+        "volume": "3,515,000 coins"
       }
     },
     {
@@ -2778,6 +2981,11 @@
         "title": "75e anniversaire de la mort de l'athlète grec Spyrídon Loúis, le 26 mars 1940",
         "date": "3e trimestre 2015",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "75 years since the death of Spyridon Louis",
+        "date": "15 December 2015",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -2791,8 +2999,8 @@
         "volume": "4,02 millions de pièces"
       },
       "en": {
-        "title": "70 years of peace in Europe",
-        "date": "30 January 2015",
+        "title": "225. anniversary of Fête de la Fédération",
+        "date": "22 July 2015",
         "volume": "4,020,000 coins"
       }
     },
@@ -2805,6 +3013,11 @@
         "title": "125e anniversaire de la Dynastie Nassau-Weilbourg",
         "date": "Août 2015",
         "volume": "1,4 million de pièces"
+      },
+      "en": {
+        "title": "125th anniversary of the Nassau-Weilburg Dynasty",
+        "date": "15 October 2015",
+        "volume": "511,500 coins"
       }
     },
     {
@@ -2812,24 +3025,29 @@
       "date": "2015-08-01T00:00:00.000Z",
       "volume": 500000,
       "image": "FI_2€_2015_Drapeau_UE.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce finlandaise",
         "date": "Août 2015",
         "volume": "500 000 pièces"
-      }
+      },
+      "en": {
+        "title": "30th anniversary of the Flag of Europe",
+        "date": "6 August 2015",
+        "volume": "500.000 coins"
+      },
+      "collection": 3
     },
     {
       "id": "SK-2015-01",
       "date": "2015-09-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "SK_2€_2015_Drapeau_UE.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce slovaque",
         "date": "Septembre 2015",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "BE-2015-01",
@@ -2856,6 +3074,11 @@
         "title": "Proclamation de la République en 1974",
         "date": "Septembre 2015",
         "volume": "405 000 pièces"
+      },
+      "en": {
+        "title": "Proclamation of the Republic of Malta in 1974Fifth of the Constitutional History series",
+        "date": "23 June 2015",
+        "volume": "435,000 coins"
       }
     },
     {
@@ -2867,6 +3090,11 @@
         "title": "25e anniversaire de la réunification allemande",
         "date": "29 septembre 2015",
         "volume": "100 000 pièces"
+      },
+      "en": {
+        "title": "25 years of German Unity",
+        "date": "29 September 2015",
+        "volume": "100,000 coins"
       }
     },
     {
@@ -2878,6 +3106,11 @@
         "title": "10e anniversaire du plan letton de protection des cigognes noires",
         "date": "Octobre 2015",
         "volume": "1,01 million de pièces"
+      },
+      "en": {
+        "title": "EU Presidency",
+        "date": "10 February 2015",
+        "volume": "1,025,000 coins"
       }
     },
     {
@@ -2917,91 +3150,90 @@
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 30000000,
       "image": "2E_Drapeau_Allemagne_D.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce allemande",
         "date": "4e trimestre 2015",
         "volume": "30 millions de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "AT-2015-01",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 2500000,
       "image": "AT_2€_2015_Drapeau_UE.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce autrichienne",
         "date": "4e trimestre 2015",
         "volume": "2,5 millions de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "CY-2015-01",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 350000,
       "image": "2E_Drapeau_Chypre.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce chypriote",
         "date": "4e trimestre 2015",
         "volume": "350 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "FR-2015-03",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 4000000,
       "image": "2euro_drapeauUE_2015.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce française",
         "date": "Octobre 2015",
         "volume": "4 millions de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "IE-2015-01",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "IE_2€_2015_Drapeau_UE.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce irlandaise",
         "date": "Octobre 2015",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "LT-2015-01",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 750000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce lituanienne",
         "date": "4e trimestre 2015",
         "volume": "750 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "NL-2015-01",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "NL_2€_2015_Drapeau_UE.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce néerlandaise",
         "date": "Octobre 2015",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "SI-2015-01",
       "date": "2015-10-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "2E_Drapeau_Slovenie.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce slovène",
         "date": "4e trimestre 2015",
@@ -3011,7 +3243,8 @@
         "title": "2000th anniversary of the Founding of Emona",
         "date": "9 November 2015",
         "volume": "1 million coins"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "VA-2015-01",
@@ -3034,72 +3267,72 @@
       "date": "2015-11-01T00:00:00.000Z",
       "volume": 412500,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce belge",
         "date": "Novembre 2015",
         "volume": "412 500 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "IT-2015-03",
       "date": "2015-11-01T00:00:00.000Z",
       "volume": 1000000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce italienne",
         "date": "Novembre 2015",
         "volume": "1 million de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "LV-2015-03",
       "date": "2015-11-01T00:00:00.000Z",
       "volume": 110000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce lettonne",
         "date": "Novembre 2015",
         "volume": "110 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "LU-2015-03",
       "date": "2015-11-01T00:00:00.000Z",
       "volume": 1400000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce luxembourgeoise",
         "date": "Novembre 2015",
         "volume": "1,4 million de pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "MT-2015-03",
       "date": "2015-11-01T00:00:00.000Z",
       "volume": 300000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce maltaise",
         "date": "Novembre 2015",
         "volume": "300 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "PT-2015-03",
       "date": "2015-11-01T00:00:00.000Z",
       "volume": 520000,
       "image": "2E_Drapeau_Portugal.png",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce portugaise",
         "date": "Novembre 2015",
         "volume": "520 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "MC-2015-01",
@@ -3144,12 +3377,12 @@
       "date": "2015-12-01T00:00:00.000Z",
       "volume": 350000,
       "image": "",
-      "collection": 3,
       "fr": {
         "title": "30e anniversaire du drapeau européen, pièce estonienne",
         "date": "fin décembre 2015",
         "volume": "350 000 pièces"
-      }
+      },
+      "collection": 3
     },
     {
       "id": "LT-2015-02",
@@ -3208,6 +3441,11 @@
         "title": "50e anniversaire du Pont Grande-Duchesse Charlotte, à Luxembourg",
         "date": "Février-mars 2016",
         "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "50 years of Grand Duchess Charlotte Bridge",
+        "date": "6 May 2016",
+        "volume": "517,500 coins"
       }
     },
     {
@@ -3219,6 +3457,11 @@
         "title": "Vieille ville et aqueduc de Ségovie, inscrits au patrimoine mondial de l'UNESCO depuis 1985",
         "date": "1er février 2016",
         "volume": "8 millions de pièces"
+      },
+      "en": {
+        "title": "Old city of Segovia and its aqueductSeventh of the UNESCO World Heritage Sites series",
+        "date": "5 February 2016",
+        "volume": "4 million coins"
       }
     },
     {
@@ -3230,6 +3473,11 @@
         "title": "Présidence de la Saxe au Bundesrat",
         "date": "5 février 2016",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "Zwinger Palace in DresdenEleventh of the Bundesländer series",
+        "date": "5 February 2016",
+        "volume": "30,663,000 coins"
       }
     },
     {
@@ -3241,6 +3489,11 @@
         "title": "Championnat d'Europe de football 2016 en France, du 10 juin au 10 juillet 2016",
         "date": "8 février 2016",
         "volume": "10 millions de pièces"
+      },
+      "en": {
+        "title": "XV European Football Championship",
+        "date": "5 February 2016",
+        "volume": "10,020,500 coins"
       }
     },
     {
@@ -3252,6 +3505,11 @@
         "title": "2200e anniversaire de la mort de l'auteur latin Plaute, en 184 av. J.-C.  à Rome",
         "date": "Mars 2016",
         "volume": "1,5 million de pièces"
+      },
+      "en": {
+        "title": "2200 years since the death of Plautus",
+        "date": "21 May 2016",
+        "volume": "1,500,000 coins"
       }
     },
     {
@@ -3263,6 +3521,11 @@
         "title": "550e anniversaire de la mort du sculpteur italien Donato di Niccolò di Betto Bardi, dit Donatello, le 13 décembre 1466 à Florence",
         "date": "Mars 2016",
         "volume": "1,5 million de pièces"
+      },
+      "en": {
+        "title": "550 years since the death of Donatello",
+        "date": "29 April 2016",
+        "volume": "1,500,000 coins"
       }
     },
     {
@@ -3290,6 +3553,11 @@
         "title": "Jeux olympiques à Rio de Janeiro (Brésil)",
         "date": "Mars 2016",
         "volume": "650 000 pièces"
+      },
+      "en": {
+        "title": "Portuguese athletes participating in the 2016 Summer Olympics",
+        "date": "3 May 2016",
+        "volume": "680,000 coins"
       }
     },
     {
@@ -3317,6 +3585,11 @@
         "title": "550e anniversaire de la mort du sculpteur italien Donato di Niccolò di Betto Bardi, dit Donatello, le 13 décembre 1466 à Florence",
         "date": "5 avril 2016",
         "volume": "85 000 pièces"
+      },
+      "en": {
+        "title": "550 years since the death of Donatello",
+        "date": "5 April 2016",
+        "volume": "87,800 coins"
       }
     },
     {
@@ -3456,6 +3729,11 @@
         "title": "Ġgantija",
         "date": "Juillet 2016",
         "volume": "380 000 pièces"
+      },
+      "en": {
+        "title": "ĠgantijaFirst of the „Maltese Prehistoric Sites“ series",
+        "date": "22 August 2016",
+        "volume": "410,000 coins"
       }
     },
     {
@@ -3531,6 +3809,11 @@
         "title": "150e anniversaire de l'incendie du Monastère d'Arkadi",
         "date": "4e trimestre 2016",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "150 years since the Arkadi Monastery torching",
+        "date": "16 December 2016",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -3553,6 +3836,11 @@
         "title": "Solidarité par l'amour",
         "date": "Novembre 2016",
         "volume": "380 000 pièces"
+      },
+      "en": {
+        "title": "Solidarity through loveFirst of the „from children in solidarity\" series",
+        "date": "5 December 2016",
+        "volume": "380,000 coins"
       }
     },
     {
@@ -3564,6 +3852,11 @@
         "title": "Vidzeme",
         "date": "Novembre 2016",
         "volume": "1,03 million de pièces"
+      },
+      "en": {
+        "title": "VidzemeFirst of the „Regions\" series",
+        "date": "15 November 2016",
+        "volume": "1,010,000 coins"
       }
     },
     {
@@ -3586,6 +3879,11 @@
         "title": "25e anniversaire de la radio et la télévision publiques de l'Andorre",
         "date": "Décembre 2016",
         "volume": "85 000 pièces"
+      },
+      "en": {
+        "title": "25 years of Customs Union with the EU",
+        "date": "18 July 2016",
+        "volume": "85,000 coins"
       }
     },
     {
@@ -3613,6 +3911,11 @@
         "title": "400e anniversaire de la fin de la construction de la Basilique Saint-Marc à Venise",
         "date": "Janvier 2017",
         "volume": "1,5 million de pièces"
+      },
+      "en": {
+        "title": "400 years since the completion of St Mark's Basilica",
+        "date": "22 March 2017",
+        "volume": "1,500,000 coins"
       }
     },
     {
@@ -3624,6 +3927,11 @@
         "title": "50e anniversaire du volontariat auprès de l'armée luxembourgeoise",
         "date": "Janvier 2017",
         "volume": "500 000 pièces"
+      },
+      "en": {
+        "title": "50 years since the foundation of the current Luxembourg Army",
+        "date": "2 January 2017",
+        "volume": "316,000 coins"
       }
     },
     {
@@ -3731,6 +4039,11 @@
         "title": "2000e anniversaire de la mort de l'historien romain Tite-Live en 17 à Padoue",
         "date": "Avril 2017",
         "volume": "1,5 million de pièces"
+      },
+      "en": {
+        "title": "2000 years since the death of Titus Livius",
+        "date": "23 June 2017",
+        "volume": "1,500,000 coins"
       }
     },
     {
@@ -3806,6 +4119,11 @@
         "title": "150e anniversaire de la Polícia de Segurança Pública",
         "date": "Juillet 2017",
         "volume": "520 000 pièces"
+      },
+      "en": {
+        "title": "150 years of Public Security (PSP)",
+        "date": "13 July 2017",
+        "volume": "520,000 coins"
       }
     },
     {
@@ -3817,6 +4135,11 @@
         "title": "Site archéologique de Philippes",
         "date": "2e semestre 2017",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "Archaeological site of Philippi",
+        "date": "12 October 2017",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -3828,6 +4151,11 @@
         "title": "2017, année internationale du tourisme durable pour le développement",
         "date": "31 août 2017",
         "volume": "70 500 pièces"
+      },
+      "en": {
+        "title": "International year of Sustainable Tourism",
+        "date": "31 August 2017",
+        "volume": "73,100 coins"
       }
     },
     {
@@ -3850,6 +4178,11 @@
         "title": "60e anniversaire de la mort de l'écrivain grec Níkos Kazantzákis, le 26 octobre 1957 à Fribourg-en-Brisgau (Allemagne)",
         "date": "Septembre 2017",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "60 years since the death of Nikos Kazantzakis",
+        "date": "10 July 2017",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -3904,6 +4237,11 @@
         "title": "100e anniversaire des apparitions mariales de Fátima, au Portugal, en 1917",
         "date": "Octobre 2017",
         "volume": "105 000 pièces"
+      },
+      "en": {
+        "title": "100 years since the visions of Fátima",
+        "date": "5 October 2017",
+        "volume": "105,000 coins"
       }
     },
     {
@@ -3915,6 +4253,11 @@
         "title": "150e anniversaire de la naissance de l'écrivain portugais Raúl Brandão, le 12 mars 1867 à Foz do Douro",
         "date": "Octobre 2017",
         "volume": "520 000 pièces"
+      },
+      "en": {
+        "title": "150 years since the birth of Raul Brandão",
+        "date": "21 November 2017",
+        "volume": "520,000 coins"
       }
     },
     {
@@ -3926,6 +4269,11 @@
         "title": "200e anniversaire de la naissance du Grand-Duc Guillaume III, le 19 février 1817 à Bruxelles",
         "date": "Octobre-novembre 2017",
         "volume": "500 000 pièces"
+      },
+      "en": {
+        "title": "200 years since the birth of Grand Duke William III",
+        "date": "26 October 2017",
+        "volume": "311,000 coins"
       }
     },
     {
@@ -3937,6 +4285,11 @@
         "title": "Latgale",
         "date": "Octobre 2017",
         "volume": "530 000 pièces"
+      },
+      "en": {
+        "title": "LatgaleThird of the „Regions\" series",
+        "date": "14 November 2017",
+        "volume": "507,000 coins"
       }
     },
     {
@@ -3980,11 +4333,6 @@
         "title": "La paix",
         "date": "Novembre 2017",
         "volume": "380 000 pièces"
-      },
-      "en": {
-        "title": "Solidarity and peaceSecond of the „from children in solidarity\" series",
-        "date": "13 November 2017",
-        "volume": "380,000 coins"
       }
     },
     {
@@ -4044,6 +4392,11 @@
         "title": "100e anniversaire de l'indépendance des Pays baltes",
         "date": "1er trimestre 2018",
         "volume": "512 000 pièces"
+      },
+      "en": {
+        "title": "100 years since independencecommon commemorative coin with Estonia and Lithuania",
+        "date": "31 January 2018",
+        "volume": "512,000 coins"
       }
     },
     {
@@ -4130,6 +4483,11 @@
         "title": "Présidence de Berlin au Bundesrat",
         "date": "30 janvier 2018",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "Charlottenburg Palace in BerlinThirteenth of the Bundesländer series",
+        "date": "30 January 2018",
+        "volume": "30 million coins"
       }
     },
     {
@@ -4157,6 +4515,11 @@
         "title": "100e anniversaire de l'hymne de l'Andorre, El Gran Carlemany",
         "date": "Février 2018",
         "volume": "85 000 pièces"
+      },
+      "en": {
+        "title": "100 years of the anthem of Andorra",
+        "date": "8 February 2018",
+        "volume": "85,000 coins"
       }
     },
     {
@@ -4275,6 +4638,11 @@
         "title": "Les paysages nationaux de la Finlande : le Parc national de Koli, en Carélie du Nord",
         "date": "Avril-mai 2018",
         "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "Koli National Park",
+        "date": "28 May 2018",
+        "volume": "1 million coins"
       }
     },
     {
@@ -4286,6 +4654,11 @@
         "title": "500e anniversaire de la naissance du peintre vénitien Jacopo Robusti, dit Le Tintoret, le 29 avril 1518 à Venise",
         "date": "5 avril 2018",
         "volume": "60 500 pièces"
+      },
+      "en": {
+        "title": "500 years since the birth of Tintoretto",
+        "date": "5 April 2018",
+        "volume": "60,500 coins"
       }
     },
     {
@@ -4313,6 +4686,11 @@
         "title": "2018, année européenne du patrimoine culturel",
         "date": "31 mai 2018",
         "volume": "101 000 pièces"
+      },
+      "en": {
+        "title": "European Year of Cultural Heritage",
+        "date": "1 June 2018",
+        "volume": "86,000 coins"
       }
     },
     {
@@ -4351,6 +4729,11 @@
         "title": "250e anniversaire de l'Imprimerie nationale",
         "date": "2e semestre 2018",
         "volume": "520 000 pièces"
+      },
+      "en": {
+        "title": "250 years since the foundation of the Imprensa Nacional Casa da Moeda",
+        "date": "22 May 2018",
+        "volume": "520,000 coins"
       }
     },
     {
@@ -4364,8 +4747,8 @@
         "volume": "520 000 pièces"
       },
       "en": {
-        "title": "250 years since the foundation of the Imprensa Nacional Casa da Moeda",
-        "date": "22 May 2018",
+        "title": "250 years since the foundation of Ajuda Botanical Garden",
+        "date": "25 July 2018",
         "volume": "520,000 coins"
       }
     },
@@ -4378,6 +4761,11 @@
         "title": "70e anniversaire de l'union du Dodécanèse avec la Grèce",
         "date": "Mi-2018",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "70th anniversary of the union of the Dodecanese with Greece",
+        "date": "25 October 2018",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -4389,6 +4777,11 @@
         "title": "75e anniversaire de la mort du poète grec Kostís Palamás, le 27 février 1943 à Athènes",
         "date": "Mi-2018",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "75 years since the death of Kostis Palamas",
+        "date": "25 October 2018",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -4400,6 +4793,11 @@
         "title": "Temples de Mnajdra",
         "date": "Juillet 2018",
         "volume": "320 000 pièces"
+      },
+      "en": {
+        "title": "MnajdraThird of the „Maltese Prehistoric Sites“ series",
+        "date": "21 June 2018",
+        "volume": "335,000 coins"
       }
     },
     {
@@ -4422,6 +4820,11 @@
         "title": "175e anniversaire de la mort du Grand-Duc Guillaume Ier, le 12 décembre 1843 à Berlin, en Prusse",
         "date": "Septembre 2018",
         "volume": "500 000 pièces"
+      },
+      "en": {
+        "title": "175 years since the death of Grand Duke William I",
+        "date": "26 August 2018",
+        "volume": "311,000 coins"
       }
     },
     {
@@ -4497,6 +4900,11 @@
         "title": "70e anniversaire de la Déclaration universelle des droits de l'homme, adoptée le 10 décembre 1948 à Paris",
         "date": "Novembre 2018",
         "volume": "75 000 pièces"
+      },
+      "en": {
+        "title": "70th anniversary of the Universal Declaration of Human Rights",
+        "date": "26 November 2018",
+        "volume": "75,000 coins"
       }
     },
     {
@@ -4578,6 +4986,11 @@
         "title": "70e anniversaire de la fondation du Bundesrat, en 1949 à Bonn",
         "date": "Janvier/février 2019",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "70 years since the constitution of the Federal CouncilFourteenth of the Bundesländer series",
+        "date": "29 January 2019",
+        "volume": "30,507,300 coins"
       }
     },
     {
@@ -4589,6 +5002,11 @@
         "title": "Centre historique d'Ávila et ses églises extra-muros, inscrit au patrimoine mondial de l'UNESCO depuis 1985",
         "date": "1er trimestre 2019",
         "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "Old town of Ávila with its extra-muros churchesTenth of the UNESCO World Heritage Sites series",
+        "date": "1 February 2019",
+        "volume": "500,000 coins"
       }
     },
     {
@@ -4600,6 +5018,11 @@
         "title": "90e anniversaire de la fondation de l'État de la Cité du Vatican, le 11 février 1929",
         "date": "4 mars 2019",
         "volume": "91 000 pièces"
+      },
+      "en": {
+        "title": "90th anniversary of the Foundation of the Vatican City State",
+        "date": "7 May 2019",
+        "volume": "79,000 coins"
       }
     },
     {
@@ -4643,6 +5066,11 @@
         "title": "500e anniversaire de la mort de l'artiste et scientifique toscan Léonard de Vinci, le 2 mai 1519 à Amboise, en France",
         "date": "Avril 2019",
         "volume": "60 500 pièces"
+      },
+      "en": {
+        "title": "500 years since the death of Leonardo da Vinci",
+        "date": "4 April 2019",
+        "volume": "54,150 coins"
       }
     },
     {
@@ -4654,6 +5082,11 @@
         "title": "25e anniversaire de la création de l'Institut monétaire européen",
         "date": "Mai 2019",
         "volume": "155 000 exemplaires"
+      },
+      "en": {
+        "title": "25 years since the creation of the European Monetary Institute",
+        "date": "9 May 2019",
+        "volume": "155,000 coins"
       }
     },
     {
@@ -4697,6 +5130,11 @@
         "title": "100e anniversaire de la naissance de l'archéologue grec Manólis Andrónikos, le 23 octobre 1919, à Bursa",
         "date": "Juin 2019",
         "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "100 years since the birth of Manolis Andronikos",
+        "date": "11 July 2019",
+        "volume": "750,000 coins"
       }
     },
     {
@@ -4756,11 +5194,6 @@
         "title": "600e anniversaire de la découverte de Madère et de Porto Santo par les navigateurs portugais Bartolomeu Perestrelo et Tristão Vaz Teixeira",
         "date": "6 juin 2019",
         "volume": "520 000 pièces"
-      },
-      "en": {
-        "title": "600 years since the discovery of Madeira and Porto Santo",
-        "date": "6 June 2019",
-        "volume": "770,000 coins"
       }
     },
     {
@@ -4847,6 +5280,11 @@
         "title": "30e anniversaire de la chute du Mur de Berlin, dans la nuit du 9 au 10 novembre 1989",
         "date": "Septembre/octobre 2019",
         "volume": "30 millions de pièces"
+      },
+      "en": {
+        "title": "30 years since the Fall of the Berlin Wallcommon commemorative coin with France",
+        "date": "10 October 2019",
+        "volume": "30,297,000 coins"
       }
     },
     {
@@ -4874,6 +5312,11 @@
         "title": "100e anniversaire de l'introduction du suffrage universel au Luxembourg, votée le 8 mai 1919",
         "date": "Octobre 2019",
         "volume": "313 500 pièces"
+      },
+      "en": {
+        "title": "100 years of Universal Suffrage in Luxembourg",
+        "date": "19 September 2019",
+        "volume": "308,500 coins"
       }
     },
     {
@@ -4901,6 +5344,11 @@
         "title": "25e anniversaire de la fin des travaux de restauration de la Chapelle Sixtine, de 1980 à 1994",
         "date": "1er octobre 2019",
         "volume": "91 000 pièces"
+      },
+      "en": {
+        "title": "25 years since the restoration of the Sistine Chapel",
+        "date": "1 October 2019",
+        "volume": "84,000 coins"
       }
     },
     {
@@ -4912,6 +5360,11 @@
         "title": "Nature et environnement",
         "date": "21 octobre 2019",
         "volume": "320 000 pièces"
+      },
+      "en": {
+        "title": "Nature/EnvironmentForth of the „from children in solidarity\" series",
+        "date": "21 October 2019",
+        "volume": "320,000 coins"
       }
     },
     {
@@ -4923,6 +5376,11 @@
         "title": "30e anniversaire de la chute du Mur de Berlin, dans la nuit du 9 au 10 novembre 1989",
         "date": "Novembre 2019",
         "volume": "10 millions de pièces"
+      },
+      "en": {
+        "title": "30 years since the Fall of the Berlin Wallcommon commemorative coin with Germany",
+        "date": "10 October 2019",
+        "volume": "15 million coins"
       }
     },
     {
@@ -4934,6 +5392,76 @@
         "title": "600e anniversaire de la création du Conseil de la terre, en 1419",
         "date": "12 novembre 2019",
         "volume": "60 000 pièces"
+      },
+      "en": {
+        "title": "600 years since the constitution of the General Council of Andorra",
+        "date": "11 November 2019",
+        "volume": "60,000 coins"
+      }
+    },
+    {
+      "id": "EE-2020-01",
+      "date": "2020-01-01T00:00:00.000Z",
+      "volume": 750000,
+      "image": "",
+      "fr": {
+        "title": "200e anniversaire de la découverte de l'Antarctique par Fabian Gottlieb von Bellingshausen",
+        "date": "Janvier 2020",
+        "volume": "750 000 pièces"
+      },
+      "en": {
+        "title": "200 years since the discovery of the Antarctic",
+        "date": "27 January 2020",
+        "volume": "750,000 coins"
+      }
+    },
+    {
+      "id": "EE-2020-02",
+      "date": "2020-02-01T00:00:00.000Z",
+      "volume": 1000000,
+      "image": "",
+      "fr": {
+        "title": "100e anniversaire du Traité de Tartu signé le 14 octobre 1920 à Tartu",
+        "date": "1er février 2020",
+        "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "100th anniversary of the Treaty of Tartu",
+        "date": "1 February 2020",
+        "volume": "1 million coins"
+      }
+    },
+    {
+      "id": "LV-2020-01",
+      "date": "2020-04-01T00:00:00.000Z",
+      "volume": 400000,
+      "image": "",
+      "fr": {
+        "title": "La céramique de Latgale",
+        "date": "Printemps 2020",
+        "volume": "400 000 pièces"
+      }
+    },
+    {
+      "id": "LU-2020-01",
+      "date": "2020-07-01T00:00:00.000Z",
+      "volume": 300000,
+      "image": "",
+      "fr": {
+        "title": "200e anniversaire de la naissance du Prince Henri d'Orange-Nassau, le 13 juin 1820 au Palais de Soestdijk, aux Pays-Bas",
+        "date": "Juillet 2020",
+        "volume": "300 000 pièces"
+      }
+    },
+    {
+      "id": "LT-2020-01",
+      "date": "2020-07-01T00:00:00.000Z",
+      "volume": 500000,
+      "image": "",
+      "fr": {
+        "title": "Haute Lituanie",
+        "date": "3e trimestre 2020",
+        "volume": "500 000 pièces"
       }
     },
     {
