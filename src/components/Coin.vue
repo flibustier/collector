@@ -40,7 +40,7 @@
         ></b-numberinput>
       </div>
       <div class="card-footer-item">
-        <b-icon icon="chart-bar" />
+        
       </div>
     </div>
   </div>
