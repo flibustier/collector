@@ -1,5 +1,5 @@
 <template>
-  <b-navbar shadow>
+  <b-navbar shadow :close-on-click="false">
     <template slot="brand">
       <b-navbar-item>
         <p>Toss a Coin</p>
@@ -7,7 +7,7 @@
     </template>
 
     <template slot="end">
-      <b-navbar-item>
+      <b-navbar-item tag="div">
         <b-field>
           <b-input
             :placeholder="$t('search')"
