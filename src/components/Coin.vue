@@ -39,9 +39,7 @@
           @input="amount => $store.commit('setAmount', { id: coin.id, amount })"
         ></b-numberinput>
       </div>
-      <div class="card-footer-item">
-        
-      </div>
+      <div class="card-footer-item"></div>
     </div>
   </div>
 </template>

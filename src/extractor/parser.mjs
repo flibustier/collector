@@ -1,6 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import _ from "lodash";
+import { invert } from "lodash";
 
 import { SELECTORS } from "./parser.constants.mjs";
 
@@ -8,8 +8,8 @@ import fr from "../locales/fr.json";
 import en from "../locales/en.json";
 
 const ISO_3166_1_ALPHA_2 = {
-  fr: _.invert(fr.countries),
-  en: _.invert(en.countries)
+  fr: invert(fr.countries),
+  en: invert(en.countries)
 };
 
 export const parseCountryToISO = (country, lang) =>

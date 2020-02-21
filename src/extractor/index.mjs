@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import fs from "fs";
-import _ from "lodash";
+import { mapValues } from "lodash";
 import { basename } from "path";
 import yargs from "yargs";
 
@@ -115,7 +115,7 @@ const run = async () => {
   let coins = await readLocalCoins();
 
   if (!argv.offline) {
-    const remoteCoinsPromises = _.mapValues(
+    const remoteCoinsPromises = mapValues(
       WIKIPEDIA_URLS,
       sortAndParseAllRemoteCoinsForEachLang
     );
