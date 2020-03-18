@@ -2,7 +2,8 @@
   <b-navbar shadow :close-on-click="false">
     <template slot="brand">
       <b-navbar-item>
-        <p>Toss a Coin</p>
+        <logo class="logo" />
+        <h1></h1>
       </b-navbar-item>
     </template>
 
@@ -55,9 +56,14 @@
 
 <script>
 import { SUPPORTED_LANGUAGES } from "../constants.mjs";
+import Logo from "./Logo";
 import Settings from "./Settings";
 
 export default {
+  components: {
+    Logo
+  },
+
   computed: {
     languages() {
       return SUPPORTED_LANGUAGES;
@@ -87,6 +93,12 @@ export default {
 
 .icon {
   vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
   margin-right: 0.5rem;
 }
 </style>
