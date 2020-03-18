@@ -2,7 +2,7 @@
   <div id="app">
     <nav-bar />
     <div class="columns">
-      <div class="column is-one-fifth">
+      <div class="column is-one-quarter-tablet is-one-fifth-desktop">
         <filters />
       </div>
       <div class="column">

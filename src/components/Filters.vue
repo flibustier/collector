@@ -33,64 +33,82 @@
       </b-field>
     </section>
 
-    <section class="field">
-      <b-field :label="$t('countries')">
-        <b-select
-          multiple
-          native-size="8"
-          :value="selectedCountries"
-          @input="countries => $store.commit('setCountryList', countries)"
-          expanded
-        >
-          <option
-            v-for="{ code, translated } in allPossibleCountries"
-            :key="code"
-            :value="code"
-          >
-            <span :class="`flag-icon flag-icon-${code.toLowerCase()}`"></span>
-            {{ translated }}
-          </option>
-        </b-select>
-      </b-field>
-    </section>
-
-    <section class="field" v-if="displayRarity">
-      <b-field :label="$t('rarity')"></b-field>
-
-      <div
-        class="field"
-        v-for="(color, index) in [
-          'is-dark',
-          'is-dark',
-          'is-uncommon',
-          'is-rare',
-          'is-epic',
-          'is-legendary'
-        ]"
-        :key="index"
-      >
-        <b-radio
-          v-model="rarity"
-          size="is-small"
-          :type="color"
-          :native-value="index"
-          >{{ $t(`rarityLevels[${index}]`) }}</b-radio
-        >
+    <b-collapse class="card" animation="slide">
+      <div slot="trigger" slot-scope="props" class="card-header" role="button">
+        <p class="card-header-title">{{ $t("countries") }}</p>
+        <a class="card-header-icon">
+          <b-icon :icon="props.open ? 'angle-up' : 'angle-down'"></b-icon>
+        </a>
       </div>
-    </section>
-
-    <section class="field">
-      <b-field label="Séries"></b-field>
-
-      <b-field v-for="index in [0, 1, 2, 3]" :key="index">
-        <b-switch
-          size="is-small"
-          :value="$store.state.coins.filters.collections[index]"
-          @input="value => $store.commit('switchCollection', { index, value })"
-          >{{ $t(`collections[${index}]`) }}</b-switch
+      <b-select
+        multiple
+        native-size="8"
+        :value="selectedCountries"
+        @input="countries => $store.commit('setCountryList', countries)"
+        expanded
+      >
+        <option
+          v-for="{ code, translated } in allPossibleCountries"
+          :key="code"
+          :value="code"
         >
-      </b-field>
-    </section>
+          <span :class="`flag-icon flag-icon-${code.toLowerCase()}`"></span>
+          {{ translated }}
+        </option>
+      </b-select>
+    </b-collapse>
+
+    <b-collapse class="card" animation="slide" v-if="displayRarity">
+      <div slot="trigger" slot-scope="props" class="card-header" role="button">
+        <p class="card-header-title">{{ $t("rarity") }}</p>
+        <a class="card-header-icon">
+          <b-icon :icon="props.open ? 'angle-up' : 'angle-down'"></b-icon>
+        </a>
+      </div>
+      <div class="card-content">
+        <div
+          class="field"
+          v-for="(color, index) in [
+            'is-dark',
+            'is-dark',
+            'is-uncommon',
+            'is-rare',
+            'is-epic',
+            'is-legendary'
+          ]"
+          :key="index"
+        >
+          <b-radio
+            v-model="rarity"
+            size="is-small"
+            :type="color"
+            :native-value="index"
+            >{{ $t(`rarityLevels[${index}]`) }}</b-radio
+          >
+        </div>
+      </div>
+    </b-collapse>
+
+    <b-collapse class="card" animation="slide">
+      <div slot="trigger" slot-scope="props" class="card-header" role="button">
+        <p class="card-header-title">Séries</p>
+        <a class="card-header-icon">
+          <b-icon :icon="props.open ? 'angle-up' : 'angle-down'"></b-icon>
+        </a>
+      </div>
+      <div class="card-content">
+        <b-field v-for="index in [0, 1, 2, 3]" :key="index">
+          <b-switch
+            size="is-small"
+            :value="$store.state.coins.filters.collections[index]"
+            @input="
+              value => $store.commit('switchCollection', { index, value })
+            "
+            >{{ $t(`collections[${index}]`) }}</b-switch
+          >
+        </b-field>
+      </div>
+    </b-collapse>
   </aside>
 </template>
 
