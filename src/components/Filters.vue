@@ -1,9 +1,10 @@
 <template>
   <aside>
     <div class="header">
-      <p class="subtitle is-6 is-hidden-tablet-only">
-        {{ numberOfCoinsDisplayed }} {{ $t("displayed") }}
-      </p>
+      <h1>
+        {{ numberOfDisplayedCoins }}/{{ numberOfExistingCoins }}
+        {{ $t("displayed") }}
+      </h1>
 
       <b-button
         type="is-info"
@@ -144,7 +145,8 @@ export default {
       "maxVolume",
       "minYear",
       "maxYear",
-      "numberOfCoinsDisplayed",
+      "numberOfDisplayedCoins",
+      "numberOfExistingCoins",
       "allPossibleCountries"
     ]),
 
@@ -211,7 +213,7 @@ aside {
     ]
   },
   "fr": {
-    "displayed": "pièces affichées",
+    "displayed": "pieces affichees",
     "reset": "Réinitialiser",
     "countries": "Pays",
     "years": "Années",

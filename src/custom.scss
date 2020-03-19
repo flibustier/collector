@@ -38,3 +38,18 @@ $slider-tick-width: 2px;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+@font-face {
+    font-family: 'OohBahn';
+    src: url('assets/fonts/OohBahn.eot');
+    src: url('assets/fonts/OohBahn.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/OohBahn.svg#OohBahn') format('svg'),
+         url('assets/fonts/OohBahn.ttf') format('truetype'),
+         url('assets/fonts/OohBahn.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+h1 {
+    font-family: OohBahn;
+}

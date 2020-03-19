@@ -1,9 +1,9 @@
 <template>
   <b-navbar shadow :close-on-click="false">
     <template slot="brand">
-      <b-navbar-item>
+      <b-navbar-item class="brand-link">
         <logo class="logo" />
-        <h1></h1>
+        <h1 class="is-size-3 brand-title">Collector</h1>
       </b-navbar-item>
     </template>
 
@@ -100,6 +100,16 @@ export default {
   width: 2.5rem;
   height: 2.5rem;
   margin-right: 0.5rem;
+}
+
+.brand-link {
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.brand-title {
+  padding-top: 5px;
+  line-height: 1;
 }
 </style>
 

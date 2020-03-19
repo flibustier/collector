@@ -78,7 +78,9 @@ export default {
           coin.isMatchingSearchString(filters.searchInput.toLowerCase())
       ),
 
-    numberOfCoinsDisplayed: (state, getters) => getters.filteredCoins.length,
+    numberOfDisplayedCoins: (state, getters) => getters.filteredCoins.length,
+
+    numberOfExistingCoins: () => coins.length,
 
     amountOwned: ({ owned }) => id =>
       owned.find(coin => coin.id === id)?.amount || 0,
