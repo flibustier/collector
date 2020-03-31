@@ -6,13 +6,14 @@
         <filters />
       </div>
       <div class="column">
-        <coin-list />
+        <router-view />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Actions from "./components/Actions.vue";
 import CoinList from "./components/CoinList.vue";
 import Filters from "./components/Filters.vue";
 import NavBar from "./components/NavBar";
@@ -21,6 +22,7 @@ export default {
   name: "app",
 
   components: {
+    Actions,
     CoinList,
     Filters,
     NavBar

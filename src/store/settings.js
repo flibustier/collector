@@ -4,8 +4,12 @@ export default {
   state: {
     quality: IMAGE_QUALITY.LOW,
     displayRarity: false,
-    showOnlyOwned: false,
-    displayOnly: false
+    showID: false,
+    collapse: {
+      countries: true,
+      rarity: true,
+      series: true
+    }
   },
 
   mutations: {
@@ -17,6 +21,10 @@ export default {
 
     setBoolean(state, { name, value }) {
       state[name] = value;
+    },
+
+    setCollapse(state, { index, value }) {
+      state.collapse[index] = value;
     }
   },
 

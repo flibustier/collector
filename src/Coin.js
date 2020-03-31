@@ -56,7 +56,7 @@ export default class Coin {
   }
 
   isInVolumeRange(minVolume, maxVolume) {
-    return (this.volume >= minVolume || !minVolume) && (this.volume < maxVolume || !maxVolume);
+    return (this.volume >= minVolume || !minVolume) && (this.volume <= maxVolume || !maxVolume);
   }
 
   isMatchingSearchString(searchString) {

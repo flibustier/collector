@@ -6,17 +6,24 @@
         {{ $t("displayed") }}
       </h1>
 
-      <b-button
-        type="is-info"
-        size="is-small"
+      <r-button
+        is-info
+        is-small
         :disabled="isNotFiltered"
         @click="reset"
-        icon-left="undo"
-        outlined
-        rounded
-        >{{ $t("reset") }}</b-button
-      >
+        icon="undo"
+        :text="$t('reset')"
+      />
     </div>
+
+    <section class="field" v-if="isCollection">
+      <b-switch
+        size="is-small"
+        :value="showOnlyOwned"
+        @input="value => setFilter({ name: 'showOnlyOwned', value })"
+        >{{ $t(`showOnlyOwned`) }}</b-switch
+      >
+    </section>
 
     <section class="field">
       <b-field :label="$t('years')">
@@ -26,7 +33,7 @@
           :max="maxYear"
           :step="1"
           size="is-small"
-          @input="years => $store.commit('setYearsRange', years)"
+          @input="value => setFilter({ name: 'years', value })"
           ticks
           rounded
           class="years-slider"
@@ -34,7 +41,12 @@
       </b-field>
     </section>
 
-    <b-collapse class="card" animation="slide">
+    <b-collapse
+      class="card"
+      animation="slide"
+      :open="collapse['countries']"
+      @update:open="value => setCollapse({ index: 'countries', value })"
+    >
       <div slot="trigger" slot-scope="props" class="card-header" role="button">
         <p class="card-header-title">{{ $t("countries") }}</p>
         <a class="card-header-icon">
@@ -45,7 +57,7 @@
         multiple
         native-size="8"
         :value="selectedCountries"
-        @input="countries => $store.commit('setCountryList', countries)"
+        @input="countries => setFilter({ name: 'countries', value: countries })"
         expanded
       >
         <option
@@ -59,7 +71,13 @@
       </b-select>
     </b-collapse>
 
-    <b-collapse class="card" animation="slide" v-if="displayRarity">
+    <b-collapse
+      class="card"
+      animation="slide"
+      v-if="displayRarity"
+      :open="collapse['rarity']"
+      @update:open="value => setCollapse({ index: 'rarity', value })"
+    >
       <div slot="trigger" slot-scope="props" class="card-header" role="button">
         <p class="card-header-title">{{ $t("rarity") }}</p>
         <a class="card-header-icon">
@@ -90,7 +108,12 @@
       </div>
     </b-collapse>
 
-    <b-collapse class="card" animation="slide">
+    <b-collapse
+      class="card"
+      animation="slide"
+      :open="collapse['series']"
+      @update:open="value => setCollapse({ index: 'series', value })"
+    >
       <div slot="trigger" slot-scope="props" class="card-header" role="button">
         <p class="card-header-title">Séries</p>
         <a class="card-header-icon">
@@ -101,10 +124,8 @@
         <b-field v-for="index in [0, 1, 2, 3]" :key="index">
           <b-switch
             size="is-small"
-            :value="$store.state.coins.filters.collections[index]"
-            @input="
-              value => $store.commit('switchCollection', { index, value })
-            "
+            :value="series[index]"
+            @input="value => setSeriesSwitch({ index, value })"
             >{{ $t(`collections[${index}]`) }}</b-switch
           >
         </b-field>
@@ -114,7 +135,9 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
+
+import RButton from "./atoms/Button";
 
 import {
   UNCOMMON_CAP,
@@ -124,6 +147,10 @@ import {
 } from "../constants.mjs";
 
 export default {
+  components: {
+    RButton
+  },
+
   data() {
     return {
       rarity: 0
@@ -133,7 +160,7 @@ export default {
   watch: {
     rarity: {
       handler() {
-        this.$store.commit("setVolumesRange", this.rarityToVolumeRange);
+        this.setFilter({ name: "volumes", value: this.rarityToVolumeRange });
       },
       immediate: true
     }
@@ -147,13 +174,17 @@ export default {
       "maxYear",
       "numberOfDisplayedCoins",
       "numberOfExistingCoins",
-      "allPossibleCountries"
+      "allPossibleCountries",
+      "isCollection"
     ]),
 
     ...mapState({
-      selectedCountries: state => state.coins.filters.list.countries,
-      selectedYears: state => state.coins.filters.range.years,
-      displayRarity: state => state.settings.displayRarity
+      selectedCountries: state => state.filters.countries,
+      selectedYears: state => state.filters.years,
+      displayRarity: state => state.settings.displayRarity,
+      showOnlyOwned: state => state.filters.showOnlyOwned,
+      series: state => state.filters.series,
+      collapse: state => state.settings.collapse
     }),
 
     rarityToVolumeRange() {
@@ -175,6 +206,8 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["setFilter", "setSeriesSwitch", "setCollapse"]),
+
     reset() {
       this.$store.commit("reset");
       this.rarity = 0;
@@ -210,7 +243,8 @@ aside {
     "rarity": "Rarity",
     "rarityLevels": [
       "All", "Common", "Uncommon", "Rare", "Epic", "Legendary"
-    ]
+    ],
+    "showOnlyOwned": "Display only owned coins"
   },
   "fr": {
     "displayed": "pieces affichees",
@@ -220,7 +254,8 @@ aside {
     "rarity": "Rareté",
     "rarityLevels": [
       "Toutes", "Comune", "Inhabituelle", "Rare", "Épique", "Légendaire"
-    ]
+    ],
+    "showOnlyOwned": "Afficher uniquement les pièces possédées"
   }
 }
 </i18n>

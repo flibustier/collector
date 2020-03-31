@@ -8,7 +8,7 @@
         <b-field>
           <b-radio-button
             :value="savedQuality"
-            @input="value => $store.commit('setQuality', value)"
+            @input="setQuality"
             :native-value="quality"
             v-for="(quality, i) in qualityList"
             :key="quality"
@@ -26,65 +26,42 @@
           :value="displayRarity"
           @input="
             value =>
-              $store.commit('setBoolean', { name: 'displayRarity', value })
+              setBoolean({ name: 'displayRarity', value })
           "
-          >{{ $t("rarity") }}</b-switch
-        >
-      </b-field>
-      <hr />
-      <b-field
-        v-for="setting in ['showOnlyOwned', 'displayOnly']"
-        :key="setting"
-      >
-        <b-switch
-          size="is-small"
-          :value="boolean(setting)"
-          @input="
-            value => $store.commit('setBoolean', { name: setting, value })
-          "
-          >{{ $t(setting) }}</b-switch
-        >
+        >{{ $t("rarity") }}</b-switch>
       </b-field>
     </section>
   </div>
 </template>
 
 <script>
-import { IMAGE_QUALITY } from "../constants.mjs";
-
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 import {
+  IMAGE_QUALITY,
   UNCOMMON_CAP,
   RARE_CAP,
   EPIC_CAP,
   LEGENDARY_CAP
-} from "../constants.mjs";
+} from "../../constants.mjs";
 
 export default {
   computed: {
-    qualityList() {
-      return Object.values(IMAGE_QUALITY);
-    },
+    qualityList: () => Object.values(IMAGE_QUALITY),
 
-    rarityLevels() {
-      return [UNCOMMON_CAP, RARE_CAP, EPIC_CAP, LEGENDARY_CAP].map(number =>
+    rarityLevels: () =>
+      [UNCOMMON_CAP, RARE_CAP, EPIC_CAP, LEGENDARY_CAP].map(number =>
         number.toLocaleString()
-      );
-    },
+      ),
 
     ...mapState({
       savedQuality: state => state.settings.quality,
-      displayRarity: state => state.settings.displayRarity,
-      showOnlyOwned: state => state.settings.showOnlyOwned,
-      displayOnly: state => state.settings.displayOnly
+      displayRarity: state => state.settings.displayRarity
     })
   },
 
   methods: {
-    boolean(name) {
-      return this[name];
-    }
+    ...mapMutations(["setBoolean", "setQuality"])
   }
 };
 </script>
@@ -99,9 +76,7 @@ export default {
     "medium": "Medium",
     "fullsize": "Highest",
     "rarity": "Show levels of rarity",
-    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1}, Epic &lt; {2}, Legendary &lt; {3}",
-    "showOnlyOwned": "Display only owned coins",
-    "displayOnly": "Consulting mode only, don’t display inventory, just coins"
+    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1}, Epic &lt; {2}, Legendary &lt; {3}"
   },
   "fr": {
     "settings": "Paramétrages",
@@ -111,9 +86,7 @@ export default {
     "medium": "Moyenne",
     "fullsize": "Maximale",
     "rarity": "Afficher les niveaux de rareté",
-    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1}, Épique &lt; {2}, Légendaire &lt; {3}",
-    "showOnlyOwned": "Afficher uniquement les pièces possédées",
-    "displayOnly": "Mode catalogue : Ne pas afficher l’inventaire des pièces possédées"
+    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1}, Épique &lt; {2}, Légendaire &lt; {3}"
   }
 }
 </i18n>

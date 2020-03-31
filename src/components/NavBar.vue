@@ -1,24 +1,37 @@
 <template>
   <b-navbar shadow :close-on-click="false">
     <template slot="brand">
-      <b-navbar-item class="brand-link">
+      <b-navbar-item
+        class="brand-link"
+        tag="router-link"
+        :to="{ name: 'catalogue' }"
+      >
         <logo class="logo" />
         <h1 class="is-size-3 brand-title">Collector</h1>
       </b-navbar-item>
     </template>
 
     <template slot="end">
+      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">{{
+        $t("catalogue")
+      }}</b-navbar-item>
+
+      <b-navbar-dropdown :label="currentCollectionName">
+        <b-navbar-item
+          tag="router-link"
+          :to="routeToCollection(index)"
+          v-for="(name, index) in collectionsNames"
+          :key="index"
+          >{{ name }}</b-navbar-item
+        >
+        <b-navbar-item @click="createCollection">
+          <b-icon icon="plus-circle" />
+          <span>{{ $t("create") }}</span>
+        </b-navbar-item>
+      </b-navbar-dropdown>
+
       <b-navbar-item tag="div">
-        <b-field>
-          <b-input
-            :placeholder="$t('search')"
-            :value="$store.state.coins.filters.searchInput"
-            type="search"
-            icon="search"
-            @input="input => $store.commit('setSearchInput', input)"
-            rounded
-          ></b-input>
-        </b-field>
+        <search />
       </b-navbar-item>
 
       <b-navbar-dropdown>
@@ -33,19 +46,18 @@
         </b-navbar-item>
         <div slot="label">
           <span :class="getFlagClass($i18n.locale)"></span>
-          <b-icon icon="language" />
         </div>
       </b-navbar-dropdown>
 
       <b-navbar-dropdown right>
-        <b-navbar-item v-for="action in ['export', 'import']" :key="action">
-          <b-icon :icon="`file-${action}`" />
-          <span>{{ $t(action) }}</span>
-        </b-navbar-item>
-
         <b-navbar-item @click="showSettingsModal">
           <b-icon icon="sliders-v" />
           <span>{{ $t("settings") }}</span>
+        </b-navbar-item>
+
+        <b-navbar-item @click="showSettingsModal">
+          <b-icon icon="info-circle" />
+          <span>{{ $t("about") }}</span>
         </b-navbar-item>
 
         <b-icon slot="label" icon="ellipsis-h" />
@@ -56,24 +68,29 @@
 
 <script>
 import { SUPPORTED_LANGUAGES } from "../constants.mjs";
-import Logo from "./Logo";
-import Settings from "./Settings";
+import Logo from "./atoms/Logo";
+import Search from "./atoms/Search";
+import Settings from "./modals/Settings";
+
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
-    Logo
+    Logo,
+    Search
   },
 
   computed: {
-    languages() {
-      return SUPPORTED_LANGUAGES;
-    }
+    ...mapGetters(["collectionsNames", "currentCollectionName"]),
+
+    languages: () => SUPPORTED_LANGUAGES
   },
 
   methods: {
-    getFlagClass(locale) {
-      return `flag-icon flag-icon-${locale === "en" ? "gb" : locale}`;
-    },
+    ...mapActions(["createCollection"]),
+
+    getFlagClass: locale =>
+      `flag-icon flag-icon-${locale === "en" ? "gb" : locale}`,
 
     showSettingsModal() {
       this.$buefy.modal.open({
@@ -81,6 +98,12 @@ export default {
         component: Settings,
         hasModalCard: true
       });
+    },
+
+    routeToCollection: id => ({ name: "collection", params: { id } }),
+
+    isActive(routeName) {
+      return this.$router.currentRoute.name === routeName;
     }
   }
 };
@@ -119,13 +142,19 @@ export default {
     "export": "Export Collection",
     "import": "Import Collection",
     "search": "Search...",
-    "settings": "Settings"
+    "settings": "Settings",
+    "create": "Add a new collection",
+    "catalogue": "Catalog",
+    "about": "About"
   },
   "fr": {
     "export": "Sauvegarder la collection",
     "import": "Récupérer la collection",
     "search": "Rechercher...",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "create": "Ajouter une nouvelle collection",
+    "catalogue": "Catalogue",
+    "about": "À propos"
   }
 }
 </i18n>

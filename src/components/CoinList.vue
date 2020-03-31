@@ -71,6 +71,7 @@ export default {
   },
 
   mounted() {
+    this.loadCoinsToDisplay();
     window.onscroll = () => {
       let bottomOfWindow =
         document.documentElement.scrollTop + window.innerHeight >=

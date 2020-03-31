@@ -4,9 +4,9 @@
       <div class="header">
         <div class="is-flex">
           <span :class="`flag-icon ${coin.countryFlag}`"></span>
-          <span class="subtitle is-6 country">
-            {{ $t(`countries.${coin.country}`) }}
-          </span>
+          <span class="subtitle is-6 country">{{
+            $t(`countries.${coin.country}`)
+          }}</span>
         </div>
         <p class="subtitle is-6">{{ coinInLocale.date }}</p>
       </div>
@@ -25,10 +25,13 @@
       </div>
 
       <div class="has-text-centered">
-        <p class="subtitle is-6">{{ coinInLocale.volume }} - {{ coin.id }}</p>
+        <p class="subtitle is-6">
+          {{ coinInLocale.volume }}
+          <span v-if="showID">- {{ coin.id }}</span>
+        </p>
       </div>
     </div>
-    <div class="card-footer" v-if="!dontShowFooter">
+    <div class="card-footer" v-if="showFooter">
       <div class="card-footer-item">
         <b-numberinput
           size="is-small"
@@ -36,7 +39,7 @@
           controls-position="compact"
           controls-rounded
           :value="amountOwned"
-          @input="amount => $store.commit('setAmount', { id: coin.id, amount })"
+          @input="amount => setAmount({ id: coin.id, amount })"
         ></b-numberinput>
       </div>
       <div class="card-footer-item"></div>
@@ -45,9 +48,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
-import ImageModal from "./ImageModal";
+import ImageModal from "./modals/Image";
 
 import { ROOT_LANGUAGE } from "../constants.mjs";
 
@@ -76,14 +79,20 @@ export default {
       return this.$store.getters.amountOwned(this.coin.id);
     },
 
+    ...mapGetters({
+      showFooter: "isCollection"
+    }),
+
     ...mapState({
       currentQuality: state => state.settings.quality,
-      dontShowFooter: state => state.settings.displayOnly,
+      showID: state => state.settings.showID,
       displayRarity: state => state.settings.displayRarity
     })
   },
 
   methods: {
+    ...mapActions(["setAmount"]),
+
     showFullSizeImage() {
       this.$buefy.modal.open({
         parent: this,

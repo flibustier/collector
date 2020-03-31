@@ -30,7 +30,11 @@ $colors: (
 // Links
 $link: #846415;
 $link-invert: $primary-invert;
+$link-focus: $link;
 $link-focus-border: $primary;
+$link-active: $link;
+$link-active-border: $primary; 
+
 
 $slider-tick-background: #f6f6f5;
 $slider-tick-width: 2px;
@@ -52,4 +56,8 @@ $slider-tick-width: 2px;
 
 h1 {
     font-family: OohBahn;
+}
+
+a.navbar-item.is-active {
+    color: $link;
 }
