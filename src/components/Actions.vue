@@ -22,8 +22,8 @@
 
     <div class="level-right">
       <r-button icon="share" text="Share" is-info @click="showShareModal" />
-      <r-button icon="file-export" text="Export" />
-      <r-button icon="chart-pie" text="Statistics" />
+      <r-button icon="file-export" text="Export" @click="notImplemented" />
+      <r-button icon="chart-pie" text="Statistics" @click="notImplemented" />
       <r-button
         icon="trash"
         text="Delete"
@@ -62,6 +62,10 @@ export default {
         component: Share,
         hasModalCard: true
       });
+    },
+
+    notImplemented() {
+      this.$buefy.snackbar.open(this.$t("wip"));
     }
   }
 };
@@ -77,11 +81,13 @@ nav.level {
 <i18n>
 {
   "en": {
-    "coins": "coins"
+    "coins": "coins",
+    "wip": "This feature will come very soon!"
 
   },
   "fr": {
-    "coins": "pieces"
+    "coins": "pieces",
+    "wip": "Cette fonctionnalité n’est pas encore disponible, encore un peu de patience!"
   }
 }
 </i18n>
