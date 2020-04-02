@@ -1,10 +1,27 @@
-import { encode } from "c8r";
+import { encode, decode } from "c8r";
 
 import i18n from "../plugins/i18n";
 import router from "../plugins/router";
 
 const formatCollectionName = (index = 0) =>
   `${i18n.t(`owned`)}  ${index > 0 ? index + 1 : ""}`;
+
+const redirectToPreviousCollection = id =>
+  router.push({ name: "collection", params: { id: id - 1 } });
+
+const addCollection = (
+  { collections },
+  { collection: owned = [], name } = {}
+) =>
+  collections.push({
+    name: name || formatCollectionName(collections.length),
+    owned
+  });
+
+const amountWithID = rootGetters => (amount, index) => ({
+  id: rootGetters.coinList[index].id,
+  amount
+});
 
 const state = {
   collections: [
@@ -35,17 +52,29 @@ const getters = {
   amountOwned: (state, getters) => id =>
     getters.currentCollection.owned.find(coin => coin.id === id)?.amount || 0,
 
-  exportOwned: (state, getters, rootState, rootGetters) => {
+  exportCollection: (state, getters, rootState, rootGetters) => {
     const allAmounts = rootGetters.coinList.map(({ id }) =>
       getters.amountOwned(id)
     );
 
     while (allAmounts[allAmounts.length - 1] === 0) allAmounts.pop();
 
-    return {
-      allAmounts,
-      test: encode(allAmounts)
-    };
+    return encode(allAmounts);
+  },
+
+  lastCollectionID: state => state.collections.length - 1,
+
+  decodeExportedCollection: (
+    state,
+    getters,
+    rootState,
+    rootGetters
+  ) => encodedData => {
+    const amounts = decode(encodedData);
+
+    return amounts
+      .map(amountWithID(rootGetters))
+      .filter(({ amount }) => amount > 0);
   }
 };
 
@@ -57,12 +86,7 @@ const mutations = {
     else owned.push({ id, amount });
   },
 
-  addCollection(state) {
-    state.collections.push({
-      name: formatCollectionName(state.collections.length),
-      owned: []
-    });
-  },
+  addCollection,
 
   setCollectionName(state, { collection, name }) {
     collection.name = name;
@@ -80,17 +104,14 @@ const actions = {
   createCollection({ commit, state }) {
     commit("addCollection");
 
-    router.push({
-      name: "collection",
-      params: { id: state.collections.length - 1 }
-    });
+    redirectToPreviousCollection(state.collections.length);
   },
 
   deleteCollection({ commit, getters }) {
     const id = getters.currentCollectionID;
     commit("deleteCollection", { id });
 
-    router.push({ name: "collection", params: { id: id - 1 } });
+    redirectToPreviousCollection(id);
   },
 
   setAmount: mutationWithCollection("setAmount"),

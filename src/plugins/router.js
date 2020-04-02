@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import store from "../store";
+
 import Catalogue from "../components/layouts/Catalogue";
 import Collection from "../components/layouts/Collection";
 
@@ -18,8 +20,20 @@ const routes = [
     component: Collection
   },
   {
-    path: "/collection/share/:data",
-    component: Collection
+    path: "/collection/s/:data/:name?",
+    redirect: route => {
+      const {
+        params: { data, name }
+      } = route;
+
+      const collection = store.getters.decodeExportedCollection(data);
+
+      store.commit("addCollection", { collection, name });
+
+      store.commit("setFilter", { name: "showOnlyOwned", value: true });
+
+      return `/collection/${store.getters.lastCollectionID}`;
+    }
   }
 ];
 

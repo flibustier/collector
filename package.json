@@ -68,7 +68,7 @@
       "jest"
     ],
     "rules": {
-      "no-console": "warn",
+      "no-console": "off",
       "no-unused-vars": "warn",
       "vue/no-unused-components": "warn"
     },

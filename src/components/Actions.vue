@@ -21,7 +21,7 @@
     </div>
 
     <div class="level-right">
-      <r-button icon="share" text="Share" is-info />
+      <r-button icon="share" text="Share" is-info @click="showShareModal" />
       <r-button icon="file-export" text="Export" />
       <r-button icon="chart-pie" text="Statistics" />
       <r-button
@@ -38,6 +38,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import RButton from "./atoms/Button";
+import Share from "./modals/Share";
 
 export default {
   components: {
@@ -53,7 +54,15 @@ export default {
   },
 
   methods: {
-    ...mapActions(["setCollectionName", "deleteCollection"])
+    ...mapActions(["setCollectionName", "deleteCollection"]),
+
+    showShareModal() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: Share,
+        hasModalCard: true
+      });
+    }
   }
 };
 </script>
