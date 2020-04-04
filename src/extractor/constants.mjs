@@ -1,4 +1,4 @@
-export const DATABASE_PATH = "src/assets/database.json";
+export const DATABASE_PATH = "src/public/database.json";
 
 export const WIKIPEDIA_URLS = {
   fr: [

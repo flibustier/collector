@@ -13,7 +13,7 @@ yarn install
 ```
 yarn extract
 ```
-> To save the database into `src/assets/database.json`, you need to pass the `--write-database` option
+> To save the database into `src/public/database.json`, you need to pass the `--write-database` option
 
 Option availables:
 - `--download [ID]` To download a specific picture, replace `[ID]` with the ID of the coin in format `CC-YYYY-NN`

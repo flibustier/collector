@@ -10,7 +10,11 @@ import settings from "./settings";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState({
+      paths: ["collections", "settings"]
+    })
+  ],
   modules: {
     coins,
     collections,
