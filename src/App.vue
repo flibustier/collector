@@ -6,7 +6,8 @@
         <filters />
       </div>
       <div class="column">
-        <router-view />
+        <actions v-if="$store.getters.isCollection" />
+        <coin-list />
       </div>
     </div>
   </div>

@@ -3,21 +3,16 @@ import VueRouter from "vue-router";
 
 import store from "../store";
 
-import Catalogue from "../components/layouts/Catalogue";
-import Collection from "../components/layouts/Collection";
-
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "catalogue",
-    component: Catalogue
+    name: "catalogue"
   },
   {
     path: "/collection/:id",
-    name: "collection",
-    component: Collection
+    name: "collection"
   },
   {
     path: "/collection/s/:data/:name?",
