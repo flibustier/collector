@@ -1,10 +1,5 @@
 import i18n from "../plugins/i18n";
-import database from "../assets/database.json";
 import Coin from "../Coin";
-
-const coins = database.coins.map(coin => new Coin(coin));
-const coinYears = [...new Set(coins.map(coin => coin.year))];
-const coinVolumes = [...new Set(coins.map(coin => coin.volume))];
 
 const isCountryCodeAlreadyInList = (countryList, countryCode) =>
   countryList.filter(({ code }) => code === countryCode).length === 0;
@@ -18,20 +13,53 @@ const uniqueCountryList = (countryList, { country }) =>
     : countryList;
 
 export default {
+  state: {
+    coins: []
+  },
+
   getters: {
-    coinList: () => coins,
+    coinList: state => state.coins,
 
-    numberOfExistingCoins: () => coins.length,
+    numberOfExistingCoins: (state, getters) => getters.coinList.length,
 
-    minYear: () => Math.min(...coinYears),
+    isFetching: (state, getters) => !getters.numberOfExistingCoins,
 
-    maxYear: () => Math.max(...coinYears),
+    coinYears: (state, getters) => [
+      ...new Set(getters.coinList.map(coin => coin.year))
+    ],
 
-    maxVolume: () => Math.max(...coinVolumes),
+    coinVolumes: (state, getters) => [
+      ...new Set(getters.coinList.map(coin => coin.volume))
+    ],
 
-    allPossibleCountries: () =>
-      coins
+    minYear: (state, getters) =>
+      getters.isFetching ? 0 : Math.min(...getters.coinYears),
+
+    maxYear: (state, getters) =>
+      getters.isFetching ? 0 : Math.max(...getters.coinYears),
+
+    maxVolume: (state, getters) =>
+      getters.isFetching ? 0 : Math.max(...getters.coinVolumes),
+
+    allPossibleCountries: (state, getters) =>
+      getters.coinList
         .reduce(uniqueCountryList, [])
         .sort((a, b) => a.translated.localeCompare(b.translated))
+  },
+
+  mutations: {
+    updateCoinList(state, coinList) {
+      state.coins = coinList.map(coin => new Coin(coin));
+    }
+  },
+
+  actions: {
+    fetchDatabase: async ({ commit, dispatch }) => {
+      const response = await fetch("database.json");
+      const database = await response.json();
+
+      commit("updateCoinList", database.coins);
+      dispatch("resetFilters");
+    }
   }
 };

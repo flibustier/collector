@@ -26,6 +26,10 @@ export default {
     CoinList,
     Filters,
     NavBar
+  },
+
+  mounted() {
+    this.$store.dispatch("fetchDatabase");
   }
 };
 </script>

@@ -28,7 +28,7 @@ const argv = yargs
   .option("write-database", {
     alias: "w",
     type: "boolean",
-    description: "Write database file into assets/database.json"
+    description: `Write database file into ${DATABASE_PATH}`
   })
   .option("offline", {
     type: "boolean",

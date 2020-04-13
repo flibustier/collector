@@ -20,7 +20,7 @@
       <b-switch
         size="is-small"
         :value="showOnlyOwned"
-        @input="value => setFilter({ name: 'showOnlyOwned', value })"
+        @input="value => setBoolean({ name: 'showOnlyOwned', value })"
         >{{ $t(`showOnlyOwned`) }}</b-switch
       >
     </section>
@@ -182,8 +182,8 @@ export default {
       selectedCountries: state => state.filters.countries,
       selectedYears: state => state.filters.years,
       displayRarity: state => state.settings.displayRarity,
-      showOnlyOwned: state => state.filters.showOnlyOwned,
-      series: state => state.filters.series,
+      showOnlyOwned: state => state.settings.showOnlyOwned,
+      series: state => state.settings.series,
       collapse: state => state.settings.collapse
     }),
 
@@ -206,7 +206,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["setFilter", "setSeriesSwitch", "setCollapse"]),
+    ...mapMutations([
+      "setFilter",
+      "setSeriesSwitch",
+      "setCollapse",
+      "setBoolean"
+    ]),
 
     reset() {
       this.$store.commit("reset");

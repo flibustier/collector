@@ -12,25 +12,29 @@
 
     <section class="hero" v-else>
       <div class="hero-body has-text-centered">
-        <div class="container">
+        <div class="container" v-if="!isFetching">
           <h1 class="title">
             <b-icon icon="frown-open" />
           </h1>
           <h2 class="subtitle">{{ $t("empty") }}</h2>
         </div>
+        <logo class="logo" active v-else />
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Coin from "./Coin";
+import Logo from "./atoms/Logo";
 
 const NUMBER_OF_COINS_DISPLAY_AT_EACH_SCROLL = 12;
 
 export default {
   components: {
-    Coin
+    Coin,
+    Logo
   },
 
   data() {
@@ -47,9 +51,7 @@ export default {
   },
 
   computed: {
-    filteredCoins() {
-      return this.$store.getters.filteredCoins;
-    }
+    ...mapGetters(["isFetching", "filteredCoins"])
   },
 
   methods: {
@@ -92,6 +94,11 @@ export default {
 
 .hero {
   margin-top: 25vh;
+}
+
+.logo {
+  width: 5rem;
+  height: 5rem;
 }
 </style>
 

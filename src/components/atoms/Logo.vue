@@ -76,9 +76,9 @@
 <script>
 export default {
   props: {
-    "is-active": {
+    active: {
       type: Boolean,
-      default: false
+      default: () => false
     }
   },
 
@@ -90,7 +90,7 @@ export default {
 
   computed: {
     rotate() {
-      return this.isActive || this.hover;
+      return this.active || this.hover;
     }
   }
 };

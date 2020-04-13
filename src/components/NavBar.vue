@@ -6,15 +6,15 @@
         tag="router-link"
         :to="{ name: 'catalogue' }"
       >
-        <logo class="logo" />
+        <logo class="logo" :active="isFetching" />
         <h1 class="is-size-3 brand-title">Collector</h1>
       </b-navbar-item>
     </template>
 
     <template slot="end">
-      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">{{
-        $t("catalogue")
-      }}</b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">
+        {{ $t("catalogue") }}
+      </b-navbar-item>
 
       <b-navbar-dropdown :label="currentCollectionName">
         <b-navbar-item
@@ -81,7 +81,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["collectionsNames", "currentCollectionName"]),
+    ...mapGetters(["collectionsNames", "currentCollectionName", "isFetching"]),
 
     languages: () => SUPPORTED_LANGUAGES
   },
