@@ -7,12 +7,19 @@ import { IMAGE_DIRECTORY } from "./constants.mjs";
 import { IMAGE_QUALITY, IMAGE_QUALITY_WIDTH } from "../constants.mjs";
 import { IMAGE_ALL_QUALITIES } from "./constants.mjs";
 
+const MAX_PIXEL_SIZE = 1000;
+
 const PANDA_API_SHRINK = "https://api.tinify.com/shrink";
 const PANDA_API_HEADERS = PANDA_API_TOKEN => ({
   headers: {
     Authorization: `Basic ${PANDA_API_TOKEN}`
   }
 });
+const RESIZE_INSTRUCTION = {
+  data: {
+    resize: { method: "scale", width: MAX_PIXEL_SIZE, height: MAX_PIXEL_SIZE }
+  }
+};
 
 const sendToPanda = async (sourceURL, pandaToken) => {
   try {
@@ -39,7 +46,12 @@ const sendToPanda = async (sourceURL, pandaToken) => {
 
 export const getFileName = URL => decodeURIComponent(basename(URL));
 
-const downloadImage = async (url, destination, pandaToken = false) => {
+const downloadImage = async (
+  url,
+  destination,
+  resize = false,
+  pandaToken = false
+) => {
   try {
     const {
       data,
@@ -48,7 +60,8 @@ const downloadImage = async (url, destination, pandaToken = false) => {
       method: "GET",
       url,
       responseType: "stream",
-      ...(pandaToken ? PANDA_API_HEADERS(pandaToken) : {})
+      ...(pandaToken ? PANDA_API_HEADERS(pandaToken) : {}),
+      ...(resize ? RESIZE_INSTRUCTION : {})
     });
 
     const progressBar = new ProgressBar(
@@ -70,6 +83,7 @@ const downloadImage = async (url, destination, pandaToken = false) => {
 };
 
 export const getImageURLForQuality = (imageSourceURL, quality) => {
+  console.log(imageSourceURL);
   const protocol = "http:";
   switch (quality) {
     case IMAGE_QUALITY.LOW:
@@ -106,7 +120,14 @@ export const download = async (
     : sourceURL;
   const imageDestination = getLocalImageFilePath(sourceURL, quality);
 
-  await downloadImage(imageLocation, imageDestination, pandaToken);
+  const shouldResize = quality === IMAGE_QUALITY.MAXIMAL;
+
+  await downloadImage(
+    imageLocation,
+    imageDestination,
+    shouldResize,
+    pandaToken
+  );
 };
 
 const imagePathForQuality = (imageSourceURL, quality) => {

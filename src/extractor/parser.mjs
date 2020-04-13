@@ -1,6 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { invert } from "lodash";
+import _ from "lodash";
+import { basename } from "path";
 
 import { SELECTORS } from "./parser.constants.mjs";
 
@@ -8,8 +9,8 @@ import fr from "../locales/fr.json";
 import en from "../locales/en.json";
 
 const ISO_3166_1_ALPHA_2 = {
-  fr: invert(fr.countries),
-  en: invert(en.countries)
+  fr: _.invert(fr.countries),
+  en: _.invert(en.countries)
 };
 
 export const parseCountryToISO = (country, lang) =>
@@ -128,51 +129,54 @@ export const cleanDate = dateString => {
   return cleanStr(dateString);
 };
 
-export const parseRemoteCoins = async (
-  lang,
-  sourceURL,
-  fixedDate,
+const formatCoin = ($, lang, collection) => (_, el) => ({
+  [lang]: {
+    title: cleanStr(
+      $(el)
+        .find(SELECTORS[lang].TITLE_SELECTOR)
+        .text()
+    ),
+    country: $(el)
+      .find(SELECTORS[lang].COUNTRY_SELECTOR)
+      .text(),
+    date: cleanDate(
+      $(el)
+        .find(SELECTORS[lang].DATE_SELECTOR)
+        .text()
+    ),
+    volume: cleanStr(
+      $(el)
+        .find(SELECTORS[lang].VOLUME_SELECTOR)
+        .text()
+    )
+  },
+  ...(SELECTORS[lang].IMAGE_SELECTOR
+    ? {
+      image: $(el)
+        .find(SELECTORS[lang].IMAGE_SELECTOR)
+        .attr("src")
+    }
+    : {}),
   collection
-) => {
-  const { data } = await axios.get(sourceURL);
+});
+
+export const fetchAndParseURL = (lang) => async ({
+  url,
+  fixDate,
+  collection
+}) => {
+  console.debug(`[DEBUG] Fetching (${lang}) ${decodeURI(basename(url))}`);
+
+  const { data } = await axios.get(url);
 
   const $ = cheerio.load(data);
 
   const tables = $(SELECTORS[lang].MAIN_SELECTOR);
 
   return tables
-    .map((_, el) => ({
-      [lang]: {
-        title: cleanStr(
-          $(el)
-            .find(SELECTORS[lang].TITLE_SELECTOR)
-            .text()
-        ),
-        country: $(el)
-          .find(SELECTORS[lang].COUNTRY_SELECTOR)
-          .text(),
-        date: cleanDate(
-          $(el)
-            .find(SELECTORS[lang].DATE_SELECTOR)
-            .text()
-        ),
-        volume: cleanStr(
-          $(el)
-            .find(SELECTORS[lang].VOLUME_SELECTOR)
-            .text()
-        )
-      },
-      ...(SELECTORS[lang].IMAGE_SELECTOR
-        ? {
-            image: $(el)
-              .find(SELECTORS[lang].IMAGE_SELECTOR)
-              .attr("src")
-          }
-        : {}),
-      collection
-    }))
+    .map(formatCoin($, lang, collection))
     .get()
-    .map(fixedDate ? fixDateAndVolumeInversion(fixedDate) : coin => coin)
+    .map(fixDate ? fixDateAndVolumeInversion(fixDate) : coin => coin)
     .filter(
       ({ [lang]: { country, date, volume } }) =>
         country && volume && date && date !== "TBA"

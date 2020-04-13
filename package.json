@@ -10,7 +10,7 @@
     "lint": "vue-cli-service lint src/extractor/*.mjs",
     "format": "prettier src/**/* --write",
     "test": "jest",
-    "extract": "node --experimental-modules src/extractor/index.mjs",
+    "extract": "node --experimental-modules --experimental-json-modules src/extractor/index.mjs",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {

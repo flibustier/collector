@@ -1,4 +1,4 @@
-import { flatten, intersectionWith } from "lodash";
+import _ from "lodash";
 import { ROOT_LANGUAGE } from "../constants.mjs";
 
 const WORDS_IN_COMMON_THRESHOLD = 1;
@@ -75,8 +75,9 @@ const regenerateIDs = (registrated, coin) => {
   ];
 };
 
-export const sortAndGenerateIDs = (parsedCoins, lang) =>
-  flatten(parsedCoins)
+export const sortAndGenerateIDs = (parsedCoins = [], lang) =>
+  parsedCoins
+    .flat()
     .sort(orderByDateAndTitle(lang))
     .reduce(regenerateIDs, []);
 
@@ -92,7 +93,7 @@ const compare = (wordA, wordB) =>
     (wordA.includes(wordB) || wordB.includes(wordA))) ||
   parseInt(wordA) === parseInt(wordB);
 export const numberOfCommonWords = (firstString, secondString) => {
-  const commonWords = intersectionWith(
+  const commonWords = _.intersectionWith(
     simplify(firstString).split(/\s|-|\(|\)/),
     simplify(secondString).split(/\s|-|\(|\)/),
     (wordA, wordB) =>

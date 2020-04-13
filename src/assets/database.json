@@ -1,5 +1,5 @@
 {
-  "version": "2020-02-12",
+  "version": "2020-04-13",
   "coins": [
     {
       "id": "GR-2004-01",
@@ -993,7 +993,7 @@
       "id": "SM-2009-01",
       "date": "2009-05-01T00:00:00.000Z",
       "volume": 130000,
-      "image": "",
+      "image": "2E_2009_StMarin.png",
       "fr": {
         "title": "2009, année européenne de la créativité et de l'innovation",
         "date": "Mai 2009",
@@ -5432,6 +5432,38 @@
       }
     },
     {
+      "id": "BE-2020-01",
+      "date": "2020-03-01T00:00:00.000Z",
+      "volume": 755000,
+      "image": "",
+      "fr": {
+        "title": "Année internationale de la santé des végétaux",
+        "date": "Mars 2020",
+        "volume": "755 000 pièces"
+      },
+      "en": {
+        "title": "International year of plant health",
+        "date": "5 March 2020",
+        "volume": "755,000 coins"
+      }
+    },
+    {
+      "id": "SM-2020-01",
+      "date": "2020-03-05T00:00:00.000Z",
+      "volume": 54000,
+      "image": "",
+      "fr": {
+        "title": "500e anniversaire de la mort du peintre italien Raffaello Sanzio, dit Raphaël, le 6 avril 1520 à Rome",
+        "date": "5 mars 2020",
+        "volume": "54 000 pièces"
+      },
+      "en": {
+        "title": "500 years since the death of Raphael",
+        "date": "5 March 2020",
+        "volume": "54,000 coins"
+      }
+    },
+    {
       "id": "LV-2020-01",
       "date": "2020-04-01T00:00:00.000Z",
       "volume": 400000,
@@ -5440,6 +5472,33 @@
         "title": "La céramique de Latgale",
         "date": "Printemps 2020",
         "volume": "400 000 pièces"
+      },
+      "en": {
+        "title": "Ceramic of Latgale",
+        "date": "April 2020",
+        "volume": "412,000 coins"
+      }
+    },
+    {
+      "id": "PT-2020-01",
+      "date": "2020-06-01T00:00:00.000Z",
+      "volume": 510000,
+      "image": "",
+      "fr": {
+        "title": "Participation du Portugal aux Jeux olympiques de Tokyo (Japon)",
+        "date": "Juin 2020",
+        "volume": "510 000 pièces"
+      }
+    },
+    {
+      "id": "MT-2020-01",
+      "date": "2020-06-01T00:00:00.000Z",
+      "volume": 170000,
+      "image": "",
+      "fr": {
+        "title": "Temples mégalithiques de Skorba, à Żebbieħ",
+        "date": "Juin 2020",
+        "volume": "170 000 pièces"
       }
     },
     {
@@ -5451,6 +5510,11 @@
         "title": "200e anniversaire de la naissance du Prince Henri d'Orange-Nassau, le 13 juin 1820 au Palais de Soestdijk, aux Pays-Bas",
         "date": "Juillet 2020",
         "volume": "300 000 pièces"
+      },
+      "en": {
+        "title": "Bicentenary of the birth of Prince Henry of Orange-Nassau",
+        "date": "26 February 2020",
+        "volume": "313,500 coins"
       }
     },
     {
@@ -5461,6 +5525,55 @@
       "fr": {
         "title": "Haute Lituanie",
         "date": "3e trimestre 2020",
+        "volume": "500 000 pièces"
+      }
+    },
+    {
+      "id": "PT-2020-02",
+      "date": "2020-10-01T00:00:00.000Z",
+      "volume": 510000,
+      "image": "",
+      "fr": {
+        "title": "75e anniversaire de l'Organisation des Nations unies fondée le 24 octobre 1945",
+        "date": "Octobre 2020",
+        "volume": "510 000 pièces"
+      }
+    },
+    {
+      "id": "BE-2020-02",
+      "date": "2020-10-01T00:00:00.000Z",
+      "volume": 155000,
+      "image": "",
+      "fr": {
+        "title": "Année Jan van Eyck",
+        "date": "Octobre 2020",
+        "volume": "155 000 pièces"
+      },
+      "en": {
+        "title": "Jan van Eyck",
+        "date": "October 2020",
+        "volume": "155,000 coins"
+      }
+    },
+    {
+      "id": "MT-2020-02",
+      "date": "2020-10-01T00:00:00.000Z",
+      "volume": 220000,
+      "image": "",
+      "fr": {
+        "title": "Jeux",
+        "date": "Octobre 2020",
+        "volume": "220 000 pièces"
+      }
+    },
+    {
+      "id": "LT-2020-02",
+      "date": "2020-10-01T00:00:00.000Z",
+      "volume": 500000,
+      "image": "",
+      "fr": {
+        "title": "La Colline des Croix, près de Šiauliai",
+        "date": "4e trimestre 2020",
         "volume": "500 000 pièces"
       }
     },
