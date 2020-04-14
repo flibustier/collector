@@ -5368,6 +5368,22 @@
       }
     },
     {
+      "id": "EE-2019-02",
+      "date": "2019-11-01T00:00:00.000Z",
+      "volume": 1000000,
+      "image": "2E_2019_Estonie_festival.png",
+      "fr": {
+        "title": "100e anniversaire de l'ouverture en 1919 de l'Université de Tartu en tant qu'université en langue estonienne",
+        "date": "Novembre 2019",
+        "volume": "1 million de pièces"
+      },
+      "en": {
+        "title": "100 years since the foundation of the Estonian language University of Tartu",
+        "date": "19 November 2019",
+        "volume": "1 million coins"
+      }
+    },
+    {
       "id": "FR-2019-02",
       "date": "2019-11-01T00:00:00.000Z",
       "volume": 10000000,
