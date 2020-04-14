@@ -1,5 +1,5 @@
 {
-  "version": "2020-04-13",
+  "version": "2020-04-14",
   "coins": [
     {
       "id": "GR-2004-01",
@@ -5109,7 +5109,7 @@
       "id": "FR-2019-01",
       "date": "2019-05-28T00:00:00.000Z",
       "volume": 310000,
-      "image": "",
+      "image": "FR-2019-01.png",
       "fr": {
         "title": "60e anniversaire de la création du personnage d'Astérix, le 29 octobre 1959, par René Goscinny et Albert Uderzo",
         "date": "28 mai 2019",

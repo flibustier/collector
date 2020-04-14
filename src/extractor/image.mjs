@@ -16,9 +16,7 @@ const PANDA_API_HEADERS = PANDA_API_TOKEN => ({
   }
 });
 const RESIZE_INSTRUCTION = {
-  data: {
-    resize: { method: "scale", width: MAX_PIXEL_SIZE, height: MAX_PIXEL_SIZE }
-  }
+  resize: { method: "fit", width: MAX_PIXEL_SIZE, height: MAX_PIXEL_SIZE }
 };
 
 const sendToPanda = async (sourceURL, pandaToken) => {
@@ -57,11 +55,11 @@ const downloadImage = async (
       data,
       headers: { "content-length": totalLength }
     } = await axios({
-      method: "GET",
+      method: resize ? "POST" : "GET",
       url,
       responseType: "stream",
       ...(pandaToken ? PANDA_API_HEADERS(pandaToken) : {}),
-      ...(resize ? RESIZE_INSTRUCTION : {})
+      data: resize ? RESIZE_INSTRUCTION : {}
     });
 
     const progressBar = new ProgressBar(
@@ -83,7 +81,6 @@ const downloadImage = async (
 };
 
 export const getImageURLForQuality = (imageSourceURL, quality) => {
-  console.log(imageSourceURL);
   const protocol = "http:";
   switch (quality) {
     case IMAGE_QUALITY.LOW:

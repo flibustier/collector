@@ -16,7 +16,8 @@ import {
 import { readDatabase, writeDatabase } from "./database.mjs";
 
 import argv from "./argv.mjs";
-import Coin from "./coin.mjs";
+
+let coins = [];
 
 const foreignLanguages = Object.keys(WIKIPEDIA_URLS).filter(
   lang => lang !== ROOT_LANGUAGE
@@ -30,7 +31,7 @@ const sortAndParseRemoteCoins = async (urls, lang) => {
   return sortAndGenerateIDs(coinsParsedAndResolved, lang);
 };
 
-const fetchWikipediaAndMerge = async () => {
+async function fetchWikipediaAndMerge() {
   const remoteCoinsPromises = _.mapValues(
     WIKIPEDIA_URLS,
     sortAndParseRemoteCoins
@@ -38,24 +39,26 @@ const fetchWikipediaAndMerge = async () => {
 
   const rootCoins = await remoteCoinsPromises[ROOT_LANGUAGE];
 
-  foreignLanguages.forEach(async lang => {
+  for (var lang of foreignLanguages) {
     const coinsInForeignLanguage = await remoteCoinsPromises[lang];
+    console.log(
+      coins.length,
+      rootCoins.length,
+      coinsInForeignLanguage.length,
+      lang
+    );
     coins = mergeCoinsInForeignLanguage(
       rootCoins,
       coinsInForeignLanguage,
       lang
     );
-  });
-};
+  }
+}
 
-let coins = [];
-
-const main = async () => {
+async function main() {
   coins = await readDatabase();
 
-  if (!argv.offline) {
-    await fetchWikipediaAndMerge(coins);
-  }
+  await fetchWikipediaAndMerge(coins);
 
   console.info(`[INFO] ${coins.length} total coins`);
 
@@ -82,9 +85,7 @@ const main = async () => {
     }
   }
 
-  if (argv["download-every"]) {
-    const downloadNotOnlyMissings = argv["download-every"] === "all";
-
+  if (argv["download-missings"] || argv["download-all"]) {
     console.info(
       `[INFO] Downloading images in ${argv.quality} quality (could take some time)`
     );
@@ -93,9 +94,9 @@ const main = async () => {
       coins,
       argv.quality,
       argv.tinypng,
-      downloadNotOnlyMissings
+      argv["download-all"]
     );
   }
-};
+}
 
 main();

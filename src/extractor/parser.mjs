@@ -152,15 +152,15 @@ const formatCoin = ($, lang, collection) => (_, el) => ({
   },
   ...(SELECTORS[lang].IMAGE_SELECTOR
     ? {
-      image: $(el)
-        .find(SELECTORS[lang].IMAGE_SELECTOR)
-        .attr("src")
-    }
+        image: $(el)
+          .find(SELECTORS[lang].IMAGE_SELECTOR)
+          .attr("src")
+      }
     : {}),
   collection
 });
 
-export const fetchAndParseURL = (lang) => async ({
+export const fetchAndParseURL = lang => async ({
   url,
   fixDate,
   collection

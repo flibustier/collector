@@ -11,22 +11,21 @@ export default yargs
     type: "boolean",
     description: "Write database file into assets/database.json"
   })
-  .option("offline", {
-    type: "boolean",
-    description: "Don’t download Wikipedia data",
-    conflicts: ["download", "download-every"]
-  })
   .option("download", {
     alias: "d",
     type: "string",
     description: "Download a specific picture from coin ID",
     requiresArg: true
   })
-  .option("download-every", {
-    alias: "dl",
-    description: "Download missing or every pictures",
-    choices: ["all", "missings"],
-    requiresArg: true
+  .option("download-missings", {
+    alias: "m",
+    type: "boolean",
+    description: "Download all missing pictures"
+  })
+  .option("download-all", {
+    alias: "a",
+    type: "boolean",
+    description: "Download and overwrite every pictures"
   })
   .option("quality", {
     alias: "q",
@@ -40,7 +39,6 @@ export default yargs
     type: "boolean",
     description:
       "Use TinyPNG API to reduce picture sizes when using a download option",
-    implies: ["download", "download-every"],
     coerce: () =>
       Buffer.from(`api:${process.env.TINYPNG_API_KEY}`).toString("base64")
   })
@@ -53,6 +51,6 @@ export default yargs
     "download the MC-2007-01 picture in low quality"
   )
   .example(
-    "$0 --download-every missings --quality all --tinypng",
-    "download every missings pictures in all qualities, using tinypng api"
+    "$0 --download-missings --quality all --tinypng",
+    "download all missings pictures in all qualities, using tinypng api"
   ).argv;
