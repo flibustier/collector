@@ -2,7 +2,7 @@
   <b-field>
     <b-input
       :placeholder="$t('search')"
-      :value="$store.state.coins.filters.searchInput"
+      :value="$store.state.filters.searchInput"
       type="search"
       icon="search"
       @input="value => $store.commit('setFilter', { name: 'searchInput', value })"
