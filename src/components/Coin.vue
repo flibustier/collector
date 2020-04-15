@@ -4,9 +4,9 @@
       <div class="header">
         <div class="is-flex">
           <span :class="`flag-icon ${coin.countryFlag}`"></span>
-          <span class="subtitle is-6 country">{{
-            $t(`countries.${coin.country}`)
-          }}</span>
+          <span class="subtitle is-6 country">
+            {{ $t(`countries.${coin.country}`) }}
+          </span>
         </div>
         <p class="subtitle is-6">{{ coinInLocale.date }}</p>
       </div>
@@ -27,7 +27,7 @@
       <div class="has-text-centered">
         <p class="subtitle is-6">
           {{ coinInLocale.volume }}
-          <span v-if="showID">- {{ coin.id }}</span>
+          <span v-if="displayID">- {{ coin.id }}</span>
         </p>
       </div>
     </div>
@@ -85,7 +85,7 @@ export default {
 
     ...mapState({
       currentQuality: state => state.settings.quality,
-      showID: state => state.settings.showID,
+      displayID: state => state.settings.displayID,
       displayRarity: state => state.settings.displayRarity
     })
   },

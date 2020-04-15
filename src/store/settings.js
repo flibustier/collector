@@ -4,7 +4,7 @@ export default {
   state: {
     quality: IMAGE_QUALITY.LOW,
     displayRarity: false,
-    showID: false,
+    displayID: false,
     collapse: {
       countries: true,
       rarity: true,

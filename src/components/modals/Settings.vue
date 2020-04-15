@@ -30,6 +30,17 @@
           "
         >{{ $t("rarity") }}</b-switch>
       </b-field>
+      <hr />
+      <b-field>
+        <b-switch
+          size="is-small"
+          :value="displayID"
+          @input="
+            value =>
+              setBoolean({ name: 'displayID', value })
+          "
+        >{{ $t("displayID") }}</b-switch>
+      </b-field>
     </section>
   </div>
 </template>
@@ -56,7 +67,8 @@ export default {
 
     ...mapState({
       savedQuality: state => state.settings.quality,
-      displayRarity: state => state.settings.displayRarity
+      displayRarity: state => state.settings.displayRarity,
+      displayID: state => state.settings.displayID
     })
   },
 
@@ -76,7 +88,8 @@ export default {
     "medium": "Medium",
     "fullsize": "Highest",
     "rarity": "Show levels of rarity",
-    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1}, Epic &lt; {2}, Legendary &lt; {3}"
+    "rarityLevels": "Uncommon &lt; {0}, Rare &lt; {1}, Epic &lt; {2}, Legendary &lt; {3}",
+    "displayID": "Display coin’s identifier"
   },
   "fr": {
     "settings": "Paramétrages",
@@ -86,7 +99,8 @@ export default {
     "medium": "Moyenne",
     "fullsize": "Maximale",
     "rarity": "Afficher les niveaux de rareté",
-    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1}, Épique &lt; {2}, Légendaire &lt; {3}"
+    "rarityLevels": "Commune &lt; {0}, Rare &lt; {1}, Épique &lt; {2}, Légendaire &lt; {3}",
+    "displayID": "Afficher les numéros d’identification des pièces"
   }
 }
 </i18n>
