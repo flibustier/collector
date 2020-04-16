@@ -103,12 +103,12 @@ const parseCountryDateAndVolume = lang => coin => ({
 const isVolume = str => str.includes("pièces") || str.includes("coins");
 
 const fixDateAndVolumeInversion = fixedDate => coin => {
-  if (isVolume(coin.fr.date) && !coin.fr.volume) {
+  if (coin.fr && isVolume(coin.fr.date) && !coin.fr.volume) {
     return {
       ...coin,
       fr: {
         ...coin.fr,
-        date: fixedDate,
+        date: fixedDate || coin.fr.dateBis,
         volume: coin.fr.date
       }
     };
@@ -144,6 +144,11 @@ const formatCoin = ($, lang, collection) => (_, el) => ({
         .find(SELECTORS[lang].DATE_SELECTOR)
         .text()
     ),
+    dateBis: cleanDate(
+      $(el)
+        .find(SELECTORS[lang].DATE_BIS_SELECTOR)
+        .text()
+    ),
     volume: cleanStr(
       $(el)
         .find(SELECTORS[lang].VOLUME_SELECTOR)
@@ -176,7 +181,7 @@ export const fetchAndParseURL = lang => async ({
   return tables
     .map(formatCoin($, lang, collection))
     .get()
-    .map(fixDate ? fixDateAndVolumeInversion(fixDate) : coin => coin)
+    .map(fixDateAndVolumeInversion(fixDate))
     .filter(
       ({ [lang]: { country, date, volume } }) =>
         country && volume && date && date !== "TBA"

@@ -41,12 +41,6 @@ async function fetchWikipediaAndMerge() {
 
   for (var lang of foreignLanguages) {
     const coinsInForeignLanguage = await remoteCoinsPromises[lang];
-    console.log(
-      coins.length,
-      rootCoins.length,
-      coinsInForeignLanguage.length,
-      lang
-    );
     coins = mergeCoinsInForeignLanguage(
       rootCoins,
       coinsInForeignLanguage,
