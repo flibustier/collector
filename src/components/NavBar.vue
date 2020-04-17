@@ -1,20 +1,13 @@
 <template>
   <b-navbar shadow :close-on-click="false">
     <template slot="brand">
-      <b-navbar-item
-        class="brand-link"
-        tag="router-link"
-        :to="{ name: 'catalogue' }"
-      >
-        <logo class="logo" />
-        <h1 class="is-size-3 brand-title">Collector</h1>
-      </b-navbar-item>
+      <brand />
     </template>
 
     <template slot="end">
-      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">{{
-        $t("catalogue")
-      }}</b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">
+        {{ $t("catalogue") }}
+      </b-navbar-item>
 
       <b-navbar-dropdown :label="currentCollectionName">
         <b-navbar-item
@@ -68,7 +61,7 @@
 
 <script>
 import { SUPPORTED_LANGUAGES } from "../constants.mjs";
-import Logo from "./atoms/Logo";
+import Brand from "./Brand";
 import Search from "./atoms/Search";
 import Settings from "./modals/Settings";
 
@@ -76,7 +69,7 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
-    Logo,
+    Brand,
     Search
   },
 
@@ -117,22 +110,6 @@ export default {
 .icon {
   vertical-align: middle;
   margin-right: 0.5rem;
-}
-
-.logo {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-right: 0.5rem;
-}
-
-.brand-link {
-  padding: 0;
-  margin-left: 0.5rem;
-}
-
-.brand-title {
-  padding-top: 5px;
-  line-height: 1;
 }
 </style>
 

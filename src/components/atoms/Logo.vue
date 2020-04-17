@@ -1,12 +1,5 @@
 <template>
-  <svg
-    id="Calque_1"
-    data-name="Calque 1"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 480 500"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-  >
+  <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 500">
     <g>
       <path
         class="cls-1"
@@ -76,21 +69,9 @@
 <script>
 export default {
   props: {
-    "is-active": {
+    rotate: {
       type: Boolean,
       default: false
-    }
-  },
-
-  data() {
-    return {
-      hover: false
-    };
-  },
-
-  computed: {
-    rotate() {
-      return this.isActive || this.hover;
     }
   }
 };
