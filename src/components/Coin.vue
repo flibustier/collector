@@ -4,9 +4,9 @@
       <div class="header">
         <div class="is-flex">
           <span :class="`flag-icon ${coin.countryFlag}`"></span>
-          <span class="subtitle is-6 country">
-            {{ $t(`countries.${coin.country}`) }}
-          </span>
+          <span class="subtitle is-6 country">{{
+            $t(`countries.${coin.country}`)
+          }}</span>
         </div>
         <p class="subtitle is-6">{{ coinInLocale.date }}</p>
       </div>
@@ -31,7 +31,7 @@
         </p>
       </div>
     </div>
-    <div class="card-footer" v-if="showFooter">
+    <div class="card-footer" v-if="isCollection">
       <div class="card-footer-item">
         <b-numberinput
           size="is-small"
@@ -76,12 +76,12 @@ export default {
     },
 
     amountOwned() {
-      return this.$store.getters.amountOwned(this.coin.id);
+      return this.isCollection
+        ? this.$store.getters.amountOwned(this.coin.id)
+        : 0;
     },
 
-    ...mapGetters({
-      showFooter: "isCollection"
-    }),
+    ...mapGetters(["isCollection"]),
 
     ...mapState({
       currentQuality: state => state.settings.quality,
