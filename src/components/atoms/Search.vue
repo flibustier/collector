@@ -5,7 +5,9 @@
       :value="$store.state.filters.searchInput"
       type="search"
       icon="search"
-      @input="value => $store.commit('setFilter', { name: 'searchInput', value })"
+      @input="
+        value => $store.commit('setFilter', { name: 'searchInput', value })
+      "
       rounded
     ></b-input>
   </b-field>

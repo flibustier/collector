@@ -1,5 +1,7 @@
 import {
-  IMAGE_QUALITY, IMAGE_QUALITY_WIDTH, UNCOMMON_CAP,
+  IMAGE_QUALITY,
+  IMAGE_QUALITY_WIDTH,
+  UNCOMMON_CAP,
   RARE_CAP,
   EPIC_CAP,
   LEGENDARY_CAP
@@ -40,34 +42,49 @@ export default class Coin {
   }
 
   get rarity() {
-    if (this.volume < LEGENDARY_CAP) return 'legendary';
-    if (this.volume < EPIC_CAP) return 'epic';
-    if (this.volume < RARE_CAP) return 'rare';
-    if (this.volume < UNCOMMON_CAP) return 'uncommon';
-    return 'common';
+    if (this.volume < LEGENDARY_CAP) return "legendary";
+    if (this.volume < EPIC_CAP) return "epic";
+    if (this.volume < RARE_CAP) return "rare";
+    if (this.volume < UNCOMMON_CAP) return "uncommon";
+    return "common";
   }
 
   title(lang) {
-    return this[lang] ? this[lang].title : '';
+    return this[lang] ? this[lang].title : "";
   }
 
   isInYearRange(startYear, endYear) {
-    return (this.year >= startYear || !startYear) && (this.year <= endYear || !endYear);
+    return (
+      (this.year >= startYear || !startYear) &&
+      (this.year <= endYear || !endYear)
+    );
   }
 
   isInVolumeRange(minVolume, maxVolume) {
-    return (this.volume >= minVolume || !minVolume) && (this.volume <= maxVolume || !maxVolume);
+    return (
+      (this.volume >= minVolume || !minVolume) &&
+      (this.volume <= maxVolume || !maxVolume)
+    );
   }
 
   isMatchingSearchString(searchString) {
-    return this.title('fr').toLowerCase().includes(searchString) ||
-      this.title('en').toLowerCase().includes(searchString) ||
+    return (
+      this.title("fr")
+        .toLowerCase()
+        .includes(searchString) ||
+      this.title("en")
+        .toLowerCase()
+        .includes(searchString) ||
       this.id.toLowerCase().includes(searchString)
+    );
   }
 
   image(quality = IMAGE_QUALITY.MAXIMAL) {
     return this.imageSource
-      ? `${process.env.BASE_URL}images/${quality}/${imageNameForQuality(this.imageSource, quality)}`
+      ? `${process.env.BASE_URL}images/${quality}/${imageNameForQuality(
+          this.imageSource,
+          quality
+        )}`
       : "";
   }
 }

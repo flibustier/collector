@@ -24,22 +24,18 @@
         <b-switch
           size="is-small"
           :value="displayRarity"
-          @input="
-            value =>
-              setBoolean({ name: 'displayRarity', value })
-          "
-        >{{ $t("rarity") }}</b-switch>
+          @input="value => setBoolean({ name: 'displayRarity', value })"
+          >{{ $t("rarity") }}</b-switch
+        >
       </b-field>
       <hr />
       <b-field>
         <b-switch
           size="is-small"
           :value="displayID"
-          @input="
-            value =>
-              setBoolean({ name: 'displayID', value })
-          "
-        >{{ $t("displayID") }}</b-switch>
+          @input="value => setBoolean({ name: 'displayID', value })"
+          >{{ $t("displayID") }}</b-switch
+        >
       </b-field>
     </section>
   </div>

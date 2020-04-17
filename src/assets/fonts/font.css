@@ -1,11 +1,10 @@
 @font-face {
-  font-family: 'OohBahn-FixedWidth';
-  src: url('OohBahn-FixedWidth.eot');
-  src: url('OohBahn-FixedWidth.eot?#iefix') format('embedded-opentype'),
-       url('OohBahn-FixedWidth.svg#OohBahn-FixedWidth') format('svg'),
-       url('OohBahn-FixedWidth.ttf') format('truetype'),
-       url('OohBahn-FixedWidth.woff') format('woff');
+  font-family: "OohBahn-FixedWidth";
+  src: url("OohBahn-FixedWidth.eot");
+  src: url("OohBahn-FixedWidth.eot?#iefix") format("embedded-opentype"),
+    url("OohBahn-FixedWidth.svg#OohBahn-FixedWidth") format("svg"),
+    url("OohBahn-FixedWidth.ttf") format("truetype"),
+    url("OohBahn-FixedWidth.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
-

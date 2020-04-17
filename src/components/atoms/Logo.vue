@@ -1,5 +1,10 @@
 <template>
-  <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 500">
+  <svg
+    id="Calque_1"
+    data-name="Calque 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 480 500"
+  >
     <g>
       <path
         class="cls-1"

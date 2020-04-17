@@ -4,12 +4,12 @@
       <p class="title is-6">{{ $t("share") }}</p>
     </header>
     <section class="card-content">
-      <p class="custom-label">{{ $t('nameInfo') }}</p>
+      <p class="custom-label">{{ $t("nameInfo") }}</p>
       <b-field>
         <b-input v-model="name" :placeholder="$t('name')"></b-input>
       </b-field>
       <br />
-      <p class="custom-label">{{ $t('linkInfo') }}</p>
+      <p class="custom-label">{{ $t("linkInfo") }}</p>
       <b-field :message="dynamicMessage">
         <b-input
           id="shareURL"
