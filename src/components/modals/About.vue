@@ -13,8 +13,7 @@
           <a
             :href="`https://${$i18n.locale}.wikipedia.org/wiki/Open_source`"
             target="_blank"
-            >Open Source</a
-          >
+          >Open Source</a>
           {{ $t("intro2") }}
         </p>
         <p class="has-text-justified">
@@ -25,9 +24,11 @@
         <hr />
         <p class="has-text-centered">
           {{ $t("database") }}
-          <a href="/database.json" target="_blank">{{
+          <a href="/database.json" target="_blank">
+            {{
             new Date(databaseVersion).toLocaleDateString()
-          }}</a>
+            }}
+          </a>
         </p>
         <hr />
         <p class="has-text-centered">{{ $t("wikipediaList") }}</p>
@@ -96,7 +97,7 @@ export default {
 {
   "en": {
     "about": "About the Collector application",
-    "into1": "Collector is an",
+    "intro1": "Collector is an",
     "intro2": "application based on Wikipedia’s data and not sharing any personal data",
     "data": "Data",
     "database": "Last database version is from",
