@@ -19,6 +19,8 @@ const uniqueCountryList = (countryList, { country }) =>
 
 export default {
   getters: {
+    databaseVersion: () => database.version,
+
     coinList: () => coins,
 
     numberOfExistingCoins: () => coins.length,

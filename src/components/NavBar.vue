@@ -5,9 +5,9 @@
     </template>
 
     <template slot="end">
-      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">
-        {{ $t("catalogue") }}
-      </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ name: 'catalogue' }">{{
+        $t("catalogue")
+      }}</b-navbar-item>
 
       <b-navbar-dropdown :label="currentCollectionName">
         <b-navbar-item
@@ -48,7 +48,7 @@
           <span>{{ $t("settings") }}</span>
         </b-navbar-item>
 
-        <b-navbar-item @click="showSettingsModal">
+        <b-navbar-item @click="showAboutModal">
           <b-icon icon="info-circle" />
           <span>{{ $t("about") }}</span>
         </b-navbar-item>
@@ -63,11 +63,16 @@
 import { SUPPORTED_LANGUAGES } from "../constants.mjs";
 import Brand from "./Brand";
 import Search from "./atoms/Search";
+import About from "./modals/About";
 import Settings from "./modals/Settings";
 
 import { mapGetters, mapActions } from "vuex";
 
+import Lang from "./mixins/Lang.mixin";
+
 export default {
+  mixins: [Lang],
+
   components: {
     Brand,
     Search
@@ -82,13 +87,18 @@ export default {
   methods: {
     ...mapActions(["createCollection"]),
 
-    getFlagClass: locale =>
-      `flag-icon flag-icon-${locale === "en" ? "gb" : locale}`,
-
     showSettingsModal() {
       this.$buefy.modal.open({
         parent: this,
         component: Settings,
+        hasModalCard: true
+      });
+    },
+
+    showAboutModal() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: About,
         hasModalCard: true
       });
     },
