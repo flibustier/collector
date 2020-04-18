@@ -61,3 +61,17 @@ h1 {
 a.navbar-item.is-active {
     color: $link;
 }
+
+.modal .card {
+    border-radius: 20px;
+}
+
+.modal-card-head {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.modal-card-foot {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
