@@ -1,16 +1,21 @@
 import { isEqual } from "lodash";
 
-const coinMatchingFilters = (state, getters, rootGetters) => coin => {
+const coinMatchingFilters = (
+  state,
+  getters,
+  rootState,
+  rootGetters
+) => coin => {
   const isOwned =
     !rootGetters.isCollection ||
-    !state.showOnlyOwned ||
+    !rootState.settings.showOnlyOwned ||
     getters.amountOwned(coin.id) > 0;
 
   const isPassingCountry =
     state.countries.length === 0 || state.countries.includes(coin.country);
 
   const isWantedSeries =
-    isNaN(coin.collection) || state.series[coin.collection];
+    isNaN(coin.collection) || rootState.settings.series[coin.collection];
 
   return (
     isOwned &&
@@ -26,14 +31,7 @@ const filters = () => ({
   searchInput: "",
   years: [],
   volumes: [],
-  countries: [],
-  series: {
-    0: true,
-    1: true,
-    2: true,
-    3: true
-  },
-  showOnlyOwned: false
+  countries: []
 });
 
 const state = {
@@ -45,7 +43,7 @@ const getters = {
 
   filteredCoins: (state, getters, rootState, rootGetters) =>
     rootGetters.coinList.filter(
-      coinMatchingFilters(state, getters, rootGetters)
+      coinMatchingFilters(state, getters, rootState, rootGetters)
     ),
 
   numberOfDisplayedCoins: (state, getters) => getters.filteredCoins.length

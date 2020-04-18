@@ -5,10 +5,17 @@ export default {
     quality: IMAGE_QUALITY.LOW,
     displayRarity: false,
     displayID: false,
+    showOnlyOwned: false,
     collapse: {
       countries: true,
       rarity: true,
       series: true
+    },
+    series: {
+      0: true,
+      1: true,
+      2: true,
+      3: true
     }
   },
 
@@ -25,6 +32,10 @@ export default {
 
     setCollapse(state, { index, value }) {
       state.collapse[index] = value;
+    },
+
+    setSeriesSwitch(state, { index, value }) {
+      state.series[index] = value;
     }
   },
 

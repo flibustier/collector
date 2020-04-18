@@ -25,7 +25,7 @@ const routes = [
 
       store.commit("addCollection", { collection, name });
 
-      store.commit("setFilter", { name: "showOnlyOwned", value: true });
+      store.commit("setBoolean", { name: "showOnlyOwned", value: true });
 
       return `/collection/${store.getters.lastCollectionID}`;
     }
