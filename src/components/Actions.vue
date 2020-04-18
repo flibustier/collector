@@ -21,14 +21,28 @@
     </div>
 
     <div class="level-right">
-      <r-button icon="share" text="Share" is-info @click="showShareModal" />
-      <r-button icon="file-export" text="Export" @click="notImplemented" />
-      <r-button icon="chart-pie" text="Statistics" @click="notImplemented" />
+      <r-button
+        icon="share"
+        :text="$t('share')"
+        is-info
+        @click="showShareModal"
+        :disabled="!numberOfOwnedCoins"
+      />
+      <r-button
+        icon="file-export"
+        :text="$t('export')"
+        @click="notImplemented"
+      />
+      <r-button
+        icon="chart-pie"
+        :text="$t('statistics')"
+        @click="notImplemented"
+      />
       <r-button
         icon="trash"
-        text="Delete"
+        :text="$t('delete')"
         is-danger
-        @click="deleteCollection"
+        @click="confirmDelete"
         :disabled="!currentCollectionID"
       />
     </div>
@@ -66,6 +80,18 @@ export default {
 
     notImplemented() {
       this.$buefy.snackbar.open(this.$t("wip"));
+    },
+
+    confirmDelete() {
+      this.$buefy.dialog.confirm({
+        title: this.$t("delete"),
+        message: this.$t("confirmDelete"),
+        confirmText: this.$t("delete"),
+        cancelText: this.$t("cancel"),
+        type: "is-danger",
+        hasIcon: true,
+        onConfirm: this.deleteCollection
+      });
     }
   }
 };
@@ -82,12 +108,24 @@ nav.level {
 {
   "en": {
     "coins": "coins",
-    "wip": "This feature will come very soon!"
+    "share": "Share",
+    "export": "Export",
+    "statistics": "Statistics",
+    "wip": "This feature will come very soon!",
+    "delete": "Delete",
+    "cancel": "Abort",
+    "confirmDelete": "Are you sure you want to <b>delete</b> your collection? This action cannot be undone."
 
   },
   "fr": {
     "coins": "pieces",
-    "wip": "Cette fonctionnalité n’est pas encore disponible, encore un peu de patience!"
+    "share": "Partager",
+    "export": "Exporter",
+    "statistics": "Statistiques",
+    "wip": "Cette fonctionnalité n’est pas encore disponible, encore un peu de patience!",
+    "delete": "Suppression",
+    "cancel": "Annuler",
+    "confirmDelete": "Êtes-vous certain de vouloir supprimer <b>définitivement</b> votre collection ?<br/> Cette action est irréversible."
   }
 }
 </i18n>
