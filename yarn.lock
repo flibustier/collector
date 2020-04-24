@@ -2266,10 +2266,10 @@ bytes@3.1.0:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
   integrity sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
 
-c8r@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/c8r/-/c8r-1.0.2.tgz#90d80179715aac52189943e7a47d7e95e404a30f"
-  integrity sha512-xSYrioC2zrlIof8sa3HFz4ZlpABcJol5wGbs3Le/e11f14YTcrEiXJStweI3WQDLjLg0n/EFU4NocCfZFhr1Lw==
+c8r@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/c8r/-/c8r-1.0.3.tgz#c7147ce2048b2090105b6f71cf3fd80beacfc4dc"
+  integrity sha512-ZQfLTeeoAdRv7FOqPuBo0U1zKIhmSrV4zrqVtZg3GkgfTQPpZX0RuELZnN3AWWtlHpyDs2kttDjGNHWV+UP8Dw==
 
 cacache@^12.0.2, cacache@^12.0.3:
   version "12.0.4"
