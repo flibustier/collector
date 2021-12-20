@@ -1,15 +1,9 @@
 import _ from "lodash";
 import { ROOT_LANGUAGE } from "../constants.mjs";
+import { logger } from "./logger.mjs";
 
 const WORDS_IN_COMMON_THRESHOLD = 1;
 const VOLUME_DELTA_PERCENT_TOLERANCE = 0.1;
-
-const stats = {
-  perfectMatches: 0,
-  noSameYearSameCountry: [],
-  titleComparisonExceedThreshold: [],
-  titleComparisonFailedThreshold: []
-};
 
 const customDictionary = {
   aids: "sida",
@@ -18,10 +12,51 @@ const customDictionary = {
   european: "europeenne",
   farming: "agriculture",
   presidency: "presidence",
-  solidarity: "solidarite"
+  solidarity: "solidarite",
+  wolf: "loup"
 };
 
 const customTranslator = word => customDictionary[word] || word;
+
+export const mergeCoinsInForeignLanguage = (
+  rootCoins,
+  coinsToMerge,
+  langOfCoins
+) => {
+  const merged = _.cloneDeep(rootCoins);
+  const statistics = {
+    perfectMatches: 0,
+    noSameYearSameCountry: [],
+    titleComparisonExceedThreshold: [],
+    titleComparisonFailedThreshold: []
+  };
+
+  coinsToMerge.forEach(coinInForeignLanguage => {
+    const similarCoinInRoot = findSameCoinInRootLanguage(
+      rootCoins,
+      coinInForeignLanguage,
+      langOfCoins,
+      statistics
+    );
+
+    if (similarCoinInRoot) {
+      const similarCoinIndex = merged.findIndex(
+        ({ id }) => id === similarCoinInRoot.id
+      );
+
+      merged[similarCoinIndex] = {
+        ...coinInForeignLanguage,
+        ...similarCoinInRoot,
+        // use date from foreign language as it’s more precise
+        date: coinInForeignLanguage.date
+      };
+    }
+  });
+
+  logStatistics(coinsToMerge, langOfCoins, statistics);
+
+  return merged;
+};
 
 export const formatID = (country, year, orderNumber) => {
   const twoDigitOrder = ("0" + orderNumber).slice(-2);
@@ -61,8 +96,8 @@ const regenerateIDs = (registrated, coin) => {
   const newID = formatID(country, year, orderNumber);
 
   if (previousID && previousID !== newID) {
-    console.warn(
-      `[WARNING] Caution! ${previousID} has been changed to ${newID}`
+    logger.warn(
+      `Caution! ${previousID} has been changed to ${newID}`
     );
   }
 
@@ -92,6 +127,7 @@ const compare = (wordA, wordB) =>
     wordB.length > 2 &&
     (wordA.includes(wordB) || wordB.includes(wordA))) ||
   parseInt(wordA) === parseInt(wordB);
+
 export const numberOfCommonWords = (firstString, secondString) => {
   const commonWords = _.intersectionWith(
     simplify(firstString).split(/\s|-|\(|\)/),
@@ -105,11 +141,21 @@ export const numberOfCommonWords = (firstString, secondString) => {
   return commonWords.length;
 };
 
-const findSameCoinInRootLanguage = (
+const TITLE_MAX_LENGTH = 40;
+const formattedTitle = title =>
+  (
+    "« " +
+    title.substring(0, TITLE_MAX_LENGTH) +
+    (title.length > TITLE_MAX_LENGTH ? "…" : "") +
+    " »"
+  ).padEnd(TITLE_MAX_LENGTH + 5);
+
+function findSameCoinInRootLanguage(
   rootCoins,
   coinInForeignLanguage,
-  coinLanguage
-) => {
+  coinLanguage,
+  stats
+) {
   const {
     country,
     date,
@@ -125,12 +171,19 @@ const findSameCoinInRootLanguage = (
   );
 
   if (rootCoinsWithSameCountryAndYear.length === 0) {
-    console.error(
-      `[ERROR] Coin ${country} ${year} has no matching coins in root coins`
-    );
-    stats.noSameYearSameCountry.push(coinInForeignLanguage);
+    // try previous and next year
+    rootCoinsWithSameCountryAndYear = [
+      ...coinsWithSameCountryAndYear(rootCoins, country, year - 1),
+      ...coinsWithSameCountryAndYear(rootCoins, country, year + 1)
+    ];
+    if (rootCoinsWithSameCountryAndYear.length === 0) {
+      logger.error(
+        `Coin ${country} ${year} has no matching coins in root coins`
+      );
+      stats.noSameYearSameCountry.push(coinInForeignLanguage);
 
-    return;
+      return;
+    }
   }
 
   const sameVolumeAndYearAndCountry = coinsWithAboutSameVolume(
@@ -152,15 +205,27 @@ const findSameCoinInRootLanguage = (
     const rootCoinVolumes = rootCoinsWithSameCountryAndYear.map(
       coin => coin.volume
     );
-    console.warn(
-      `[WARNING] Volume difference with coin ${country} ${date.getFullYear()} : volume is ${volume}\tFound ${rootCoinVolumes.join(
-        "\t"
+    logger.warn(
+      `Volume difference with coin ${country} ${date.getFullYear()} ${formattedTitle(
+        title
+      )} (${coinLanguage}) volume is ${volume.toString().padEnd(9)} (${ROOT_LANGUAGE}) is ${rootCoinVolumes.join(
+        " or "
       )}`
     );
     othersPotentialCoins = rootCoinsWithSameCountryAndYear;
   }
 
-  // We can’t use Volume to determine the same coin, we will use title
+  // We can’t use Volume to determine the same coin, try exact date
+  const coinsWithExactSameDate = othersPotentialCoins.filter(
+    coin => coin.date.toISOString() === date.toISOString()
+  );
+  if (coinsWithExactSameDate.length === 1) {
+    stats.perfectMatches += 1;
+
+    return coinsWithExactSameDate[0];
+  }
+
+  // we will use title
   const {
     titleWordsInCommon: maxTitleWordsInCommon,
     candidate: bestCandidate
@@ -195,60 +260,24 @@ const findSameCoinInRootLanguage = (
     ...coinInForeignLanguage,
     title
   });
-};
+}
 
-export const mergeCoinsInForeignLanguage = (
-  rootCoins,
-  coinsToMerge,
-  langOfCoins
-) => {
-  const merged = rootCoins;
-
-  coinsToMerge.forEach(coinInForeignLanguage => {
-    const similarCoinInRoot = findSameCoinInRootLanguage(
-      rootCoins,
-      coinInForeignLanguage,
-      langOfCoins
-    );
-
-    if (similarCoinInRoot) {
-      const similarCoinIndex = merged.findIndex(
-        ({ id }) => id === similarCoinInRoot.id
-      );
-
-      merged[similarCoinIndex] = {
-        ...coinInForeignLanguage,
-        ...similarCoinInRoot
-      };
-    }
-  });
-
-  console.info(`[INFO] === STATS ===\n`);
-
-  console.log("\x1b[32m%s\x1b[0m", `${stats.perfectMatches} perfect matches\n`);
-
-  console.log(
-    "\x1b[31m%s\x1b[0m",
-    `${stats.noSameYearSameCountry.length} coins with no common country and year\n`
+function logStatistics(coinsTreated, language, stats) {
+  logger.info(`=== STATS ===\n`);
+  logger.green(`🚀 ${stats.perfectMatches} perfect matches\n`);
+  logger.red(
+    `🛸 ${stats.noSameYearSameCountry.length} coins with no common country and year\n`
   );
-
-  console.log(
-    "\x1b[32m%s\x1b[0m",
-    `${
+  logger.green(
+    `📡 ${
       stats.titleComparisonExceedThreshold.length
     } title comparison successful (max words in common was ${Math.max(
       ...stats.titleComparisonExceedThreshold
     )})\n`
   );
-
-  console.log(
-    "\x1b[31m%s\x1b[0m",
-    `${stats.titleComparisonFailedThreshold.length} title comparison failed\n`
+  logger.yellow(
+    `🔬 ${stats.titleComparisonFailedThreshold.length} title comparison failed\n`
   );
-
-  console.log("\x1b[36m%s\x1b[0m", `${coinsToMerge.length} coins treated\n`);
-
+  logger.blue(`🪙  ${coinsTreated.length} coins treated in (${language})\n`);
   console.table(stats.titleComparisonFailedThreshold);
-
-  return merged;
-};
+}

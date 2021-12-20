@@ -3,6 +3,8 @@ import cheerio from "cheerio";
 import _ from "lodash";
 import { basename } from "path";
 
+import { logger } from "./logger.mjs";
+import { parseFrenchDate } from "./parser.french.mjs";
 import { SELECTORS } from "./parser.constants.mjs";
 
 import fr from "../locales/fr.json";
@@ -31,54 +33,6 @@ export const parseVolume = volume => {
   return parseInt(extractedNumber.replace(/\s/g, ""));
 };
 
-export const parseMonth = dateString => {
-  const months = [
-    "Janvier",
-    "Février",
-    "Mars",
-    "Avril",
-    "Mai",
-    "Juin",
-    "Juillet",
-    "Août",
-    "Septembre",
-    "Octobre",
-    "Novembre",
-    "Décembre"
-  ];
-
-  for (const [index, month] of months.entries()) {
-    if (
-      dateString.includes(month) ||
-      dateString.includes(month.toLowerCase())
-    ) {
-      return index;
-    }
-  }
-
-  const [, number, trimestreOrSemestre] =
-    dateString.match(/(\d)er?\s(trimestre|semestre)/) || [];
-  if (trimestreOrSemestre) {
-    return (number - 1) * (trimestreOrSemestre === "trimestre" ? 3 : 6);
-  }
-
-  if (dateString.includes("Automne")) return 9;
-  if (dateString.includes("Printemps")) return 3;
-  if (dateString.includes("Mi-")) return 6;
-
-  console.warn(`[WARNING] Could not found a month for ${dateString}`);
-
-  return 0;
-};
-
-const parseFrenchDate = dateString => {
-  const [year] = dateString.match(/(20[\d]{2})/) || [];
-  const month = parseMonth(dateString);
-  const [day] = dateString.match(/^(\d+)\s/) || [1];
-
-  return new Date(year, month, day, 12, 0, 0, 0);
-};
-
 export const parseDate = (dateString, lang) => {
   const date =
     lang === "fr"
@@ -87,7 +41,7 @@ export const parseDate = (dateString, lang) => {
   date.setUTCHours(0, 0, 0, 0);
 
   if (isNaN(date.getTime())) {
-    console.warn(`[ERROR] Invalid Date for ${dateString}`);
+    logger.warn(`Invalid (${lang}) Date for « ${dateString} »`);
   }
 
   return date;
@@ -124,7 +78,10 @@ export const cleanDate = dateString => {
     return dateString.split("FDC")[0].slice("FDI:[13] ".length);
   }
   if (dateString.includes("rolls")) {
-    return dateString.split("(")[0].trim();
+    return /\((sets|proof)\)(.+)\(rolls\)/.exec(dateString.trim())[2].trim();
+  }
+  if (dateString.includes("–")) {
+    return dateString.split("–")[1].trim();
   }
   return cleanStr(dateString);
 };
@@ -170,7 +127,7 @@ export const fetchAndParseURL = lang => async ({
   fixDate,
   collection
 }) => {
-  console.debug(`[DEBUG] Fetching (${lang}) ${decodeURI(basename(url))}`);
+  logger.debug(`Fetching (${lang}) ${decodeURI(basename(url))}`);
 
   const { data } = await axios.get(url);
 

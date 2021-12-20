@@ -3,6 +3,7 @@ import fs from "fs";
 import { basename } from "path";
 import ProgressBar from "progress";
 
+import { logger } from "./logger.mjs";
 import { IMAGE_DIRECTORY } from "./constants.mjs";
 import { IMAGE_QUALITY, IMAGE_QUALITY_WIDTH } from "../constants.mjs";
 import { IMAGE_ALL_QUALITIES } from "./constants.mjs";
@@ -35,8 +36,8 @@ const sendToPanda = async (sourceURL, pandaToken) => {
 
     return location;
   } catch (error) {
-    console.error(
-      "[ERROR] Got an error when sending to Tiny PNG API (e.g. your api key is invalid):",
+    logger.error(
+      "Got an error when sending to Tiny PNG API (e.g. your api key is invalid):",
       error.message
     );
   }
@@ -73,8 +74,8 @@ const downloadImage = async (
     data.on("data", chunk => progressBar.tick(chunk.length));
     data.pipe(fs.createWriteStream(destination));
   } catch (error) {
-    console.error(
-      `[ERROR] Received during processing ${getFileName(destination)}`,
+    logger.error(
+      `Received during processing ${getFileName(destination)}`,
       error.message
     );
   }
@@ -152,7 +153,7 @@ export const downloadAllMissing = (
     ? coins.filter(isImageMissing(quality))
     : coins.filter(coin => coin.image);
 
-  console.info(`[INFO] Downloading ${coinsToDownload.length} images`);
+  logger.info(`Downloading ${coinsToDownload.length} images`);
 
   return Promise.all(
     coinsToDownload.map(coin => download(coin, quality, pandaToken))

@@ -1,11 +1,32 @@
 export const DATABASE_PATH = "src/assets/database.json";
 
+const from2004 = [
+  2004,
+  2005,
+  2006,
+  2007,
+  2008,
+  2009,
+  2010,
+  2011,
+  2012,
+  2013,
+  2014,
+  2015,
+  2016,
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022
+];
+
 export const WIKIPEDIA_URLS = {
   fr: [
-    {
-      url:
-        "https://fr.wikipedia.org/wiki/Pi%C3%A8ce_comm%C3%A9morative_de_2_euros"
-    },
+    ...from2004.map(year => ({
+      url: `https://fr.wikipedia.org/wiki/Liste_des_pi%C3%A8ces_comm%C3%A9moratives_de_2_euros_de_${year}`
+    })),
     {
       url:
         "https://fr.wikipedia.org/wiki/S%C3%A9rie_de_pi%C3%A8ces_de_2_euros_du_50e_anniversaire_du_Trait%C3%A9_de_Rome",

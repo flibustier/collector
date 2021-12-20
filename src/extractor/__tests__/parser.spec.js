@@ -1,5 +1,4 @@
 import {
-  parseMonth,
   parseVolume,
   parseCountryToISO,
   parseDate,
@@ -8,26 +7,6 @@ import {
 } from "../parser.mjs";
 
 describe("in parser", () => {
-  describe.each`
-    dateString             | parsedMonth
-    ${"Février 2019"}      | ${1}
-    ${"23 août 2016"}      | ${7}
-    ${"Mi-2016"}           | ${6}
-    ${"Automne 2004"}      | ${9}
-    ${"1er semestre 2022"} | ${0}
-    ${"4e trimestre 1990"} | ${9}
-    ${"2e semestre 2000"}  | ${6}
-    ${"2e trimestre 1810"} | ${3}
-  `("parseMonth", ({ dateString, parsedMonth }) => {
-    it(`should return ${parsedMonth} from ${dateString}`, () => {
-      expect(parseMonth(dateString)).toEqual(parsedMonth);
-    });
-  });
-
-  it("should log a warning when no month found in a date", () => {
-    expect(parseMonth("this is not a date")).toEqual(0);
-  });
-
   describe.each`
     volumeString                   | parsedVolume
     ${"10 000 pièces"}             | ${10000}
@@ -111,13 +90,20 @@ describe("in parser", () => {
       ).toEqual("16 April 2007");
     });
 
-    it("should clean date string with FDI and FDC", () => {
+    it("should clean date string with sets and rolls", () => {
       expect(cleanDate("23 June 2015 (sets)3 October 2015 (rolls)\n")).toEqual(
-        "23 June 2015"
+        "3 October 2015"
       );
+    });
+
+    it("should clean date string with proof and rolls", () => {
       expect(cleanDate("29 April 2015 (proof)22 July 2015 (rolls)\n")).toEqual(
-        "29 April 2015"
+        "22 July 2015"
       );
+    });
+
+    it("should clean date string with a range", () => {
+      expect(cleanDate("25 March – 2 April 2007\n")).toEqual("2 April 2007");
     });
   });
 });

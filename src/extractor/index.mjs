@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { logger } from "./logger.mjs";
 
 import { WIKIPEDIA_URLS, IMAGE_ALL_QUALITIES } from "./constants.mjs";
 import { ROOT_LANGUAGE } from "../constants.mjs";
@@ -16,8 +17,6 @@ import {
 import { readDatabase, writeDatabase } from "./database.mjs";
 
 import argv from "./argv.mjs";
-
-let coins = [];
 
 const foreignLanguages = Object.keys(WIKIPEDIA_URLS).filter(
   lang => lang !== ROOT_LANGUAGE
@@ -37,38 +36,46 @@ async function fetchWikipediaAndMerge() {
     sortAndParseRemoteCoins
   );
 
-  const rootCoins = await remoteCoinsPromises[ROOT_LANGUAGE];
+  let rootCoins = await remoteCoinsPromises[ROOT_LANGUAGE];
 
   for (var lang of foreignLanguages) {
     const coinsInForeignLanguage = await remoteCoinsPromises[lang];
-    coins = mergeCoinsInForeignLanguage(
+    rootCoins = mergeCoinsInForeignLanguage(
       rootCoins,
       coinsInForeignLanguage,
       lang
     );
   }
+
+  return rootCoins;
 }
 
+const usePreviousVersionToFillEmptyFields = (coins, previously) =>
+  coins.map(coin => ({
+    ...previously.find(({ id }) => id === coin.id),
+    ..._.omitBy(coin, field => !field)
+  }));
+
 async function main() {
-  coins = await readDatabase();
+  const previously = await readDatabase();
 
-  await fetchWikipediaAndMerge(coins);
+  const coins = await fetchWikipediaAndMerge();
 
-  console.info(`[INFO] ${coins.length} total coins`);
+  logger.info(`${coins.length} total coins`);
 
   if (argv["write-database"]) {
-    writeDatabase(coins);
+    writeDatabase(usePreviousVersionToFillEmptyFields(coins, previously));
   }
 
   if (argv.download) {
     const id = argv.download;
     const coin = coins.find(coin => coin.id === id);
     if (!coin) {
-      return console.error(`${id} not found in coin database`);
+      return logger.error(`${id} not found in coin database`);
     }
 
     const { quality, tinypng } = argv;
-    console.info(
+    logger.info(
       `downloading ${id} in ${quality} quality ${tinypng ? "with tinypng" : ""}`
     );
 
@@ -80,8 +87,8 @@ async function main() {
   }
 
   if (argv["download-missings"] || argv["download-all"]) {
-    console.info(
-      `[INFO] Downloading images in ${argv.quality} quality (could take some time)`
+    logger.info(
+      `Downloading images in ${argv.quality} quality (could take some time)`
     );
 
     await downloadAllMissing(
