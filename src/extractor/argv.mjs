@@ -40,7 +40,9 @@ export default yargs
     description:
       "Use TinyPNG API to reduce picture sizes when using a download option",
     coerce: () =>
-      Buffer.from(`api:${process.env.TINYPNG_API_KEY}`).toString("base64")
+      (JSON.parse(process.env.TINYPNG_API_KEYS) || []).map(apiKey =>
+        Buffer.from(`api:${apiKey}`).toString("base64")
+      )
   })
   .example(
     "$0 --write-database",

@@ -33,7 +33,7 @@ Option availables:
 - `--download-missings` (or `-m`) To download all missing pictures
   > - You can use `--quality [QUALITY]` (or `-q [QUALITY]`) when using `--download [ID]` or `--download-all` or `--download-missings` for specifying the picture quality (possible values are `low`, `medium`, `fullsize`, `all` for `[QUALITY]`)
   > - You can use `--tiny-png` (or `-t`) option when using `--download [ID]` or `--download-all` or `--download-missings` to use [TinyPNG API](https://tinypng.com/) for reducing picture sizes
-  >   You will need to specify your API key in `.env` file like `TINYPNG_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`
+  >   You will need to specify your API key in `.env` file like `TINYPNG_API_KEYS=["XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"]`
 - You can use `--download-all` (or `-a`) to download all pictures (not only missings) and overwrite existing ones.
 
 ### Compiles and hot-reloads for frontend development

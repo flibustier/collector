@@ -7,40 +7,11 @@ import { logger } from "./logger.mjs";
 import { IMAGE_DIRECTORY } from "./constants.mjs";
 import { IMAGE_QUALITY, IMAGE_QUALITY_WIDTH } from "../constants.mjs";
 import { IMAGE_ALL_QUALITIES } from "./constants.mjs";
+import { PANDA_API_HEADERS, sendToPanda } from "./image.panda.mjs";
 
 const MAX_PIXEL_SIZE = 1000;
-
-const PANDA_API_SHRINK = "https://api.tinify.com/shrink";
-const PANDA_API_HEADERS = PANDA_API_TOKEN => ({
-  headers: {
-    Authorization: `Basic ${PANDA_API_TOKEN}`
-  }
-});
 const RESIZE_INSTRUCTION = {
   resize: { method: "fit", width: MAX_PIXEL_SIZE, height: MAX_PIXEL_SIZE }
-};
-
-const sendToPanda = async (sourceURL, pandaToken) => {
-  try {
-    const {
-      headers: { location }
-    } = await axios.post(
-      PANDA_API_SHRINK,
-      {
-        source: {
-          url: sourceURL
-        }
-      },
-      PANDA_API_HEADERS(pandaToken)
-    );
-
-    return location;
-  } catch (error) {
-    logger.error(
-      "Got an error when sending to Tiny PNG API (e.g. your api key is invalid):",
-      error.message
-    );
-  }
 };
 
 export const getFileName = URL => decodeURIComponent(basename(URL));
@@ -78,6 +49,7 @@ const downloadImage = async (
       `Received during processing ${getFileName(destination)}`,
       error.message
     );
+    throw error;
   }
 };
 
@@ -110,26 +82,40 @@ export const downloadAllQualities = async (coin, pandaToken) =>
 export const download = async (
   { image },
   quality = IMAGE_QUALITY.MAXIMAL,
-  pandaToken = false
+  pandaTokens = false,
+  currentToken = 0,
 ) => {
+  if (pandaTokens && currentToken >= pandaTokens.length) {
+    logger.error(
+      `No token available: ${pandaTokens.length} tokens gived, ${currentToken} used`
+    );
+
+    return;
+  }
+
   const sourceURL = getImageURLForQuality(image, quality);
-  const imageLocation = pandaToken
-    ? await sendToPanda(sourceURL, pandaToken)
+  const imageLocation = pandaTokens
+    ? await sendToPanda(sourceURL, pandaTokens[currentToken])
     : sourceURL;
   const imageDestination = getLocalImageFilePath(sourceURL, quality);
 
   const shouldResize = quality === IMAGE_QUALITY.MAXIMAL;
 
-  await downloadImage(
-    imageLocation,
-    imageDestination,
-    shouldResize,
-    pandaToken
-  );
+  try {
+    await downloadImage(
+      imageLocation,
+      imageDestination,
+      shouldResize,
+      pandaTokens[currentToken]
+    );
+  } catch (error) {
+    await download({ image }, quality, pandaTokens, currentToken + 1);
+  }
 };
 
 const imagePathForQuality = (imageSourceURL, quality) => {
   const sourceURLForQuality = getImageURLForQuality(imageSourceURL, quality);
+
   return getLocalImageFilePath(sourceURLForQuality, quality);
 };
 
@@ -139,13 +125,13 @@ const isImageMissing = quality => ({ image }) =>
 export const downloadAllMissing = (
   coins,
   quality = IMAGE_QUALITY.MAXIMAL,
-  pandaToken = false,
+  pandaTokens = false,
   overwrite = false
 ) => {
   if (quality === IMAGE_ALL_QUALITIES) {
     return Promise.all(
       Object.values(IMAGE_QUALITY).map(singleQuality =>
-        downloadAllMissing(coins, singleQuality, pandaToken)
+        downloadAllMissing(coins, singleQuality, pandaTokens)
       )
     );
   }
@@ -156,6 +142,6 @@ export const downloadAllMissing = (
   logger.info(`Downloading ${coinsToDownload.length} images`);
 
   return Promise.all(
-    coinsToDownload.map(coin => download(coin, quality, pandaToken))
+    coinsToDownload.map(coin => download(coin, quality, pandaTokens))
   );
 };
